@@ -1,0 +1,12 @@
+﻿*.log
+.svn/
+Library/
+Logs/
+Temp/
+.idea/
+obj/
+UserSettings/
+
+
+
+
