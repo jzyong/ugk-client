@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Google.Protobuf;
 using kcp2k;
 using UnityEngine.SceneManagement;
 
@@ -194,6 +195,21 @@ namespace Network
         public  void OnDestroy()
         {
             //Debug.Log("NetworkManager destroyed");
+        }
+        
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="mid"></param>
+        /// <param name="message"></param>
+        public void Send(MID mid, IMessage message)
+        {
+            Send(mid, message.ToByteArray());
+        }
+
+        public void Send(MID mid, byte[] data)
+        {
+            // Send((int) mid, data);
         }
         
     }

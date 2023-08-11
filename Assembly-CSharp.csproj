@@ -45,6 +45,7 @@
     <Analyzer Include="G:\Program Files\Unity\2023.1.3f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Network\Messages\Constant.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Pool.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkLoop.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpConfig.cs" />
@@ -54,6 +55,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Log.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkTime.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpServerConnection.cs" />
+     <Compile Include="Assets\Scripts\Network\Messages\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Segment.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Extensions.cs" />
@@ -61,6 +63,7 @@
      <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkClient.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AckItem.cs" />
+     <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Common.cs" />
@@ -71,6 +74,7 @@
      <Folder Include="Library\BuildInstructions" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel" />
      <Folder Include="Assets\Scripts\Tools" />
+     <Folder Include="Assets\Scripts\Network\Messages" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Scripts\Network\Kcp" />
@@ -350,8 +354,14 @@
      <Reference Include="ReportGeneratorMerged">
      <HintPath>D:\Unity\ugk-client\Library\PackageCache\com.unity.testtools.codecoverage@1.2.4\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
      </Reference>
+     <Reference Include="Google.Protobuf">
+     <HintPath>D:\Unity\ugk-client\Assets\Plugins\Google.Protobuf\lib\net45\Google.Protobuf.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
      <HintPath>D:\Unity\ugk-client\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="System.Runtime.CompilerServices.Unsafe">
+     <HintPath>D:\Unity\ugk-client\Assets\Plugins\System.Runtime.CompilerServices.Unsafe\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>G:\Program Files\Unity\2023.1.3f1c1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
