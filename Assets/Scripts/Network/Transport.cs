@@ -63,14 +63,14 @@ namespace Network
         public abstract bool ClientConnected();
 
         /// <summary>Connects the client to the server at the address. </summary>
-        public abstract void ClientConnect(string address);
+        public abstract void ClientConnect(string address,ushort port);
 
         /// <summary>Connects the client to the server at the Uri. @</summary>
-        public virtual void ClientConnect(Uri uri)
+        public virtual void ClientConnect(Uri uri,ushort port)
         {
             // By default, to keep backwards compatibility, just connect to the host
             // in the uri
-            ClientConnect(uri.Host);
+            ClientConnect(uri.Host,port);
         }
 
         /// <summary>Sends a message to the server over the given channel. @</summary>

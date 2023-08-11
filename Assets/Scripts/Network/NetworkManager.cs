@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using kcp2k;
 using UnityEngine.SceneManagement;
 
 namespace Network
@@ -18,7 +19,10 @@ namespace Network
         /// <summary>Server's address for clients to connect to. </summary>
         [Tooltip(
             "Network Address where the client should connect to the server. Server does not use this for anything.")]
-        public string networkAddress = "localhost";
+        public string networkAddress = "192.168.110.2";
+
+        [Tooltip("服务器端口")]
+        public ushort port = 5000;
 
 
         /// <summary>The one and only NetworkManager </summary>
@@ -32,11 +36,16 @@ namespace Network
         public void Awake()
         {
             // Don't allow collision-destroyed second instance to continue.
+            Log.Info = Debug.Log;
+            Log.Error = Debug.LogError;
+            Log.Warning = Debug.LogWarning;
             if (!InitializeSingleton()) return;
         }
 
         public  void Start()
         {
+            //TODO 临时测试
+            StartClient();
         }
 
         public  void Update()
@@ -77,31 +86,10 @@ namespace Network
             }
             // Debug.Log($"NetworkManager StartClient address:{networkAddress}");
 
-            NetworkClient.Connect(networkAddress);
+            NetworkClient.Connect(networkAddress,port);
 
         }
 
-        /// <summary>Starts the client, connects it to the server via Uri</summary>
-        public void StartClient(Uri uri)
-        {
-            if (NetworkClient.active)
-            {
-                Debug.LogWarning("Client already started.");
-                return;
-            }
-
-
-            SetupClient();
-
-
-            // Debug.Log($"NetworkManager StartClient address:{uri}");
-            networkAddress = uri.Host;
-
-            NetworkClient.Connect(uri);
-
-        }
-
-      
 
         /// <summary>Stops and disconnects the client. </summary>
         public void StopClient()

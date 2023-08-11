@@ -121,9 +121,8 @@ namespace kcp2k
 
             // bind to endpoint so we can use send/recv instead of sendto/recvfrom.
             socket.Connect(remoteEndPoint);
-
-            // client should send handshake to server as very first message
-            peer.SendHandshake();
+            //TODO 临时测试
+          peer.SendData(new ArraySegment<byte>(new byte[1]{12}));
         }
 
         // io - input.

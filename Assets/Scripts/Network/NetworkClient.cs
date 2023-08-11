@@ -111,23 +111,23 @@ namespace Network
         }
 
         /// <summary>Connect client to a NetworkServer by address. @</summary>
-        public static void Connect(string address)
+        public static void Connect(string address,ushort port)
         {
             Initialize();
 
             AddTransportHandlers();
             connectState = ConnectState.Connecting;
-            Transport.active.ClientConnect(address);
+            Transport.active.ClientConnect(address,port);
         }
 
         /// <summary>Connect client to a NetworkServer by Uri.</summary>
-        public static void Connect(Uri uri)
+        public static void Connect(Uri uri,ushort port)
         {
             Initialize();
 
             AddTransportHandlers();
             connectState = ConnectState.Connecting;
-            Transport.active.ClientConnect(uri);
+            Transport.active.ClientConnect(uri,port);
         }
 
 

@@ -19,9 +19,6 @@ namespace kcp2k
 
         // common
         [Header("Transport Configuration")]
-        [FormerlySerializedAs("Port")]
-        public ushort port = 7777;
-        public ushort Port { get => port; set => port=value; }
         [Tooltip("NoDelay is recommended to reduce latency. This also scales better without buffers getting full.")]
         public bool NoDelay = true;
         [Tooltip("KCP internal update interval. 100ms is KCP default, but a lower interval is recommended to minimize latency and to scale to more networked entities.")]
@@ -140,17 +137,9 @@ namespace kcp2k
 
         // client
         public override bool ClientConnected() => client.connected;
-        public override void ClientConnect(string address)
+        public override void ClientConnect(string address,ushort port)
         {
-            client.Connect(address, Port);
-        }
-        public override void ClientConnect(Uri uri)
-        {
-            if (uri.Scheme != Scheme)
-                throw new ArgumentException($"Invalid url {uri}, use {Scheme}://host:port instead", nameof(uri));
-
-            int serverPort = uri.IsDefaultPort ? Port : uri.Port;
-            client.Connect(uri.Host, (ushort)serverPort);
+            client.Connect(address, port);
         }
         public override void ClientSend(ArraySegment<byte> segment)
         {
@@ -183,17 +172,6 @@ namespace kcp2k
             
         }
 
-        // kcp reliable channel max packet size is MTU * WND_RCV
-        // this allows 144kb messages. but due to head of line blocking, all
-        // other messages would have to wait until the maxed size one is
-        // delivered. batching 144kb messages each time would be EXTREMELY slow
-        // and fill the send queue nearly immediately when using it over the
-        // network.
-        // => instead we always use MTU sized batches.
-        // => people can still send maxed size if needed.
-        public override int GetBatchThreshold() =>
-            KcpPeer.UnreliableMaxMessageSize(config.Mtu);
-        
 
         // PrettyBytes function from DOTSNET
         // pretty prints bytes as KB/MB/GB/etc.
