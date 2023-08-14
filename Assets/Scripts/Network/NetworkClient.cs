@@ -162,10 +162,14 @@ namespace Network
         }
 
 
-        // called by Transport 获取消息并处理 @
+        // called by Transport 获取消息并处理 
         internal static void OnTransportData(ArraySegment<byte> data)
         {
-            //TODO
+            //TODO  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
+            
+            Debug.Log($"收到消息 ID={BitConverter.ToInt32(data.Array,4)} Seq={BitConverter.ToInt32(data.Array,8)} timeStamp={BitConverter.ToInt64(data.Array,12)}");
+            
+            
         }
 
         // called by Transport

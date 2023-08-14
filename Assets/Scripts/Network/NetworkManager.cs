@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 namespace Network
 {
     /// <summary>
-    /// 网络管理
+    /// <para>网络管理</para>
+    /// KcpClient，KcpPeer，NetworkClient应该自己封装，在Mirror上的基础开发层层回调，头都绕晕了
+    /// 
     /// </summary>
     [DisallowMultipleComponent]
     public class NetworkManager : MonoBehaviour

@@ -36,6 +36,8 @@ namespace kcp2k
 
         readonly Action OnAuthenticated;
         readonly Action<ArraySegment<byte>> OnData;
+        //发送心跳
+        private readonly Action SendPing; 
 
         readonly Action OnDisconnected;
 
@@ -48,6 +50,7 @@ namespace kcp2k
         // then consider us disconnected
         public const int DEFAULT_TIMEOUT = 10000;
         public int timeout;
+        //最后收到消息时间，用于判断超时
         uint lastReceiveTime;
 
         // internal time.
@@ -155,6 +158,7 @@ namespace kcp2k
             Action<ArraySegment<byte>> OnData,
             Action OnDisconnected,
             Action<ErrorCode, string> OnError,
+            Action sendPing,
             KcpConfig config,
             uint cookie)
         {
@@ -164,6 +168,7 @@ namespace kcp2k
             this.OnDisconnected = OnDisconnected;
             this.OnError = OnError;
             this.RawSend = output;
+            this.SendPing = sendPing;
 
             // set up kcp over reliable channel (that's what kcp is for)
             kcp = new Kcp(0, RawSendReliable);
@@ -231,11 +236,12 @@ namespace kcp2k
         // send a ping occasionally in order to not time out on the other end. @
         void HandlePing(uint time)
         {
+            
             // enough time elapsed since last ping?
             if (time >= lastPingTime + PING_INTERVAL)
             {
-                //TODO 发送心跳，使用回调函数
-
+                // 发送心跳，使用回调函数
+                SendPing();
                 lastPingTime = time;
             }
         }
@@ -421,7 +427,7 @@ namespace kcp2k
             }
         }
 
-        // @
+        // 
         void OnRawInputReliable(ArraySegment<byte> message)
         {
             // input into kcp, but skip channel byte
@@ -436,20 +442,19 @@ namespace kcp2k
 
         // insert raw IO. usually from socket.Receive.
         // offset is useful for relays, where we may parse a header and then
-        // feed the rest to kcp. @
+        // feed the rest to kcp. 
         public void RawInput(ArraySegment<byte> segment)
         {
-            // ensure valid size: at least 1 byte for channel + 4 bytes for cookie
-            if (segment.Count <= 16) return;
-            //TODO 自定义实现
+            // ensure valid size 消息长度4+消息id4+序列号4+时间戳8+protobuf消息体
+            if (segment.Count <= 20) return;
             
             // parse message
             ArraySegment<byte> message =
-                new ArraySegment<byte>(segment.Array, segment.Offset , segment.Count - 1 - 4);
+                new ArraySegment<byte>(segment.Array, segment.Offset , segment.Count);
             OnRawInputReliable(message);
         }
 
-        // raw send called by kcp @
+        // raw send called by kcp 
         void RawSendReliable(byte[] data, int length)
         {
             Buffer.BlockCopy(data, 0, rawSendBuffer, 0, length);
@@ -460,7 +465,6 @@ namespace kcp2k
 
         void SendReliable(ArraySegment<byte> content)
         {
-            //TODO 自定义实现
             // 1 byte header + content needs to fit into send buffer
             if (content.Count > kcpSendBuffer.Length) 
             {
