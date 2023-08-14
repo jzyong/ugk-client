@@ -22,8 +22,10 @@ namespace Network
             "Network Address where the client should connect to the server. Server does not use this for anything.")]
         public string networkAddress = "192.168.110.2";
 
-        [Tooltip("服务器端口")]
-        public ushort port = 5000;
+        [Tooltip("服务器端口")] public ushort port = 5000;
+
+        // 消息序列号
+        private UInt32 _seq;
 
 
         /// <summary>The one and only NetworkManager </summary>
@@ -43,22 +45,21 @@ namespace Network
             if (!InitializeSingleton()) return;
         }
 
-        public  void Start()
+        public void Start()
         {
             //TODO 临时测试
             StartClient();
         }
 
-        public  void Update()
+        public void Update()
         {
         }
 
         // virtual so that inheriting classes' LateUpdate() can call base.LateUpdate() too
-        public  void LateUpdate()
+        public void LateUpdate()
         {
         }
 
-      
 
         //
         void SetupClient()
@@ -79,7 +80,6 @@ namespace Network
             SetupClient();
 
 
-
             if (string.IsNullOrWhiteSpace(networkAddress))
             {
                 Debug.LogError("Must set the Network Address field in the manager");
@@ -87,15 +87,13 @@ namespace Network
             }
             // Debug.Log($"NetworkManager StartClient address:{networkAddress}");
 
-            NetworkClient.Connect(networkAddress,port);
-
+            NetworkClient.Connect(networkAddress, port);
         }
 
 
         /// <summary>Stops and disconnects the client. </summary>
         public void StopClient()
         {
-
             // ask client -> transport to disconnect.
             // handle voluntary and involuntary disconnects in OnClientDisconnect.
             //
@@ -180,8 +178,6 @@ namespace Network
             return true;
         }
 
-      
-
 
         // This is the only way to clear the singleton, so another instance can be created.
         // RuntimeInitializeOnLoadMethod -> fast playmode without domain reload
@@ -192,11 +188,11 @@ namespace Network
             singleton = null;
         }
 
-        public  void OnDestroy()
+        public void OnDestroy()
         {
             //Debug.Log("NetworkManager destroyed");
         }
-        
+
         /// <summary>
         /// 发送消息
         /// </summary>
@@ -210,7 +206,23 @@ namespace Network
         public void Send(MID mid, byte[] data)
         {
             // Send((int) mid, data);
+
+            // 消息长度4+消息id4+序列号4+时间戳8+protobuf消息体
+            byte[] msgLength = BitConverter.GetBytes(data.Length + 16);
+            byte[] msgId = BitConverter.GetBytes((int)mid);
+            ++_seq;
+            byte[] seq = BitConverter.GetBytes(_seq);
+            long time = 0; //TODO 时间戳生成
+            byte[] timeStamp = BitConverter.GetBytes(time);
+            byte[] datas = new byte[20 + data.Length];
+
+            Array.Copy(msgLength,0, datas,0, msgLength.Length);
+            Array.Copy(msgId,0, datas,4, msgId.Length);
+            Array.Copy(seq, 0,datas,8, seq.Length);
+            Array.Copy(timeStamp, 0,datas,12, seq.Length);
+            Array.Copy(data, 0,datas, 20,data.Length);
+            ArraySegment<byte> segment = new ArraySegment<byte>(datas);
+            Transport.active.ClientSend(segment);
         }
-        
     }
 }

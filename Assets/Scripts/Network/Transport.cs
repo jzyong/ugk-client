@@ -57,6 +57,11 @@ namespace Network
 
         /// <summary>Called by Transport when the client disconnected from the server. </summary>
         public Action OnClientDisconnected;
+
+        /// <summary>
+        /// 发送心跳
+        /// </summary>
+        public Action SendHeart;
         
 
         /// <summary>True if the client is currently connected to the server. </summary>

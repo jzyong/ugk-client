@@ -1,5 +1,6 @@
 // kcp client logic abstracted into a class.
 // for use in Mirror, DOTSNET, testing, etc.
+
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -38,22 +39,25 @@ namespace kcp2k
         protected readonly Action OnConnected;
         protected readonly Action<ArraySegment<byte>> OnData;
         protected readonly Action OnDisconnected;
+        protected readonly Action SendHeart;
         protected readonly Action<ErrorCode, string> OnError;
 
         // state
         public bool connected;
 
         public KcpClient(Action OnConnected,
-                         Action<ArraySegment<byte>> OnData,
-                         Action OnDisconnected,
-                         Action<ErrorCode, string> OnError,
-                         KcpConfig config)
+            Action<ArraySegment<byte>> OnData,
+            Action OnDisconnected,
+            Action<ErrorCode, string> OnError,
+            Action sendHeart,
+            KcpConfig config)
         {
             // initialize callbacks first to ensure they can be used safely.
             this.OnConnected = OnConnected;
             this.OnData = OnData;
             this.OnDisconnected = OnDisconnected;
             this.OnError = OnError;
+            this.SendHeart = sendHeart;
             this.config = config;
 
             // create mtu sized receive buffer
@@ -94,6 +98,7 @@ namespace kcp2k
                 connected = true;
                 OnConnected();
             }
+
             void OnDisconnectedWrap()
             {
                 Log.Info($"KcpClient: OnDisconnected");
@@ -121,8 +126,8 @@ namespace kcp2k
 
             // bind to endpoint so we can use send/recv instead of sendto/recvfrom.
             socket.Connect(remoteEndPoint);
-            //TODO 临时测试
-          peer.SendData(new ArraySegment<byte>(new byte[1]{12}));
+            // 发送心跳
+            SendHeart();
         }
 
         // io - input.
@@ -169,11 +174,11 @@ namespace kcp2k
 
         public void Send(ArraySegment<byte> segment)
         {
-            if (!connected)
-            {
-                Log.Warning("KcpClient: can't send because not connected!");
-                return;
-            }
+            // if (!connected)
+            // {
+            //     Log.Warning("KcpClient: can't send because not connected!");
+            //     return;
+            // }
 
             peer.SendData(segment);
         }
@@ -200,7 +205,6 @@ namespace kcp2k
             // (connection is null if not active)
             if (peer != null)
             {
-
                 while (RawReceive(out ArraySegment<byte> segment))
                     peer.RawInput(segment);
             }

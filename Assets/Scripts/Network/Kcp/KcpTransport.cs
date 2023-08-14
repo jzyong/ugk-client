@@ -113,6 +113,7 @@ namespace kcp2k
                 (message) => OnClientDataReceived.Invoke(message),
                 () => OnClientDisconnected.Invoke(),
                 (error, reason) => OnClientError.Invoke(ToTransportError(error), reason),
+                () =>SendHeart.Invoke(),
                 config
             );
 

@@ -89,6 +89,7 @@ namespace Network
             Transport.active.OnClientDataReceived += OnTransportData;
             Transport.active.OnClientDisconnected += OnTransportDisconnected;
             Transport.active.OnClientError += OnTransportError;
+            Transport.active.SendHeart += SendHeart;
         }
 
         //
@@ -99,6 +100,7 @@ namespace Network
             Transport.active.OnClientDataReceived -= OnTransportData;
             Transport.active.OnClientDisconnected -= OnTransportDisconnected;
             Transport.active.OnClientError -= OnTransportError;
+            Transport.active.SendHeart -= SendHeart;
         }
 
         // connect /////////////////////////////////////////////////////////////
@@ -205,6 +207,15 @@ namespace Network
             // make sure the user does not panic.
             Debug.LogWarning($"Client Transport Error: {error}: {reason}. This is fine.");
             OnErrorEvent?.Invoke(error, reason);
+        }
+        
+        /// <summary>
+        /// 发送心跳消息
+        /// </summary>
+        public static void SendHeart()
+        {
+            HeartRequest request = new HeartRequest();
+            NetworkManager.singleton.Send(MID.HeartReq,request);
         }
 
         // send ////////////////////////////////////////////////////////////////

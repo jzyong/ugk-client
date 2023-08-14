@@ -452,17 +452,9 @@ namespace kcp2k
         // raw send called by kcp @
         void RawSendReliable(byte[] data, int length)
         {
-            // write channel header
-            // from 0, with 1 byte
-            rawSendBuffer[0] = (byte)1;
-
-            //TODO 自定义实现
-            // write data
-            // from 5, with N bytes
-            Buffer.BlockCopy(data, 0, rawSendBuffer, 1 + 4, length);
-
+            Buffer.BlockCopy(data, 0, rawSendBuffer, 0, length);
             // IO send
-            ArraySegment<byte> segment = new ArraySegment<byte>(rawSendBuffer, 0, length + 1 + 4);
+            ArraySegment<byte> segment = new ArraySegment<byte>(rawSendBuffer, 0, length);
             RawSend(segment);
         }
 
@@ -470,7 +462,7 @@ namespace kcp2k
         {
             //TODO 自定义实现
             // 1 byte header + content needs to fit into send buffer
-            if (1 + content.Count > kcpSendBuffer.Length) // TODO
+            if (content.Count > kcpSendBuffer.Length) 
             {
                 // otherwise content is larger than MaxMessageSize. let user know!
                 // GetType() shows Server/ClientConn instead of just Connection.
@@ -482,10 +474,10 @@ namespace kcp2k
 
             // write data (if any)
             if (content.Count > 0)
-                Buffer.BlockCopy(content.Array, content.Offset, kcpSendBuffer, 1, content.Count);
+                Buffer.BlockCopy(content.Array, content.Offset, kcpSendBuffer, 0, content.Count);
 
             // send to kcp for processing
-            int sent = kcp.Send(kcpSendBuffer, 0, 1 + content.Count);
+            int sent = kcp.Send(kcpSendBuffer, 0,  content.Count);
             if (sent < 0)
             {
                 // GetType() shows Server/ClientConn instead of just Connection.
