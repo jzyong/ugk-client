@@ -313,7 +313,8 @@ namespace kcp2k
             }
 
             // extract header & content without header
-            message = new ArraySegment<byte>(kcpMessageBuffer, 1, msgSize - 1);
+            // message = new ArraySegment<byte>(kcpMessageBuffer, 1, msgSize - 1);
+            message = new ArraySegment<byte>(kcpMessageBuffer, 0, msgSize );
             lastReceiveTime = (uint)watch.ElapsedMilliseconds;
             return true;
         }

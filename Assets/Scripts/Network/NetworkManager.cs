@@ -1,7 +1,11 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Google.Protobuf;
 using kcp2k;
+using System.Linq;
+using Tools;
 using UnityEngine.SceneManagement;
 
 namespace Network
@@ -28,6 +32,16 @@ namespace Network
 
         // 消息序列号
         private UInt32 _seq;
+
+        /// <summary>
+        /// 消息处理
+        /// </summary>
+        public delegate void MessageHandler(Int64 timeStamp, byte[] data);
+
+        /// <summary>
+        /// 消息处理器
+        /// </summary>
+        private Dictionary<MID, MessageHandler> messageHandlers;
 
 
         /// <summary>The one and only NetworkManager </summary>
@@ -67,6 +81,7 @@ namespace Network
         void SetupClient()
         {
             InitializeSingleton();
+            CreateMessageHandlersDictionary();
         }
 
         /// <summary>Starts the client, connects it to the server with networkAddress. </summary>
@@ -218,13 +233,75 @@ namespace Network
             byte[] timeStamp = BitConverter.GetBytes(time);
             byte[] datas = new byte[20 + data.Length];
 
-            Array.Copy(msgLength,0, datas,0, msgLength.Length);
-            Array.Copy(msgId,0, datas,4, msgId.Length);
-            Array.Copy(seq, 0,datas,8, seq.Length);
-            Array.Copy(timeStamp, 0,datas,12, seq.Length);
-            Array.Copy(data, 0,datas, 20,data.Length);
+            Array.Copy(msgLength, 0, datas, 0, msgLength.Length);
+            Array.Copy(msgId, 0, datas, 4, msgId.Length);
+            Array.Copy(seq, 0, datas, 8, seq.Length);
+            Array.Copy(timeStamp, 0, datas, 12, seq.Length);
+            Array.Copy(data, 0, datas, 20, data.Length);
             ArraySegment<byte> segment = new ArraySegment<byte>(datas);
             Transport.active.ClientSend(segment);
+        }
+
+        /// <summary>
+        /// 创建消息处理
+        ///
+        /// 参考：
+        /// </summary>
+        /// <param name="messageHandlerGroupId"></param>
+        /// <exception cref="NonStaticHandlerException"></exception>
+        protected void CreateMessageHandlersDictionary()
+        {
+            MethodInfo[] methods = FindMessageHandlers();
+
+            messageHandlers = new Dictionary<MID, MessageHandler>(methods.Length);
+            foreach (MethodInfo method in methods)
+            {
+                MessageMapAttribute attribute = method.GetCustomAttribute<MessageMapAttribute>();
+
+                if (!method.IsStatic)
+                    throw new NonStaticHandlerException(method.DeclaringType, method.Name);
+
+                Delegate clientMessageHandler = Delegate.CreateDelegate(typeof(MessageHandler), method, false);
+                if (clientMessageHandler != null)
+                {
+                    // It's a message handler for Client instances
+                    if (messageHandlers.ContainsKey(attribute.mid))
+                    {
+                        MethodInfo otherMethodWithId = messageHandlers[attribute.mid].GetMethodInfo();
+                        throw new DuplicateHandlerException((Int32)attribute.mid, method, otherMethodWithId);
+                    }
+                    else
+                    {
+                        messageHandlers.Add(attribute.mid, (MessageHandler)clientMessageHandler);
+                        Debug.Log($"消息:${attribute.mid}  添加处理器成功 ：${clientMessageHandler.Method.Name}");
+                    }
+                }
+            }
+        }
+
+        /// <summary>查找消息处理方法</summary>
+        /// <returns>An array containing message handler methods.</returns>
+        protected MethodInfo[] FindMessageHandlers()
+        {
+            // string thisAssemblyName = Assembly.GetExecutingAssembly().GetName().FullName;
+            
+             return Assembly.GetExecutingAssembly().GetTypes().SelectMany(t =>
+                    t.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static |
+                                 BindingFlags
+                                     .Instance)) // Include instance methods in the search so we can show the developer an error instead of silently not adding instance methods to the dictionary
+                .Where(m => m.GetCustomAttributes(typeof(MessageMapAttribute), false).Length > 0)
+                .ToArray();
+        }
+
+        /// <summary>
+        /// 获取消息处理器
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <returns></returns>
+        public MessageHandler GetMessageHandler(Int32 messageId)
+        {
+            MID mid = (MID)messageId;
+            return messageHandlers[mid];
         }
     }
 }
