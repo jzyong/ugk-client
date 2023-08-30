@@ -165,11 +165,13 @@ namespace Network
         // called by Transport 获取消息并处理 
         internal static void OnTransportData(ArraySegment<byte> data)
         {
-            //TODO  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
-            Int32 messageId = BitConverter.ToInt32(data.Array, 4);
-            Int32 seq = BitConverter.ToInt32(data.Array, 8);
-            Int64 timeStampp = BitConverter.ToInt64(data.Array, 12);
-           // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStampp}");
+            //  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
+            var bytes = data.Array;
+            Int32 messageLength = BitConverter.ToInt32(bytes, 0);
+            Int32 messageId = BitConverter.ToInt32(bytes, 4);
+            Int32 seq = BitConverter.ToInt32(bytes, 8);
+            Int64 timeStamp = BitConverter.ToInt64(bytes, 12);
+           // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
             var handler = NetworkManager.singleton.GetMessageHandler(messageId);
             if (handler==null)
             {
@@ -177,7 +179,9 @@ namespace Network
             }
             else
             {
-                handler(timeStampp, data.Slice(20).Array);
+                var protoData = new byte[messageLength-16];
+                Array.Copy(bytes, 20, protoData, 0, protoData.Length);
+                handler(timeStamp, protoData);
             }
         }
 
