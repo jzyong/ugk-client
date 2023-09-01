@@ -26,7 +26,7 @@ namespace Network.Handlers
             response.MergeFrom(data);
             //TODO 判断消息
             SceneManager.LoadScene("Lobby");
-            Debug.Log($" 收到登录消息：{response.PlayerId}");
+            Debug.Log($" 收到登录消息：{response.PlayerId} 结果：{response.Result.Msg}");
         }
         
     }
