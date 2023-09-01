@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Network\NetworkClient.cs" />
      <Compile Include="Assets\Scripts\Network\Exceptions.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AckItem.cs" />
+     <Compile Include="Assets\Scripts\Lobby\UI\Login\LoginPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
@@ -75,12 +76,17 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\ErrorCode.cs" />
      <Folder Include="Assets" />
      <Folder Include="Library\BuildInstructions" />
+     <Folder Include="Assets\Scripts\Lobby" />
+     <Folder Include="Assets\Scripts\Common" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel" />
      <Folder Include="Assets\Scripts\Tools" />
      <Folder Include="Assets\Scripts\Network\Messages" />
      <Folder Include="Assets\Scripts\Network\Handlers" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k" />
+     <Folder Include="Assets\Scripts\Lobby\UI" />
+     <Folder Include="Assets\Scripts\Lobby\UI\Login" />
      <Folder Include="Assets\Scenes" />
+     <Folder Include="Assets\Scripts\Game" />
      <Folder Include="Assets\Scripts\Network\Kcp" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\kcp" />
      <Folder Include="Assets\Scripts" />

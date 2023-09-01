@@ -1,6 +1,7 @@
 ﻿using System;
 using Google.Protobuf;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Network.Handlers
 {
@@ -12,14 +13,8 @@ namespace Network.Handlers
         [MessageMap(MID.HeartRes)]
         private static void Heart(Int64 timeStamp, byte[] data)
         {
-            Debug.Log($" 收到心跳返回：{timeStamp}");
-            var loginRequest = new LoginRequest
-            {
-                Account = "test1",
-                Password = "123",
-            };
-            //TODO 临时测试
-            NetworkManager.singleton.Send(MID.LoginReq,loginRequest);
+           // Debug.Log($" 收到心跳返回：{timeStamp}");
+           
         }
         
         
@@ -29,6 +24,8 @@ namespace Network.Handlers
         {
             var response = new LoginResponse();
             response.MergeFrom(data);
+            //TODO 判断消息
+            SceneManager.LoadScene("Lobby");
             Debug.Log($" 收到登录消息：{response.PlayerId}");
         }
         
