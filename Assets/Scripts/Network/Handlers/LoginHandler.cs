@@ -1,7 +1,7 @@
 ﻿using System;
 using Google.Protobuf;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 namespace Network.Handlers
 {
@@ -24,9 +24,8 @@ namespace Network.Handlers
         {
             var response = new LoginResponse();
             response.MergeFrom(data);
-            //TODO 判断消息
-            SceneManager.LoadScene("Lobby");
             Debug.Log($" 收到登录消息：{response.PlayerId} 结果：{response.Result.Msg}");
+            MessageEventManager.Instance.OnEvent(MessageEvent.Login,response);
         }
         
     }

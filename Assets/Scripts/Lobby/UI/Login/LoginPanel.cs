@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using Network;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Lobby.UI.Login
@@ -13,13 +12,18 @@ namespace Lobby.UI.Login
 
         [SerializeField] private TMP_InputField passwordInput;
 
-        [SerializeField]
-        private Button loginButton;
-        
+        [SerializeField] private Button loginButton;
+
 
         void Start()
         {
             loginButton.onClick.AddListener(Login);
+            MessageEventManager.Instance.AddEvent<LoginResponse>(MessageEvent.Login, LoginRes);
+        }
+
+        private void OnDestroy()
+        {
+            MessageEventManager.Instance.RemoveEvent<LoginResponse>(MessageEvent.Login, LoginRes);
         }
 
         // Update is called once per frame
@@ -34,7 +38,27 @@ namespace Lobby.UI.Login
                 Account = accountInput.text,
                 Password = passwordInput.text
             };
-            NetworkManager.singleton.Send(MID.LoginReq,request);
+            NetworkManager.singleton.Send(MID.LoginReq, request);
+        }
+
+        private void LoginRes(LoginResponse response)
+        {
+            // 登录成功
+            if (response.Result == null || response.Result.Status == 200)
+            {
+                SceneManager.LoadScene("Lobby");
+            }
+            else
+            {
+                // 给弹窗
+                var noticePanel =  gameObject.GetComponentInChildren<NoticePanel>(true);
+               
+                if (noticePanel!=null)
+                {
+                    noticePanel.Show(response.Result.Msg);
+                }
+                Debug.LogWarning($"登录错误：{response.Result.Msg}");
+            }
         }
     }
 }

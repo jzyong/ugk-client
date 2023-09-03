@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Network\Messages\Constant.cs" />
+     <Compile Include="Assets\Scripts\Lobby\UI\Common\NoticePanel.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Pool.cs" />
      <Compile Include="Assets\Scripts\Network\MessageMapAttribute.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkLoop.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpServerConnection.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Segment.cs" />
+     <Compile Include="Assets\Scripts\Network\MessageEventManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
      <Compile Include="Assets\Scripts\Network\Handlers\LoginHandler.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Extensions.cs" />
@@ -69,6 +71,7 @@
      <Compile Include="Assets\Scripts\Lobby\UI\Login\LoginPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
+     <Compile Include="Assets\Scripts\Tools\BaseEventManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpClient.cs" />
@@ -89,6 +92,7 @@
      <Folder Include="Assets\Scripts\Game" />
      <Folder Include="Assets\Scripts\Network\Kcp" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\kcp" />
+     <Folder Include="Assets\Scripts\Lobby\UI\Common" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Scripts\Network" />
      <Reference Include="UnityEngine">
