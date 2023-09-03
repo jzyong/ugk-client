@@ -1,4 +1,5 @@
 ﻿using System;
+using Common;
 using Google.Protobuf;
 using UnityEngine;
 
@@ -25,7 +26,18 @@ namespace Network.Handlers
             var response = new LoginResponse();
             response.MergeFrom(data);
             Debug.Log($" 收到登录消息：{response.PlayerId} 结果：{response.Result.Msg}");
-            MessageEventManager.Instance.OnEvent(MessageEvent.Login,response);
+            MessageEventManager.Singleton.OnEvent(MessageEvent.Login,response);
+        }
+
+        [MessageMap(MID.LoadPlayerRes)]
+        private static void LoadPlayer(Int64 timeStamp, byte[] data)
+        {
+            var response = new LoadPlayerResponse();
+            response.MergeFrom(data);
+            
+            //TODO 大厅面板
+            DataManager.Singleton.PlayerInfo = response.PlayerInfo;
+
         }
         
     }

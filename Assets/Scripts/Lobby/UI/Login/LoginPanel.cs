@@ -18,12 +18,12 @@ namespace Lobby.UI.Login
         void Start()
         {
             loginButton.onClick.AddListener(Login);
-            MessageEventManager.Instance.AddEvent<LoginResponse>(MessageEvent.Login, LoginRes);
+            MessageEventManager.Singleton.AddEvent<LoginResponse>(MessageEvent.Login, LoginRes);
         }
 
         private void OnDestroy()
         {
-            MessageEventManager.Instance.RemoveEvent<LoginResponse>(MessageEvent.Login, LoginRes);
+            MessageEventManager.Singleton.RemoveEvent<LoginResponse>(MessageEvent.Login, LoginRes);
         }
 
         // Update is called once per frame
@@ -38,7 +38,7 @@ namespace Lobby.UI.Login
                 Account = accountInput.text,
                 Password = passwordInput.text
             };
-            NetworkManager.singleton.Send(MID.LoginReq, request);
+            NetworkManager.Singleton.Send(MID.LoginReq, request);
         }
 
         private void LoginRes(LoginResponse response)
@@ -46,6 +46,10 @@ namespace Lobby.UI.Login
             // 登录成功
             if (response.Result == null || response.Result.Status == 200)
             {
+                NetworkManager.Singleton.Send(MID.LoadPlayerReq,new LoadPlayerRequest()
+                {
+                    PlayerId = response.PlayerId
+                });
                 SceneManager.LoadScene("Lobby");
             }
             else

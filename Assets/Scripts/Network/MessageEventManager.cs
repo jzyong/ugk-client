@@ -17,7 +17,7 @@ namespace Network
     /// </summary>
     public class MessageEventManager:BaseEventManager<MessageEvent>
     {
-        public static MessageEventManager Instance
+        public static MessageEventManager Singleton
         {
             get;
         } = new MessageEventManager();

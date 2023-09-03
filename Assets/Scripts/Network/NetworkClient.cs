@@ -172,7 +172,7 @@ namespace Network
             Int32 seq = BitConverter.ToInt32(bytes, 8);
             Int64 timeStamp = BitConverter.ToInt64(bytes, 12);
            // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
-            var handler = NetworkManager.singleton.GetMessageHandler(messageId);
+            var handler = NetworkManager.Singleton.GetMessageHandler(messageId);
             if (handler==null)
             {
                 Debug.LogWarning($"消息{(MID)messageId}处理方法未实现");
@@ -232,7 +232,7 @@ namespace Network
         public static void SendHeart()
         {
             HeartRequest request = new HeartRequest();
-            NetworkManager.singleton.Send(MID.HeartReq,request);
+            NetworkManager.Singleton.Send(MID.HeartReq,request);
         }
 
         // send ////////////////////////////////////////////////////////////////
