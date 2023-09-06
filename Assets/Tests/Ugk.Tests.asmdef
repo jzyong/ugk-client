@@ -1,0 +1,18 @@
+{
+    "name": "Test",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ca981e4b33be40cda040657e8d9b6155"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
