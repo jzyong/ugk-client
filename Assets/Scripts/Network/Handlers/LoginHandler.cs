@@ -35,9 +35,9 @@ namespace Network.Handlers
             var response = new LoadPlayerResponse();
             response.MergeFrom(data);
             
-            //TODO 大厅面板
+            //TODO 大厅面板,游戏列表处理
             DataManager.Singleton.PlayerInfo = response.PlayerInfo;
-
+            Debug.Log($" 收到数据加载消息：{response} 结果：{response.Result?.Msg}");
         }
         
     }

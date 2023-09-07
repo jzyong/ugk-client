@@ -745,11 +745,11 @@
      <Reference Include="UnityEngine.UI">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
-     <Reference Include="UnityEngine.TestRunner">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
-     </Reference>
      <Reference Include="UnityEditor.TestRunner">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.TestRunner">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

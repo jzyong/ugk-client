@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Network\Exceptions.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AckItem.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Login\LoginPanel.cs" />
+     <Compile Include="Assets\Scripts\Network\Messages\Server.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
      <Compile Include="Assets\Scripts\Tools\BaseEventManager.cs" />
