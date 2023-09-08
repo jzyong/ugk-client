@@ -17,7 +17,7 @@ namespace Network.Handlers
         /// <param name="timeStamp"></param>
         /// <param name="data"></param>
         [MessageMap(MID.HeartRes)]
-        private static void Heart(Int64 timeStamp, byte[] data)
+        private static void Heart(UgkMessage ugkMessage)
         {
            // Debug.Log($" 收到心跳返回：{timeStamp}");
            
@@ -27,13 +27,11 @@ namespace Network.Handlers
         /// <summary>
         /// 登录
         /// </summary>
-        /// <param name="timeStamp"></param>
-        /// <param name="data"></param>
         [MessageMap(MID.LoginRes)]
-        private static void Login(Int64 timeStamp, byte[] data)
+        private static void Login(UgkMessage ugkMessage)
         {
             var response = new LoginResponse();
-            response.MergeFrom(data);
+            response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($" 收到登录消息：{response.PlayerId} 结果：{response.Result.Msg}");
             MessageEventManager.Singleton.OnEvent(MessageEvent.Login,response);
         }
@@ -41,13 +39,11 @@ namespace Network.Handlers
         /// <summary>
         /// 加载玩家数据
         /// </summary>
-        /// <param name="timeStamp"></param>
-        /// <param name="data"></param>
         [MessageMap(MID.LoadPlayerRes)]
-        private static void LoadPlayer(Int64 timeStamp, byte[] data)
+        private static void LoadPlayer(UgkMessage ugkMessage)
         {
             var response = new LoadPlayerResponse();
-            response.MergeFrom(data);
+            response.MergeFrom(ugkMessage.Bytes);
             
             //TODO 大厅面板,游戏列表处理
             DataManager.Singleton.PlayerInfo = response.PlayerInfo;

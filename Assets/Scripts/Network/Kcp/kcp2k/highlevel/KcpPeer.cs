@@ -280,7 +280,6 @@ namespace kcp2k
         // -> to avoid buffering, unreliable messages call OnData directly. 
         bool ReceiveNextReliable(out ArraySegment<byte> message)
         {
-            //TODO 自定义逻辑实现
             message = default;
 
             int msgSize = kcp.PeekSize();

@@ -80,6 +80,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpClient.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpPeer.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\ErrorCode.cs" />
+     <Compile Include="Assets\Scripts\Network\UgkMessage.cs" />
      <Folder Include="Assets\Scripts\Lobby" />
      <Folder Include="Assets\Scripts\Common" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel" />

@@ -165,24 +165,31 @@ namespace Network
         // called by Transport 获取消息并处理 
         internal static void OnTransportData(ArraySegment<byte> data)
         {
-            //  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
-            var bytes = data.Array;
-            Int32 messageLength = BitConverter.ToInt32(bytes, 0);
-            Int32 messageId = BitConverter.ToInt32(bytes, 4);
-            Int32 seq = BitConverter.ToInt32(bytes, 8);
-            Int64 timeStamp = BitConverter.ToInt64(bytes, 12);
-           // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
-            var handler = NetworkManager.Singleton.GetMessageHandler(messageId);
-            if (handler==null)
+            using (UgkMessage ugkMessage =UgkMessagePool.Get())
             {
-                Debug.LogWarning($"消息{(MID)messageId}处理方法未实现");
+                //  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
+                var bytes = data.Array;
+                Int32 messageLength = BitConverter.ToInt32(bytes, 0);
+                ugkMessage.MessageId = BitConverter.ToUInt32(bytes, 4);
+                ugkMessage.Seq = BitConverter.ToUInt32(bytes, 8);
+                ugkMessage.TimeStamp =  BitConverter.ToInt64(bytes, 12);
+            
+            
+                // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
+                var handler = NetworkManager.Singleton.GetMessageHandler(ugkMessage.MessageId);
+                if (handler==null)
+                {
+                    Debug.LogWarning($"消息{(MID)ugkMessage.MessageId}处理方法未实现");
+                }
+                else
+                {
+                    var protoData = new byte[messageLength-16];
+                    Array.Copy(bytes, 20, protoData, 0, protoData.Length);
+                    ugkMessage.Bytes = protoData;
+                    handler(ugkMessage);
+                }
             }
-            else
-            {
-                var protoData = new byte[messageLength-16];
-                Array.Copy(bytes, 20, protoData, 0, protoData.Length);
-                handler(timeStamp, protoData);
-            }
+   
         }
 
         // called by Transport

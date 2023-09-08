@@ -36,7 +36,7 @@ namespace Network
         /// <summary>
         /// 消息处理
         /// </summary>
-        public delegate void MessageHandler(Int64 timeStamp, byte[] data);
+        public delegate void MessageHandler(UgkMessage ugkMessage);
 
         /// <summary>
         /// 消息处理器
@@ -298,7 +298,7 @@ namespace Network
         /// </summary>
         /// <param name="messageId"></param>
         /// <returns></returns>
-        public MessageHandler GetMessageHandler(Int32 messageId)
+        public MessageHandler GetMessageHandler(UInt32 messageId)
         {
             MID mid = (MID)messageId;
             return messageHandlers[mid];
