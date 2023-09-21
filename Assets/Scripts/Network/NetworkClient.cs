@@ -102,8 +102,6 @@ namespace Network
         // initialize is called before every connect @
         static void Initialize()
         {
-            //TODO 消息注册通过类扫描，反射自动注册
-            RegisterMessageHandlers();
             Transport.active.enabled = true;
         }
 
@@ -236,26 +234,7 @@ namespace Network
             HeartRequest request = new HeartRequest();
             NetworkManager.Singleton.Send(MID.HeartReq,request);
         }
-
-        // send ////////////////////////////////////////////////////////////////
-        /// <summary>Send a NetworkMessage to the server over the given channel.</summary>
-        public static void Send<T>(T message)
-            where T :  Object
-        {
-            //TODO 继承protobuf
-           //TODO
-        }
-
-        // message handlers //////////////////////////////////////////////////// @
-        internal static void RegisterMessageHandlers()
-        {
-            //TODO 消息注册通过类扫描，反射自动注册
-        }
-
-     
-
         
-
       
 
        
