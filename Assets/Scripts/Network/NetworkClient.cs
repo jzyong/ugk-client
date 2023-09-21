@@ -22,8 +22,6 @@ namespace Network
         Disconnected
     }
 
-    //消息处理委托 TODO 传入proto Message
-    public delegate void MessageHandDelegate(int seq, long timeStamp);
 
     /// <summary>NetworkClient with connection to server.</summary>
     public static partial class NetworkClient
@@ -41,9 +39,6 @@ namespace Network
         public static float sendInterval => sendRate < int.MaxValue ? 1f / sendRate : 0; // for 30 Hz, that's 33ms
         static double lastSendTime;
 
-        // message handlers by messageId 
-        internal static readonly Dictionary<int, MessageHandDelegate> handlers =
-            new Dictionary<int, MessageHandDelegate>();
 
 
         /// <summary>Client's NetworkConnection to server.  TODO </summary>
@@ -295,8 +290,6 @@ namespace Network
         public static void Shutdown()
         {
            
-            handlers.Clear();
-
             // reset statics
             connectState = ConnectState.None;
             lastSendTime = 0;
