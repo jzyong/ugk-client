@@ -5,6 +5,7 @@
 
 
 ### TODO
+* 完成 GalacticKittens流程
 * 优先使用GalacticKittens 进行改造
 * Websocket支持添加 
 * 时间插值、客户端服务器时间同步
