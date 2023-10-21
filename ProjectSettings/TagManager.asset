@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Debri
+  - Bullet
+  - PowerUpSpecial
+  - DefenseMatrix
+  - Enemy
+  - EnemyDespawner
+  - PlayerBulletDespawner
   layers:
   - Default
   - TransparentFX
@@ -11,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -38,6 +45,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 236929233
+    locked: 0
+  - name: Gameplay
+    uniqueID: 2100187511
+    locked: 0
+  - name: Frontground
+    uniqueID: 1602424135
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

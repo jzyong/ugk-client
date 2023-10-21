@@ -45,10 +45,19 @@
      <Folder Include="Library\BuildInstructions" />
      <Folder Include="Assets\Prefab" />
      <Folder Include="Assets\Prefab\Lobby\UI" />
+     <Folder Include="Assets\Prefab\Game" />
      <Folder Include="Assets\Prefab\Lobby\UI\Index" />
+     <Folder Include="Assets\Prefab\Game\GalacticKittens" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Parallax_Backgrounds" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens" />
+     <Folder Include="Assets\Resources\Lobby" />
      <Folder Include="Assets\Prefab\Lobby" />
+     <Folder Include="Assets\Resources\Game" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Resources" />
+     <Folder Include="Assets\Scenes\Game\GalacticKittens" />
+     <Folder Include="Assets\Scenes\Game" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites" />
      <Reference Include="UnityEngine">
      <HintPath>G:\Program Files\Unity\2023.1.3f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
