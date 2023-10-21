@@ -57,8 +57,10 @@
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
      <Compile Include="Assets\Scripts\Tools\ExponentialMovingAverage.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Log.cs" />
+     <Compile Include="Assets\Scripts\Network\Messages\Player.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkTime.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpServerConnection.cs" />
+     <Compile Include="Assets\Scripts\Network\Messages\GameGalacticKittens.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Segment.cs" />
      <Compile Include="Assets\Scripts\Network\MessageEventManager.cs" />

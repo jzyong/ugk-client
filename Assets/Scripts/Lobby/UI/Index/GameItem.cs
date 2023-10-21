@@ -1,4 +1,6 @@
 ﻿using System;
+using Common;
+using Network;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +37,12 @@ namespace Lobby.UI.Index
         private void EnterGalacticKittens()
         {
             Debug.Log("进入GalacticKittens");
+
+            var request = new GalacticKittensEnterRoomRequest
+            {
+                PlayerId = DataManager.Singleton.PlayerInfo.PlayerId
+            };
+            NetworkManager.Singleton.Send(MID.GalacticKittensEnterRoomReq,request);
         }
     }
 }
