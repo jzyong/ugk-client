@@ -10,6 +10,7 @@ namespace Network
     public enum MessageEvent
     {
         Login,
+        LoadPlayer
     }
     
     /// <summary>

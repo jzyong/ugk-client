@@ -176,10 +176,19 @@ namespace Network
                 }
                 else
                 {
-                    var protoData = new byte[messageLength-16];
-                    Array.Copy(bytes, 20, protoData, 0, protoData.Length);
-                    ugkMessage.Bytes = protoData;
-                    handler(ugkMessage);
+                    try
+                    {
+                        var protoData = new byte[messageLength-16];
+                        Array.Copy(bytes, 20, protoData, 0, protoData.Length);
+                        ugkMessage.Bytes = protoData;
+                        handler(ugkMessage);
+                    }
+                    catch (Exception e)
+                    {
+                        //捕获一下异常，不然逻辑异常传入网络层，会终止网络
+                       Debug.LogError($"消息执行错误：{e}");
+                    }
+                   
                 }
             }
    

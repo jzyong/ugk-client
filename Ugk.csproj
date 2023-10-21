@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpConfig.cs" />
      <Compile Include="Assets\Scripts\Common\DataManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Kcp.cs" />
+     <Compile Include="Assets\Scripts\Lobby\UI\Index\LobbyPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
      <Compile Include="Assets\Scripts\Tools\ExponentialMovingAverage.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Log.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\Scripts\Network\MessageEventManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
      <Compile Include="Assets\Scripts\Tools\SingletonInstance.cs" />
+     <Compile Include="Assets\Scripts\Lobby\UI\Index\GameItem.cs" />
      <Compile Include="Assets\Scripts\Network\Handlers\LoginHandler.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Extensions.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AssemblyInfo.cs" />
@@ -96,6 +98,7 @@
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\kcp" />
      <Folder Include="Assets\Scripts\Lobby\UI\Common" />
      <Folder Include="Assets\Scripts" />
+     <Folder Include="Assets\Scripts\Lobby\UI\Index" />
      <Folder Include="Assets\Scripts\Network" />
      <Reference Include="UnityEngine">
      <HintPath>G:\Program Files\Unity\2023.1.3f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
