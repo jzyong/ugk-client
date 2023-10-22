@@ -3,6 +3,7 @@ using Common;
 using Network;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Lobby.UI.Index
@@ -43,6 +44,9 @@ namespace Lobby.UI.Index
                 PlayerId = DataManager.Singleton.PlayerInfo.PlayerId
             };
             NetworkManager.Singleton.Send(MID.GalacticKittensEnterRoomReq,request);
+            
+            //进入选择界面 TODO 应该收到返回消息再加载
+            SceneManager.LoadScene("GalacticKittensCharacterSelection");
         }
     }
 }

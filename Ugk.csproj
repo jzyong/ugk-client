@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\Network\MessageEventManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
      <Compile Include="Assets\Scripts\Tools\SingletonInstance.cs" />
+     <Compile Include="Assets\Scripts\Tools\TypescriptEffect.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\GameItem.cs" />
      <Compile Include="Assets\Scripts\Network\Handlers\LoginHandler.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Extensions.cs" />

@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: faf62564d2319b649ad6db292288cd64
+  - enabled: 1
+    path: Assets/Scenes/Game/GalacticKittens/GalacticKittensCharacterSelection.unity
+    guid: 37ad7ce94f7bffc488d78a1743dff57f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
