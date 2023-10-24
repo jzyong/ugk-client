@@ -167,28 +167,26 @@ namespace Network
                 ugkMessage.Seq = BitConverter.ToUInt32(bytes, 8);
                 ugkMessage.TimeStamp =  BitConverter.ToInt64(bytes, 12);
             
-            
-                // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
-                var handler = NetworkManager.Singleton.GetMessageHandler(ugkMessage.MessageId);
-                if (handler==null)
+                try
                 {
-                    Debug.LogWarning($"消息{(MID)ugkMessage.MessageId}处理方法未实现");
-                }
-                else
-                {
-                    try
+                    // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
+                    var handler = NetworkManager.Singleton.GetMessageHandler(ugkMessage.MessageId);
+                    if (handler==null)
+                    {
+                        Debug.LogWarning($"消息{(MID)ugkMessage.MessageId}处理方法未实现");
+                    }
+                    else
                     {
                         var protoData = new byte[messageLength-16];
                         Array.Copy(bytes, 20, protoData, 0, protoData.Length);
                         ugkMessage.Bytes = protoData;
                         handler(ugkMessage);
                     }
-                    catch (Exception e)
-                    {
-                        //捕获一下异常，不然逻辑异常传入网络层，会终止网络
-                       Debug.LogError($"消息执行错误：{e}");
-                    }
-                   
+                }
+                catch (Exception e)
+                {
+                    //捕获一下异常，不然逻辑异常传入网络层，会终止网络
+                    Debug.LogError($"消息执行错误：{e}");
                 }
             }
    

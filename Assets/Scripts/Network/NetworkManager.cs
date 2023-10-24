@@ -301,7 +301,11 @@ namespace Network
         public MessageHandler GetMessageHandler(UInt32 messageId)
         {
             MID mid = (MID)messageId;
-            return messageHandlers[mid];
+            if (messageHandlers.TryGetValue(mid,out var handler))
+            {
+                return handler;
+            }
+            return null;
         }
     }
 }
