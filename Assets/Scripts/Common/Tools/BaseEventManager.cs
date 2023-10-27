@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tools
+namespace Common.Tools
 {
     /// <summary>
     /// 事件控制器

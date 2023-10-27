@@ -22,22 +22,23 @@ public static partial class LoginReflection {
   static LoginReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cgtsb2dpbi5wcm90bxoMY29tbW9uLnByb3RvGgxwbGF5ZXIucHJvdG8iDgoM",
-          "SGVhcnRSZXF1ZXN0Ig8KDUhlYXJ0UmVzcG9uc2UiMQoMTG9naW5SZXF1ZXN0",
-          "Eg8KB2FjY291bnQYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiQQoNTG9naW5S",
-          "ZXNwb25zZRIQCghwbGF5ZXJJZBgBIAEoAxIeCgZyZXN1bHQYAiABKAsyDi5N",
-          "ZXNzYWdlUmVzdWx0IiUKEUxvYWRQbGF5ZXJSZXF1ZXN0EhAKCHBsYXllcklk",
-          "GAEgASgDInIKEkxvYWRQbGF5ZXJSZXNwb25zZRIeCgZyZXN1bHQYASABKAsy",
-          "Di5NZXNzYWdlUmVzdWx0Eh8KCnBsYXllckluZm8YAiABKAsyCy5QbGF5ZXJJ",
-          "bmZvEhsKCGdhbWVJbmZvGAMgAygLMgkuR2FtZUluZm8iRgoIR2FtZUluZm8S",
-          "DgoGZ2FtZUlkGAEgASgNEgwKBG5hbWUYAiABKAkSDgoGc3RhdHVzGAMgASgE",
-          "EgwKBGljb24YBCABKAkyNgoMTG9naW5TZXJ2aWNlEiYKBWxvZ2luEg0uTG9n",
-          "aW5SZXF1ZXN0Gg4uTG9naW5SZXNwb25zZUIKWggvbWVzc2FnZWIGcHJvdG8z"));
+          "Cgtsb2dpbi5wcm90bxoMY29tbW9uLnByb3RvGgxwbGF5ZXIucHJvdG8iIgoM",
+          "SGVhcnRSZXF1ZXN0EhIKCmNsaWVudFRpbWUYASABKAEiIwoNSGVhcnRSZXNw",
+          "b25zZRISCgpjbGllbnRUaW1lGAEgASgBIjEKDExvZ2luUmVxdWVzdBIPCgdh",
+          "Y2NvdW50GAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIkEKDUxvZ2luUmVzcG9u",
+          "c2USEAoIcGxheWVySWQYASABKAMSHgoGcmVzdWx0GAIgASgLMg4uTWVzc2Fn",
+          "ZVJlc3VsdCIlChFMb2FkUGxheWVyUmVxdWVzdBIQCghwbGF5ZXJJZBgBIAEo",
+          "AyJyChJMb2FkUGxheWVyUmVzcG9uc2USHgoGcmVzdWx0GAEgASgLMg4uTWVz",
+          "c2FnZVJlc3VsdBIfCgpwbGF5ZXJJbmZvGAIgASgLMgsuUGxheWVySW5mbxIb",
+          "CghnYW1lSW5mbxgDIAMoCzIJLkdhbWVJbmZvIkYKCEdhbWVJbmZvEg4KBmdh",
+          "bWVJZBgBIAEoDRIMCgRuYW1lGAIgASgJEg4KBnN0YXR1cxgDIAEoBBIMCgRp",
+          "Y29uGAQgASgJMjYKDExvZ2luU2VydmljZRImCgVsb2dpbhINLkxvZ2luUmVx",
+          "dWVzdBoOLkxvZ2luUmVzcG9uc2VCCloIL21lc3NhZ2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, global::PlayerReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::HeartRequest), global::HeartRequest.Parser, null, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::HeartResponse), global::HeartResponse.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::HeartRequest), global::HeartRequest.Parser, new[]{ "ClientTime" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::HeartResponse), global::HeartResponse.Parser, new[]{ "ClientTime" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LoginRequest), global::LoginRequest.Parser, new[]{ "Account", "Password" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LoginResponse), global::LoginResponse.Parser, new[]{ "PlayerId", "Result" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LoadPlayerRequest), global::LoadPlayerRequest.Parser, new[]{ "PlayerId" }, null, null, null, null),
@@ -86,6 +87,7 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public HeartRequest(HeartRequest other) : this() {
+    clientTime_ = other.clientTime_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -93,6 +95,21 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public HeartRequest Clone() {
     return new HeartRequest(this);
+  }
+
+  /// <summary>Field number for the "clientTime" field.</summary>
+  public const int ClientTimeFieldNumber = 1;
+  private double clientTime_;
+  /// <summary>
+  ///客户端时间 ，用于计算ping
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public double ClientTime {
+    get { return clientTime_; }
+    set {
+      clientTime_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -110,6 +127,7 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ClientTime, other.ClientTime)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -117,6 +135,7 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
+    if (ClientTime != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ClientTime);
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -135,6 +154,10 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
+    if (ClientTime != 0D) {
+      output.WriteRawTag(9);
+      output.WriteDouble(ClientTime);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -145,6 +168,10 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientTime != 0D) {
+      output.WriteRawTag(9);
+      output.WriteDouble(ClientTime);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -155,6 +182,9 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
+    if (ClientTime != 0D) {
+      size += 1 + 8;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -166,6 +196,9 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
   public void MergeFrom(HeartRequest other) {
     if (other == null) {
       return;
+    }
+    if (other.ClientTime != 0D) {
+      ClientTime = other.ClientTime;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -182,6 +215,10 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
+        case 9: {
+          ClientTime = input.ReadDouble();
+          break;
+        }
       }
     }
   #endif
@@ -197,6 +234,10 @@ public sealed partial class HeartRequest : pb::IMessage<HeartRequest>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
+        case 9: {
+          ClientTime = input.ReadDouble();
+          break;
+        }
       }
     }
   }
@@ -241,6 +282,7 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public HeartResponse(HeartResponse other) : this() {
+    clientTime_ = other.clientTime_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -248,6 +290,21 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public HeartResponse Clone() {
     return new HeartResponse(this);
+  }
+
+  /// <summary>Field number for the "clientTime" field.</summary>
+  public const int ClientTimeFieldNumber = 1;
+  private double clientTime_;
+  /// <summary>
+  ///客户端时间
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public double ClientTime {
+    get { return clientTime_; }
+    set {
+      clientTime_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -265,6 +322,7 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ClientTime, other.ClientTime)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -272,6 +330,7 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
+    if (ClientTime != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ClientTime);
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -290,6 +349,10 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
+    if (ClientTime != 0D) {
+      output.WriteRawTag(9);
+      output.WriteDouble(ClientTime);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -300,6 +363,10 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ClientTime != 0D) {
+      output.WriteRawTag(9);
+      output.WriteDouble(ClientTime);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -310,6 +377,9 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
+    if (ClientTime != 0D) {
+      size += 1 + 8;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -321,6 +391,9 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
   public void MergeFrom(HeartResponse other) {
     if (other == null) {
       return;
+    }
+    if (other.ClientTime != 0D) {
+      ClientTime = other.ClientTime;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -337,6 +410,10 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
+        case 9: {
+          ClientTime = input.ReadDouble();
+          break;
+        }
       }
     }
   #endif
@@ -352,6 +429,10 @@ public sealed partial class HeartResponse : pb::IMessage<HeartResponse>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
+        case 9: {
+          ClientTime = input.ReadDouble();
+          break;
+        }
       }
     }
   }

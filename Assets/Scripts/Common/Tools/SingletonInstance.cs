@@ -1,4 +1,4 @@
-namespace Core.Util
+namespace Common.Tools
 {
     /// <summary>
     /// 持久单例,不需要继承MonoBehaviour的，必须有无参构造方法的引用类型

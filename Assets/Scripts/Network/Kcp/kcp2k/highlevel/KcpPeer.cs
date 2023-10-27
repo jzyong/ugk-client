@@ -110,7 +110,7 @@ namespace kcp2k
         // for example, creating a character in an MMO could easily take a
         // minute of no data being sent. which doesn't mean we want to time out.
         // same goes for slow paced card games etc.
-        public const int PING_INTERVAL = 2000;
+        public const int PING_INTERVAL = 1000;
         uint lastPingTime;
 
         // if we send more than kcp can handle, we will get ever growing

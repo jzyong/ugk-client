@@ -1,4 +1,5 @@
-﻿using Tools;
+﻿using Common.Tools;
+using Tools;
 
 namespace Network
 {

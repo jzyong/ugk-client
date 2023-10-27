@@ -229,7 +229,7 @@ namespace Network
             byte[] msgId = BitConverter.GetBytes((int)mid);
             ++_seq;
             byte[] seq = BitConverter.GetBytes(_seq);
-            long time = 0; //TODO 时间戳生成
+            long time = (long)(NetworkTime.localTime*1000); 
             byte[] timeStamp = BitConverter.GetBytes(time);
             byte[] datas = new byte[20 + data.Length];
 

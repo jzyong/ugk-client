@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Common.Tools.SnapshotInterpolation;
 using Google.Protobuf;
 using UnityEngine;
 
@@ -19,11 +20,21 @@ namespace Network.Handlers
         [MessageMap(MID.HeartRes)]
         private static void Heart(UgkMessage ugkMessage)
         {
-           // Debug.Log($" 收到心跳返回：{timeStamp}");
-           
+            // Debug.Log($" 收到心跳返回：{timeStamp}");
+            var response = new HeartResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            //计算rtt
+            double newRtt = NetworkTime.localTime - response.ClientTime;
+            NetworkTime.RTT.Add(newRtt);
+            //时间平滑插值
+            if (ugkMessage.TimeStamp < 86400000)
+            {
+                double remoteTime = ugkMessage.TimeStamp / 1000d;
+                NetworkTimeInterpolation.OnTimeSnapshot(new TimeSnapshot(remoteTime, NetworkTime.localTime));
+            }
         }
-        
-        
+
+
         /// <summary>
         /// 登录
         /// </summary>
@@ -33,7 +44,7 @@ namespace Network.Handlers
             var response = new LoginResponse();
             response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($" 收到登录消息：{response.PlayerId} 结果：{response.Result.Msg}");
-            MessageEventManager.Singleton.OnEvent(MessageEvent.Login,response);
+            MessageEventManager.Singleton.OnEvent(MessageEvent.Login, response);
         }
 
         /// <summary>
@@ -44,13 +55,11 @@ namespace Network.Handlers
         {
             var response = new LoadPlayerResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            
+
             //TODO 大厅面板,游戏列表处理
             DataManager.Singleton.PlayerInfo = response.PlayerInfo;
             Debug.Log($" 收到数据加载消息：{response} 结果：{response.Result?.Msg}");
-            MessageEventManager.Singleton.OnEvent(MessageEvent.LoadPlayer,response);
+            MessageEventManager.Singleton.OnEvent(MessageEvent.LoadPlayer, response);
         }
-        
     }
-    
 }

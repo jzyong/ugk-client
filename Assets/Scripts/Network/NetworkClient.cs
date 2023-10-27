@@ -34,11 +34,10 @@ namespace Network
         // additionally, server & client need to use the same send interval.
         // otherwise it's too easy to accidentally cause interpolation issues if
         // a component sends with client.interval but interpolates with
-        // server.interval, etc.
-        public static int sendRate => 30;
+        // server.interval, etc. mirror是30
+        public static int sendRate => 1;
         public static float sendInterval => sendRate < int.MaxValue ? 1f / sendRate : 0; // for 30 Hz, that's 33ms
         static double lastSendTime;
-
 
 
         /// <summary>Client's NetworkConnection to server.  TODO </summary>
@@ -106,23 +105,23 @@ namespace Network
         }
 
         /// <summary>Connect client to a NetworkServer by address. @</summary>
-        public static void Connect(string address,ushort port)
+        public static void Connect(string address, ushort port)
         {
             Initialize();
 
             AddTransportHandlers();
             connectState = ConnectState.Connecting;
-            Transport.active.ClientConnect(address,port);
+            Transport.active.ClientConnect(address, port);
         }
 
         /// <summary>Connect client to a NetworkServer by Uri.</summary>
-        public static void Connect(Uri uri,ushort port)
+        public static void Connect(Uri uri, ushort port)
         {
             Initialize();
 
             AddTransportHandlers();
             connectState = ConnectState.Connecting;
-            Transport.active.ClientConnect(uri,port);
+            Transport.active.ClientConnect(uri, port);
         }
 
 
@@ -136,48 +135,47 @@ namespace Network
 
             // call Disconnect on the NetworkConnection
             Transport.active.ClientDisconnect();
-
         }
 
         // transport events ////////////////////////////////////////////////////
         // called by Transport @
         static void OnTransportConnected()
         {
-                //TZODO
-                // reset network time stats
-                // NetworkTime.ResetStatics();
+            //TZODO
+            // reset network time stats
+            // NetworkTime.ResetStatics();
 
-                // the handler may want to send messages to the client
-                // thus we should set the connected state before calling the handler
-                connectState = ConnectState.Connected;
-                // NetworkTime.UpdateClient();
-                OnConnectedEvent?.Invoke();
+            // the handler may want to send messages to the client
+            // thus we should set the connected state before calling the handler
+            connectState = ConnectState.Connected;
+            // NetworkTime.UpdateClient();
+            OnConnectedEvent?.Invoke();
         }
 
 
         // called by Transport 获取消息并处理 
         internal static void OnTransportData(ArraySegment<byte> data)
         {
-            using (UgkMessage ugkMessage =UgkMessagePool.Get())
+            using (UgkMessage ugkMessage = UgkMessagePool.Get())
             {
                 //  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
                 var bytes = data.Array;
                 Int32 messageLength = BitConverter.ToInt32(bytes, 0);
                 ugkMessage.MessageId = BitConverter.ToUInt32(bytes, 4);
                 ugkMessage.Seq = BitConverter.ToUInt32(bytes, 8);
-                ugkMessage.TimeStamp =  BitConverter.ToInt64(bytes, 12);
-            
+                ugkMessage.TimeStamp = BitConverter.ToInt64(bytes, 12);
+
                 try
                 {
                     // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
                     var handler = NetworkManager.Singleton.GetMessageHandler(ugkMessage.MessageId);
-                    if (handler==null)
+                    if (handler == null)
                     {
                         Debug.LogWarning($"消息{(MID)ugkMessage.MessageId}处理方法未实现");
                     }
                     else
                     {
-                        var protoData = new byte[messageLength-16];
+                        var protoData = new byte[messageLength - 16];
                         Array.Copy(bytes, 20, protoData, 0, protoData.Length);
                         ugkMessage.Bytes = protoData;
                         handler(ugkMessage);
@@ -189,7 +187,6 @@ namespace Network
                     Debug.LogError($"消息执行错误：{e}");
                 }
             }
-   
         }
 
         // called by Transport
@@ -216,7 +213,7 @@ namespace Network
             OnDisconnectedEvent?.Invoke();
 
             connectState = ConnectState.Disconnected;
-            
+
             //TODO
 
             // transport handlers are only added when connecting.
@@ -232,19 +229,19 @@ namespace Network
             Debug.LogWarning($"Client Transport Error: {error}: {reason}. This is fine.");
             OnErrorEvent?.Invoke(error, reason);
         }
-        
+
         /// <summary>
         /// 发送心跳消息
         /// </summary>
         public static void SendHeart()
         {
-            HeartRequest request = new HeartRequest();
-            NetworkManager.Singleton.Send(MID.HeartReq,request);
+            HeartRequest request = new HeartRequest()
+            {
+                ClientTime = NetworkTime.localTime
+            };
+            NetworkManager.Singleton.Send(MID.HeartReq, request);
         }
-        
-      
 
-       
 
         // update //////////////////////////////////////////////////////////////
         // NetworkEarlyUpdate called before any Update/FixedUpdate
@@ -254,20 +251,18 @@ namespace Network
             // process all incoming messages first before updating the world
             if (Transport.active != null)
                 Transport.active.ClientEarlyUpdate();
-
+            NetworkTimeInterpolation.UpdateTimeInterpolation();
         }
 
         // NetworkLateUpdate called after any Update/FixedUpdate/LateUpdate
         // (we add this to the UnityEngine in NetworkLoop)
         internal static void NetworkLateUpdate()
         {
-            
             // process all outgoing messages after updating the world
             if (Transport.active != null)
                 Transport.active.ClientLateUpdate();
         }
 
-      
 
         // shutdown ////////////////////////////////////////////////////////////
         /// <summary>Shutdown the client.</summary>
@@ -275,7 +270,6 @@ namespace Network
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Shutdown()
         {
-           
             // reset statics
             connectState = ConnectState.None;
             lastSendTime = 0;
