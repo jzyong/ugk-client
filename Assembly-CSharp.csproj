@@ -45,10 +45,13 @@
      <Folder Include="Library\BuildInstructions" />
      <Folder Include="Assets\Prefab" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Data" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Spaceships" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations" />
+     <Folder Include="Assets\Prefab\Game\GalacticKittens\VFX" />
      <Folder Include="Assets\Prefab\Lobby\UI" />
      <Folder Include="Assets\Prefab\Game" />
      <Folder Include="Assets\Prefab\Lobby\UI\Index" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\VFX" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\Controls" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\Lobby" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\Gameplay" />
@@ -56,31 +59,44 @@
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\RoadmapLobbyService" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\Boss" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Materials\VFX" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Fonts" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Parallax_Backgrounds" />
+     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Boss" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Materials" />
      <Folder Include="Assets\Resources\Game\GalacticKittens" />
      <Folder Include="Assets\Resources\Lobby" />
      <Folder Include="Assets\Prefab\Lobby" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Audio" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\EndGame" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\Menu" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI" />
      <Folder Include="Assets\Resources\Game" />
+     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Player" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Audio\SFX" />
      <Folder Include="Assets\Scenes" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Enemies" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\CharacterSelection" />
      <Folder Include="Assets\Resources" />
+     <None Include="Assets\Resources\Game\GalacticKittens\Shaders\shaderHitSprite_shdr.shader" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Boss" />
      <Folder Include="Assets\Scenes\Game\GalacticKittens" />
      <Folder Include="Assets\Scenes\Game" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Audio\Music" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Shaders" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\PlayerShip" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites" />
+     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net" />
+     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Enemies" />
      <Reference Include="UnityEngine">
-     <HintPath>G:\Program Files\Unity\2023.1.3f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+     <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.CoreModule">
-     <HintPath>G:\Program Files\Unity\2023.1.3f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+     <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor">
-     <HintPath>G:\Program Files\Unity\2023.1.3f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+     <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
      </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

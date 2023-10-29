@@ -17,8 +17,8 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: b7ad6da200710c48cb54c5b65b21b734, type: 3}
   iconDeathSprite: {fileID: 21300000, guid: f1efeb5ddd7b25e9c91658b01cd3340e, type: 3}
   characterName: SABRINA
-  spaceshipPrefab: {fileID: 0}
-  spaceshipScorePrefab: {fileID: 0}
+  spaceshipPrefab: {fileID: 8673732105992480305, guid: d2d6085bd6b6dce4699fa5d8587e5f37, type: 3}
+  spaceshipScorePrefab: {fileID: 4916945949233725477, guid: 9ff3e4672f2b43a43bc677c6a602365b, type: 3}
   color: {r: 0.9372549, g: 0.4745098, b: 0, a: 0}
   darkColor: {r: 0.827451, g: 0.24313726, b: 0.11764706, a: 0}
   clientId: 0

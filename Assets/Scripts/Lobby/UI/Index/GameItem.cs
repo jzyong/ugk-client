@@ -38,11 +38,7 @@ namespace Lobby.UI.Index
         private void EnterGalacticKittens()
         {
             Debug.Log("进入GalacticKittens");
-
-            var request = new GalacticKittensEnterRoomRequest
-            {
-                PlayerId = DataManager.Singleton.PlayerInfo.PlayerId
-            };
+            var request = new GalacticKittensEnterRoomRequest();
             NetworkManager.Singleton.Send(MID.GalacticKittensEnterRoomReq,request);
             
             //进入选择界面 TODO 应该收到返回消息再加载

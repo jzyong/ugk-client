@@ -17,8 +17,8 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 3ad12efd8496e1b52b6b6e2d168f3994, type: 3}
   iconDeathSprite: {fileID: 21300000, guid: 0d96f22c712c8c9c3b7d569eb6251301, type: 3}
   characterName: MUYU
-  spaceshipPrefab: {fileID: 0}
-  spaceshipScorePrefab: {fileID: 0}
+  spaceshipPrefab: {fileID: 8673732105992480305, guid: e2fae8c8a3506994990ff8a9be78fcba, type: 3}
+  spaceshipScorePrefab: {fileID: 4916945949233725477, guid: b0c9219376fe8f0428a32337d9f9bc6e, type: 3}
   color: {r: 1, g: 0.27058825, b: 0.70980394, a: 0}
   darkColor: {r: 0.62352943, g: 0.078431375, b: 0.3529412, a: 0}
   clientId: 0

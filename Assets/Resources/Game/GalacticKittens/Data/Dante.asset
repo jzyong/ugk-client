@@ -17,8 +17,8 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 1193d4c5158fa7975999bb3373de66f1, type: 3}
   iconDeathSprite: {fileID: 21300000, guid: 8778c06018cf3445c87ee726dd89be7b, type: 3}
   characterName: DANTE
-  spaceshipPrefab: {fileID: 0}
-  spaceshipScorePrefab: {fileID: 0}
+  spaceshipPrefab: {fileID: 8673732105992480305, guid: c7d4f4a8fe132964b9888445555f49db, type: 3}
+  spaceshipScorePrefab: {fileID: 4916945949233725477, guid: fe82c230770585649babf2a77bd6bae7, type: 3}
   color: {r: 0.24705882, g: 0.7019608, b: 1, a: 0}
   darkColor: {r: 0.07450981, g: 0.34901962, b: 0.54901963, a: 0}
   clientId: 0

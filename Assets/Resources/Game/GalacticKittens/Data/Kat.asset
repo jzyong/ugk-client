@@ -17,8 +17,8 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 143213081105297be85972676d33f655, type: 3}
   iconDeathSprite: {fileID: 21300000, guid: 5fbf3568e569fae2f92ef19cd2b599f1, type: 3}
   characterName: KAT
-  spaceshipPrefab: {fileID: 0}
-  spaceshipScorePrefab: {fileID: 0}
+  spaceshipPrefab: {fileID: 8673732105992480305, guid: 6ee35708ec1f39e4693e0795f6582bf6, type: 3}
+  spaceshipScorePrefab: {fileID: 4916945949233725477, guid: 5e1466cc0fdd3c642a598e3df198dd9b, type: 3}
   color: {r: 1, g: 0, b: 0, a: 0}
   darkColor: {r: 0.58431375, g: 0.078431375, b: 0.09019608, a: 0}
   clientId: 0
