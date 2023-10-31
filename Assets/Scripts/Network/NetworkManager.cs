@@ -1,12 +1,13 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Google.Protobuf;
 using kcp2k;
 using System.Linq;
 using Tools;
-using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 namespace Network
 {
@@ -29,6 +30,10 @@ namespace Network
         public string networkAddress = "192.168.110.2";
 
         [Tooltip("服务器端口")] public ushort port = 5000;
+        
+        [SerializeField]
+        [Tooltip("web请求地址")]
+        private string webUrl = "http://192.168.110.2:3046";
 
         // 消息序列号
         private UInt32 _seq;
@@ -64,7 +69,7 @@ namespace Network
         public void Start()
         {
             //TODO 临时测试
-            StartClient();
+            // StartClient();
         }
 
         public void Update()
@@ -148,7 +153,6 @@ namespace Network
         }
 
 
-        // @
         bool InitializeSingleton()
         {
             if (Singleton != null && Singleton == this)
@@ -192,7 +196,34 @@ namespace Network
                 }
 
             Transport.active = transport;
+
+            StartCoroutine(GetGateUrl());
+            
             return true;
+        }
+        
+        /**
+         * 获取网关地址
+         */
+        private IEnumerator GetGateUrl()
+        {
+            using UnityWebRequest webRequest = UnityWebRequest.Get( $"{webUrl}/gate/url");
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ProtocolError ||
+                webRequest.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.LogError(webRequest.error + "\n" + webRequest.downloadHandler.text);
+            }
+            else
+            {
+                var text = webRequest.downloadHandler.text;
+                var ipPort = text.Split(":");
+                Debug.Log($"获得网关地址：{text}");
+                networkAddress = ipPort[0];
+                port = ushort.Parse(ipPort[1]);
+                StartClient();
+            }
         }
 
 
