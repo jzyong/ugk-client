@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Network\NetworkLoop.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpConfig.cs" />
      <Compile Include="Assets\Scripts\Common\DataManager.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Selection\CharacterSelectionManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Kcp.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\LobbyPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
@@ -86,8 +87,10 @@
      <Compile Include="Assets\Scripts\Network\Handlers\Game\GalacticKittensHandler.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Login\LoginPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Server.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Selection\CharacterContainer.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\PlayerCharSelection.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpClient.cs" />
@@ -113,6 +116,7 @@
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\kcp" />
      <Folder Include="Assets\Scripts\Lobby\UI\Common" />
      <Folder Include="Assets\Scripts" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Selection" />
      <Folder Include="Assets\Scripts\Lobby\UI\Index" />
      <Folder Include="Assets\Scripts\Network" />
      <Reference Include="UnityEngine">
@@ -387,6 +391,9 @@
      </Reference>
      <Reference Include="UnityEditor.WindowsStandalone.Extensions">
      <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+     <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.YamlDotNet">
      <HintPath>D:\Unity\ugk-client\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>

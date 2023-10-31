@@ -11,7 +11,10 @@ namespace Network
     public enum MessageEvent
     {
         Login,
-        LoadPlayer
+        LoadPlayer,
+        
+        //GalacticKittens
+        GalacticKittensRoomInfo,
     }
     
     /// <summary>
