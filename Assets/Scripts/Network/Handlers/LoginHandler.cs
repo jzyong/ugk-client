@@ -15,8 +15,7 @@ namespace Network.Handlers
         /// <summary>
         /// 心跳
         /// </summary>
-        /// <param name="timeStamp"></param>
-        /// <param name="data"></param>
+        /// <param name="ugkMessage"></param>
         [MessageMap(MID.HeartRes)]
         private static void Heart(UgkMessage ugkMessage)
         {
@@ -24,13 +23,17 @@ namespace Network.Handlers
             var response = new HeartResponse();
             response.MergeFrom(ugkMessage.Bytes);
             //计算rtt
-            double newRtt = NetworkTime.localTime - response.ClientTime;
-            NetworkTime.RTT.Add(newRtt);
+            double newRtt = NetworkTime.LocalTime - response.ClientTime;
+            NetworkTime.RttEMV.Add(newRtt);
             //时间平滑插值
             if (ugkMessage.TimeStamp < 86400000)
             {
                 double remoteTime = ugkMessage.TimeStamp / 1000d;
-                NetworkTimeInterpolation.OnTimeSnapshot(new TimeSnapshot(remoteTime, NetworkTime.localTime));
+                NetworkTimeInterpolation.OnTimeSnapshot(new TimeSnapshot(remoteTime, NetworkTime.LocalTime));
+            }
+            else
+            {
+                NetworkTimeInterpolation.ServerTimeStamp = ugkMessage.TimeStamp;
             }
         }
 

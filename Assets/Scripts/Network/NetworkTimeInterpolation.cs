@@ -32,6 +32,9 @@ namespace Network
         // double for long running servers, see NetworkTime comments. 
         internal static double localTimeline;
 
+        //服务器时间戳 ms
+        public static long ServerTimeStamp;
+
         // catchup / slowdown adjustments are applied to timescale,
         // to be adjusted in every update instead of when receiving messages. 
         internal static double localTimescale = 1;
@@ -148,6 +151,8 @@ namespace Network
                 SnapshotInterpolation.StepInterpolation(snapshots, localTimeline, out _, out _, out double t);
                 // Debug.Log($"NetworkClient SnapshotInterpolation @ {localTimeline:F2} t={t:F2}");
             }
+
+            ServerTimeStamp += (long)(Time.unscaledTime * 1000);
         }
     }
 }

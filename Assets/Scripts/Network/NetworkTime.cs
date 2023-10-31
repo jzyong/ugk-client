@@ -25,13 +25,11 @@ namespace Network
         /// <summary>Average out the last few results from Ping</summary>
         public static int PingWindowSize = 6;
 
-        static double lastPingTime;
+        public static ExponentialMovingAverage RttEMV = new ExponentialMovingAverage(PingWindowSize);
 
-        public static ExponentialMovingAverage RTT = new ExponentialMovingAverage(PingWindowSize);
-
-        /// <summary>Returns double precision clock time _in this system_, unaffected by the network.@</summary>
+        /// <summary>Returns double precision clock time _in this system_, unaffected by the network.</summary>
 #if UNITY_2020_3_OR_NEWER
-        public static double localTime
+        public static double LocalTime
         {
             // NetworkTime uses unscaled time and ignores Time.timeScale.
             // fixes Time.timeScale getting server & client time out of sync:
@@ -60,18 +58,27 @@ namespace Network
         // after 60 days, accuracy is 454 ms
         // in other words,  if the server is running for 2 months,
         // and you cast down to float,  then the time will jump in 0.4s intervals.
-        public static double serverTime
+        public static double ServerTime
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => NetworkTimeInterpolation.localTimeline;
         }
 
+        /// <summary>
+        /// 服务器时间搓 ms
+        /// </summary>
+        public static long ServerTimeStamp
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => NetworkTimeInterpolation.ServerTimeStamp;
+        }
+
         /// <summary>Clock difference in seconds between the client and the server.  </summary>
         // original implementation used 'client - server' time. keep it this way.
-        public static double offset => localTime - serverTime;
+        public static double Offset => LocalTime - ServerTime;
 
         /// <summary>Round trip time (in seconds) that it takes a message to go client->server->client. </summary>
-        public static double rtt => RTT.Value;
+        public static double RTT => RttEMV.Value;
 
         // RuntimeInitializeOnLoadMethod -> fast playmode without domain reload 
         [RuntimeInitializeOnLoadMethod]
@@ -79,8 +86,7 @@ namespace Network
         {
             PingFrequency = KcpPeer.PING_INTERVAL/1000f;
             PingWindowSize = 6;
-            lastPingTime = 0;
-            RTT = new ExponentialMovingAverage(PingWindowSize);
+            RttEMV = new ExponentialMovingAverage(PingWindowSize);
 #if !UNITY_2020_3_OR_NEWER
             stopwatch.Restart();
 #endif

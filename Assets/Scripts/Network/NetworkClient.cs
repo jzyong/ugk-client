@@ -237,7 +237,7 @@ namespace Network
         {
             HeartRequest request = new HeartRequest()
             {
-                ClientTime = NetworkTime.localTime
+                ClientTime = NetworkTime.LocalTime
             };
             NetworkManager.Singleton.Send(MID.HeartReq, request);
         }
