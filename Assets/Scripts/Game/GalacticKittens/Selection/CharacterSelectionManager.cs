@@ -94,9 +94,8 @@ namespace Game.GalacticKittens.Selection
             {
                 charachterIndex = charactersData.Length - 1;
             }
-            
+            GalacticKittensAudioManager.Instance.PlaySoundEffect(_changedCharacterClip);
             //TODO 通知服务器广播
-            //TODO 播放音效
             SetPlayer(playerIndex,charachterIndex,true);
             
         }
@@ -286,8 +285,13 @@ namespace Game.GalacticKittens.Selection
                 if (playerInfo.PlayerId==DataManager.Singleton.PlayerInfo.PlayerId)
                 {
                     playerIndex = i;
+                    SetPlayer(i,0,true);
                 }
-                SetPlayer(i,0,true);
+                else
+                {
+                    SetPlayer(i,i,false);
+                }
+                
                 i++;
             }
         

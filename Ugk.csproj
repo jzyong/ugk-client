@@ -97,6 +97,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpPeer.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\ErrorCode.cs" />
      <Compile Include="Assets\Scripts\Network\UgkMessage.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\BaseEventManager.cs" />
      <Folder Include="Assets\Scripts\Lobby" />
      <Folder Include="Assets\Scripts\Network\Handlers\Game" />
