@@ -1,4 +1,5 @@
 using System;
+using Common;
 using Common.Tools;
 using Network;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Game.GalacticKittens.Selection
 {
     /// <summary>
     /// 角色选择管理
-    /// TODO 场景入场退出渐变,其他UI界面操作，显示需要调整
+    /// TODO 场景入场退出渐变,其他UI界面操作，显示需要调整，背景音乐，切换角色、确认、取消音效，选择角色需要高速服务器广播
     /// </summary>
     public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
     {
@@ -45,11 +46,17 @@ namespace Game.GalacticKittens.Selection
 
         [SerializeField]
         AudioClip m_cancelClip;
+        [SerializeField]
+        private AudioClip _changedCharacterClip;
 
         bool m_isTimerOn;
         float m_timer;
 
         private readonly Color k_selectedColor = new Color32(74, 74, 74, 255);
+        //自己选择的角色索引
+        private int charachterIndex=0;
+        //玩家自己位置索引
+        private int playerIndex = 0;
 
         void Start()
         {
@@ -58,7 +65,42 @@ namespace Game.GalacticKittens.Selection
 
         void Update()
         {
+           SwitchCharacter();
         }
+
+
+        /// <summary>
+        /// 选择角色
+        /// </summary>
+        private void SwitchCharacter()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+               ChangeCharacterSelection(-1);
+            }else if (Input.GetKeyDown(KeyCode.D))
+            {
+                ChangeCharacterSelection(1);
+            }
+        }
+
+        private void ChangeCharacterSelection(int value)
+        {
+            charachterIndex += value;
+            if (charachterIndex >= charactersData.Length)
+            {
+                charachterIndex = 0;
+            }
+            else if (charachterIndex<0)
+            {
+                charachterIndex = charactersData.Length - 1;
+            }
+            
+            //TODO 通知服务器广播
+            //TODO 播放音效
+            SetPlayer(playerIndex,charachterIndex,true);
+            
+        }
+        
 
         private void OnEnable()
         {
@@ -241,6 +283,10 @@ namespace Game.GalacticKittens.Selection
             {
                 //TODO 其他状态判断 ，选择的角色下标需要服务器传送过来，暂时都为0，都为自己
                 m_charactersContainers[i].Init(playerInfo);
+                if (playerInfo.PlayerId==DataManager.Singleton.PlayerInfo.PlayerId)
+                {
+                    playerIndex = i;
+                }
                 SetPlayer(i,0,true);
                 i++;
             }
