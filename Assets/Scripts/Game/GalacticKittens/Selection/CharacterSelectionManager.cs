@@ -43,7 +43,11 @@ namespace Game.GalacticKittens.Selection
         bool m_isTimerOn;
         float m_timer;
 
+        /// <summary>
+        /// 角色确认颜色
+        /// </summary>
         private readonly Color k_selectedColor = new Color32(74, 74, 74, 255);
+        private readonly Color k_unselectedColor = new Color32(255, 255, 255, 255);
 
         //自己选择的角色索引
         private int charachterIndex = 0;
@@ -169,24 +173,24 @@ namespace Game.GalacticKittens.Selection
         }
 
 
-        /// <summary>
-        /// 设置角色颜色
-        /// </summary>
-        /// <param name="playerId"></param>
-        /// <param name="characterSelected"></param>
-        public void SetCharacterColor(int playerId, int characterSelected)
-        {
-            if (charactersData[characterSelected].isSelected)
-            {
-                m_charactersContainers[playerId].imageContainer.color = k_selectedColor;
-                m_charactersContainers[playerId].nameContainer.color = k_selectedColor;
-            }
-            else
-            {
-                m_charactersContainers[playerId].imageContainer.color = Color.white;
-                m_charactersContainers[playerId].nameContainer.color = Color.white;
-            }
-        }
+        // /// <summary>
+        // /// 设置角色颜色
+        // /// </summary>
+        // /// <param name="playerId"></param>
+        // /// <param name="characterSelected"></param>
+        // public void SetCharacterColor(int playerId, int characterSelected)
+        // {
+        //     if (charactersData[characterSelected].isSelected)
+        //     {
+        //         m_charactersContainers[playerId].imageContainer.color = k_selectedColor;
+        //         m_charactersContainers[playerId].nameContainer.color = k_selectedColor;
+        //     }
+        //     else
+        //     {
+        //         m_charactersContainers[playerId].imageContainer.color = Color.white;
+        //         m_charactersContainers[playerId].nameContainer.color = Color.white;
+        //     }
+        // }
 
         /// <summary>
         /// 设置UI 
@@ -210,7 +214,8 @@ namespace Game.GalacticKittens.Selection
             m_charactersContainers[playerIndex].nameContainer.text =
                 charactersData[characterSelected].characterName;
 
-            SetCharacterColor(playerIndex, characterSelected);
+            
+            // SetCharacterColor(playerIndex, characterSelected);
         }
 
         /// <summary>
@@ -248,18 +253,40 @@ namespace Game.GalacticKittens.Selection
         /// </summary>
         private void RoomInfoRes(GalacticKittensRoomInfoResponse response)
         {
+            //一个玩家修改，所有数据都从新设置了，人数少为了简便，暂时这样
+            Debug.Log($"房间信息：{response}");
             int i = 0;
             foreach (var playerInfo in response.Room.Player)
             {
                 m_charactersContainers[i].Init(playerInfo);
+                //自己
                 if (playerInfo.PlayerId == DataManager.Singleton.PlayerInfo.PlayerId)
                 {
                     playerIndex = i;
                     SetPlayer(i, playerInfo.CharacterId, true);
                 }
-                else
+                else //别人
                 {
                     SetPlayer(i, playerInfo.CharacterId, false);
+                    if (playerInfo.Prepare)
+                    {
+                        PlayerReady(playerInfo.PlayerId,i,playerInfo.CharacterId);
+                    }
+                    else
+                    {
+                        PlayerNotReady(playerInfo.PlayerId,i,playerInfo.CharacterId);
+                    }
+                }
+
+                if (playerInfo.Prepare)
+                {
+                    m_charactersContainers[i].imageContainer.color=k_selectedColor;
+                    m_charactersContainers[i].nameContainer.color=k_selectedColor;
+                }
+                else
+                {
+                    m_charactersContainers[i].imageContainer.color=k_unselectedColor;
+                    m_charactersContainers[i].nameContainer.color=k_unselectedColor;
                 }
 
                 i++;
@@ -320,7 +347,8 @@ namespace Game.GalacticKittens.Selection
                 m_charactersContainers[playerIndex].backgroundShip.SetActive(false);
                 m_charactersContainers[playerIndex].backgroundShipReady.SetActive(true);
             }
-
+            // m_charactersContainers[playerIndex].imageContainer.color=k_selectedColor;
+            // m_charactersContainers[playerIndex].nameContainer.color=k_selectedColor;
            
         }
 
@@ -344,9 +372,9 @@ namespace Game.GalacticKittens.Selection
 
             if (playerId == DataManager.Singleton.PlayerInfo.PlayerId)
             {
-                m_charactersContainers[playerId].borderClient.SetActive(true);
-                m_charactersContainers[playerId].backgroundClientShipReady.SetActive(false);
-                m_charactersContainers[playerId].backgroundShip.SetActive(true);
+                m_charactersContainers[playerIndex].borderClient.SetActive(true);
+                m_charactersContainers[playerIndex].backgroundClientShipReady.SetActive(false);
+                m_charactersContainers[playerIndex].backgroundShip.SetActive(true);
                 m_readyButton.gameObject.SetActive(true);
                 m_cancelButton.gameObject.SetActive(false);
                 var request = new GalacticKittensPrepareRequest()
@@ -358,13 +386,14 @@ namespace Game.GalacticKittens.Selection
             }
             else
             {
-                m_charactersContainers[playerId].border.SetActive(true);
-                m_charactersContainers[playerId].borderReady.SetActive(false);
-                m_charactersContainers[playerId].borderClient.SetActive(false);
-                m_charactersContainers[playerId].backgroundShip.SetActive(true);
-                m_charactersContainers[playerId].backgroundShipReady.SetActive(false);
+                m_charactersContainers[playerIndex].border.SetActive(true);
+                m_charactersContainers[playerIndex].borderReady.SetActive(false);
+                m_charactersContainers[playerIndex].borderClient.SetActive(false);
+                m_charactersContainers[playerIndex].backgroundShip.SetActive(true);
+                m_charactersContainers[playerIndex].backgroundShipReady.SetActive(false);
             }
-
+            // m_charactersContainers[playerIndex].imageContainer.color=k_unselectedColor;
+            // m_charactersContainers[playerIndex].nameContainer.color=k_unselectedColor;
            
         }
     }

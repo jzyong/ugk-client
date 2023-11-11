@@ -66,5 +66,20 @@ namespace Network.Handlers.Game
                 Debug.LogWarning($"选择角色失败：{response.Result.Msg}");
             }
         }
+        
+        /// <summary>
+        /// 选择角色
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensPrepareRes)]
+        private static void Prepare(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensPrepareResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            if (response.Result?.Status != 200)
+            {
+                Debug.LogWarning($"准备确认取消失败：{response.Result?.Msg}");
+            }
+        }
     }
 }
