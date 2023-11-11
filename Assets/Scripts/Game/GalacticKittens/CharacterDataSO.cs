@@ -14,7 +14,7 @@ public class CharacterDataSO : ScriptableObject
     public Color color;                     // The color that identifies this character, use for coloring sprites (laser)
     public Color darkColor;                 // Dark color user for the gameplay UI to set the player name color
     [Header("Client Info")]
-    public ulong clientId;                  // The clientId who selected this character
+    public long clientId;                  // The clientId who selected this character
     public int playerId;                    // With player is [1,2,3,4] -> more in case more player can play
     public bool isSelected;                 // Use for locking this character on the character selection scene
     [Header("Score")]

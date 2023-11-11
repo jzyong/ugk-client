@@ -8,7 +8,7 @@ namespace Game.GalacticKittens.Selection
 
     
     /// <summary>
-    /// 角色选择容器 TODO 按钮事件，切换角色
+    /// 角色选择容器 
     /// </summary>
     [Serializable]
     public class CharacterContainer
