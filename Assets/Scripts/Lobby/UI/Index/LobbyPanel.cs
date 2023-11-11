@@ -1,13 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Common;
 using Network;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UI.Button;
 
 namespace Lobby.UI.Index
 {
@@ -18,12 +12,12 @@ namespace Lobby.UI.Index
     {
         [SerializeField] [Tooltip("游戏列表")] private ScrollRect gameListView;
 
-        [FormerlySerializedAs("gameInfo")] [SerializeField] private GameItem gameItem;
+        [SerializeField] private GameItem gameItem;
 
-        // Start is called before the first frame update
         void Start()
         {
             MessageEventManager.Singleton.AddEvent<LoadPlayerResponse>(MessageEvent.LoadPlayer, LoadPlayerRes);
+            InitDatas();
         }
 
         private void OnDestroy()
@@ -31,9 +25,20 @@ namespace Lobby.UI.Index
             MessageEventManager.Singleton.RemoveEvent<LoadPlayerResponse>(MessageEvent.LoadPlayer, LoadPlayerRes);
         }
 
-        // Update is called once per frame
         void Update()
         {
+        }
+
+        private void InitDatas()
+        {
+            if (DataManager.Singleton.GameList!=null)
+            {
+                foreach (var info in DataManager.Singleton.GameList)
+                {
+                    var addGameInfo = Instantiate<GameItem>(gameItem, gameListView.content);
+                    addGameInfo.SetInfo(info);
+                }
+            }
         }
 
 

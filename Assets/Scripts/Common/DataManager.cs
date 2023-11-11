@@ -1,4 +1,5 @@
-﻿using Common.Tools;
+﻿using System.Collections.Generic;
+using Common.Tools;
 
 namespace Common
 {
@@ -8,5 +9,6 @@ namespace Common
     public class DataManager : SingletonInstance<DataManager>
     {
         public PlayerInfo PlayerInfo { get; set; }
+        public List<GameInfo> GameList { get; set; }
     }
 }

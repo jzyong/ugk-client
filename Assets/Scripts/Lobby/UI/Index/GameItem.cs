@@ -41,7 +41,7 @@ namespace Lobby.UI.Index
             var request = new GalacticKittensEnterRoomRequest();
             NetworkManager.Singleton.Send(MID.GalacticKittensEnterRoomReq,request);
             
-            //进入选择界面 TODO 应该收到返回消息再加载
+            //进入选择界面  应该收到返回消息再加载
             SceneManager.LoadScene("GalacticKittensCharacterSelection");
         }
     }

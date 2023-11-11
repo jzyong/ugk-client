@@ -24,6 +24,21 @@ namespace Network.Handlers.Game
         }
         
         /// <summary>
+        /// 退出房间
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensQuitRoomRes)]
+        private static void QuitRoom(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensQuitRoomResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            if (response.Result.Status != 200)
+            {
+                Debug.LogWarning($"退出房间错误：{response.Result.Msg}");
+            }
+        }
+
+        /// <summary>
         /// 房间消息变更（服务器推送）
         /// </summary>
         /// <param name="ugkMessage"></param>
@@ -34,10 +49,22 @@ namespace Network.Handlers.Game
             response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($"房间消息：{response}");
             // 修改UI显示页面
-            MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensRoomInfo,response);
+            MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensRoomInfo, response);
         }
-      
-        
+
+        /// <summary>
+        /// 选择角色
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittenSelectCharacterRes)]
+        private static void SelectCharacter(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittenSelectCharacterResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            if (response.Result.Status != 200)
+            {
+                Debug.LogWarning($"选择角色失败：{response.Result.Msg}");
+            }
+        }
     }
-    
 }

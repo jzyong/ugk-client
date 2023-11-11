@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Common;
 using Common.Tools.SnapshotInterpolation;
 using Google.Protobuf;
@@ -59,8 +60,10 @@ namespace Network.Handlers
             var response = new LoadPlayerResponse();
             response.MergeFrom(ugkMessage.Bytes);
 
-            //TODO 大厅面板,游戏列表处理
+            // 大厅面板,游戏列表处理
             DataManager.Singleton.PlayerInfo = response.PlayerInfo;
+            List<GameInfo> gameLists = new List<GameInfo>(response.GameInfo);
+            DataManager.Singleton.GameList = gameLists;
             Debug.Log($" 收到数据加载消息：{response} 结果：{response.Result?.Msg}");
             MessageEventManager.Singleton.OnEvent(MessageEvent.LoadPlayer, response);
         }

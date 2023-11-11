@@ -3,6 +3,7 @@ using Common;
 using Common.Tools;
 using Network;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
 * Singleton to control the changes on the char sprites and the flow of the scene
@@ -57,6 +58,8 @@ namespace Game.GalacticKittens.Selection
         private int charachterIndex=0;
         //玩家自己位置索引
         private int playerIndex = 0;
+        //玩家数
+        private int playerCount;
 
         void Start()
         {
@@ -66,6 +69,7 @@ namespace Game.GalacticKittens.Selection
         void Update()
         {
            SwitchCharacter();
+           QuitRoom();
         }
 
 
@@ -83,6 +87,19 @@ namespace Game.GalacticKittens.Selection
             }
         }
 
+        /// <summary>
+        /// 退出房间
+        /// </summary>
+        private void QuitRoom()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                NetworkManager.Singleton.Send(MID.GalacticKittensQuitRoomReq,new GalacticKittensQuitRoomRequest());
+                DestroyImmediate(GalacticKittensAudioManager.Instance.gameObject);
+                SceneManager.LoadScene("Lobby");
+            }
+        }
+
         private void ChangeCharacterSelection(int value)
         {
             charachterIndex += value;
@@ -95,7 +112,12 @@ namespace Game.GalacticKittens.Selection
                 charachterIndex = charactersData.Length - 1;
             }
             GalacticKittensAudioManager.Instance.PlaySoundEffect(_changedCharacterClip);
-            //TODO 通知服务器广播
+            // 告知服务器角色改变
+            var selectCharacterRequest = new GalacticKittenSelectCharacterRequest()
+            {
+                CharacterId = charachterIndex
+            };
+            NetworkManager.Singleton.Send(MID.GalacticKittenSelectCharacterReq,selectCharacterRequest);
             SetPlayer(playerIndex,charachterIndex,true);
             
         }
@@ -277,6 +299,7 @@ namespace Game.GalacticKittens.Selection
         private void RoomInfoRes(GalacticKittensRoomInfoResponse response)
         {
 
+            
             int i = 0;
             foreach (var playerInfo in response.Room.Player)
             {
@@ -285,16 +308,28 @@ namespace Game.GalacticKittens.Selection
                 if (playerInfo.PlayerId==DataManager.Singleton.PlayerInfo.PlayerId)
                 {
                     playerIndex = i;
-                    SetPlayer(i,0,true);
+                    SetPlayer(i,playerInfo.CharacterId,true);
                 }
                 else
                 {
-                    SetPlayer(i,i,false);
+                    SetPlayer(i,playerInfo.CharacterId,false);
                 }
                 
                 i++;
             }
-        
+
+            //玩家数减少，有退出
+            if (response.Room.Player.Count<playerCount)
+            {
+                for (int j = i; j < 4; j++)
+                {
+                    ClearPlayer(j);
+                }
+                
+            }
+            
+
+            playerCount = response.Room.Player.Count;
 
         }
 
