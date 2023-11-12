@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Network
 {
     /// <summary>
-    ///  同步服务器时间进行插值计算  // TODO 待测试
+    ///  同步服务器时间进行插值计算 
     /// </summary>
     public static  class NetworkTimeInterpolation
     {
@@ -18,7 +18,10 @@ namespace Network
 
 
         // snapshot interpolation runtime data 
-        public static double bufferTime =>NetworkClient.sendInterval * snapshotSettings.bufferTimeMultiplier;
+         // public static double bufferTime =>NetworkClient.sendInterval * snapshotSettings.bufferTimeMultiplier;
+         public static double bufferTime =>-NetworkTime.RTT/4; //使用往返时间的负数除以4（SnapshotInterpolation.TimelineClamp减了两次），让客户端追上服务器时间，直接使用服务器时间加上单边传输延迟，用上面Mirror的方式时间追赶不上，不知道什么参数没调整好
+         
+         
 
         // <serverTime, snaps> 
         public static SortedList<double, TimeSnapshot> snapshots = new SortedList<double, TimeSnapshot>();
@@ -80,7 +83,7 @@ namespace Network
         /// <summary>
         /// 应该每次进入unity游戏初始化,因为每个游戏房间，unity服务器是单独重启的进程
         /// </summary>
-        static void InitTimeInterpolation()
+        public static void InitTimeInterpolation()
         {
             // reset timeline, localTimescale & snapshots from last session (if any)
             // Don't reset bufferTimeMultiplier here - whatever their network condition

@@ -68,7 +68,7 @@ namespace Network.Handlers.Game
         }
         
         /// <summary>
-        /// 选择角色
+        /// 准备
         /// </summary>
         /// <param name="ugkMessage"></param>
         [MessageMap(MID.GalacticKittensPrepareRes)]

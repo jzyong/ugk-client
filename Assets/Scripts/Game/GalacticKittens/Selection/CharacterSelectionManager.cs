@@ -337,8 +337,8 @@ namespace Game.GalacticKittens.Selection
                     Prepare = true
                 };
                 NetworkManager.Singleton.Send(MID.GalacticKittensPrepareReq, request);
-
                 GalacticKittensAudioManager.Instance.PlaySoundEffect(m_confirmClip);
+                NetworkTimeInterpolation.InitTimeInterpolation();
             }
             else
             {

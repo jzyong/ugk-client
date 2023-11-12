@@ -65,7 +65,7 @@ namespace Network
         }
 
         /// <summary>
-        /// 服务器时间搓 ms
+        /// 服务器时间戳 ms
         /// </summary>
         public static long ServerTimeStamp
         {

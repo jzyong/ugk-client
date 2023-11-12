@@ -31,6 +31,7 @@ namespace Network.Handlers
             {
                 double remoteTime = ugkMessage.TimeStamp / 1000d;
                 NetworkTimeInterpolation.OnTimeSnapshot(new TimeSnapshot(remoteTime, NetworkTime.LocalTime));
+                Debug.Log($"localServerTime={NetworkTime.ServerTime}-remoteServerTime={remoteTime}={NetworkTime.ServerTime-remoteTime}s rtt={newRtt} rttValue={NetworkTime.RTT}" );
             }
             else
             {
