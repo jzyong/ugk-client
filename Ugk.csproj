@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Common\Tools\SingletonInstance.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\GalacticKittens.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\TimeSnapshot.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Parallax.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Constant.cs" />
@@ -90,7 +91,6 @@
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Selection\CharacterContainer.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
-     <Compile Include="Assets\Scripts\Game\GalacticKittens\PlayerCharSelection.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpClient.cs" />

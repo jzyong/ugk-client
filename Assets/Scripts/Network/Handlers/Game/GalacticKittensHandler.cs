@@ -1,7 +1,9 @@
 ﻿using System;
 using Common;
+using Game.GalacticKittens;
 using Google.Protobuf;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace Network.Handlers.Game
@@ -48,8 +50,30 @@ namespace Network.Handlers.Game
             var response = new GalacticKittensRoomInfoResponse();
             response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($"房间消息：{response}");
+
+            GalacticKittens galacticKittens= DataManager.Singleton.GalacticKittens;
+            if (galacticKittens==null)
+            {
+                galacticKittens = new GalacticKittens();
+                DataManager.Singleton.GalacticKittens = galacticKittens;
+            }
+            
+            
             // 修改UI显示页面
             MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensRoomInfo, response);
+            
+            //切换为加载场景
+            if (response.Room.State == (uint)RoomState.Load && galacticKittens.RoomState != response.Room.State)
+            {
+                SceneManager.LoadScene("GalacticKittensControls");
+            }
+            else if (response.Room.State==(uint)RoomState.Gameing&&response.Room.State!=galacticKittens.RoomState)
+            {
+                SceneManager.LoadScene("GalacticKittensGamePlay");
+            }
+            
+
+            galacticKittens.RoomState = response.Room.State;
         }
 
         /// <summary>
@@ -76,9 +100,9 @@ namespace Network.Handlers.Game
         {
             var response = new GalacticKittensPrepareResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            if (response.Result?.Status != 200)
+            if (response.Result!=null&&response.Result.Status != 200)
             {
-                Debug.LogWarning($"准备确认取消失败：{response.Result?.Msg}");
+                Debug.LogWarning($"准备确认取消失败：{response.Result.Msg}");
             }
         }
     }

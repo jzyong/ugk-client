@@ -15,7 +15,7 @@ namespace Game.GalacticKittens.Selection
 {
     /// <summary>
     /// 角色选择管理
-    /// TODO 场景入场退出渐变,其他UI界面操作，显示需要调整，背景音乐，切换角色、确认、取消音效，选择角色需要高速服务器广播
+    /// TODO 场景入场退出渐变,其他UI界面操作，切换角色、确认、取消音效，
     /// </summary>
     public class CharacterSelectionManager : Singleton<CharacterSelectionManager>
     {
