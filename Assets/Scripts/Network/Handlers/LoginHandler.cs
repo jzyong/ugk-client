@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Common;
 using Common.Tools.SnapshotInterpolation;
 using Google.Protobuf;
+using Network.Sync;
 using UnityEngine;
 
 

@@ -46,11 +46,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Common\Tools\SingletonInstance.cs" />
+     <Compile Include="Assets\Scripts\Network\Sync\NetworkTimeInterpolation.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\GalacticKittens.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\TimeSnapshot.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Parallax.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Constant.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Common\NoticePanel.cs" />
+     <Compile Include="Assets\Scripts\Common\Tools\Compression.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Pool.cs" />
      <Compile Include="Assets\Scripts\Network\MessageMapAttribute.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\ExponentialMovingAverage.cs" />
@@ -58,12 +60,13 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpConfig.cs" />
      <Compile Include="Assets\Scripts\Common\DataManager.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Selection\CharacterSelectionManager.cs" />
+     <Compile Include="Assets\Scripts\Common\Tools\Vector3Long.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Kcp.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\LobbyPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Log.cs" />
+     <Compile Include="Assets\Scripts\Network\Sync\TransformSnapshot.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Player.cs" />
-     <Compile Include="Assets\Scripts\Network\NetworkTime.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpServerConnection.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\GameGalacticKittens.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Common.cs" />
@@ -71,6 +74,7 @@
      <Compile Include="Assets\Scripts\Network\MessageEventManager.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\Snapshot.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
+     <Compile Include="Assets\Scripts\Network\Sync\NetworkTime.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\TypescriptEffect.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\SnapshotInterpolationSettings.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\GameItem.cs" />
@@ -82,7 +86,6 @@
      <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\Mathd.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkClient.cs" />
-     <Compile Include="Assets\Scripts\Network\NetworkTimeInterpolation.cs" />
      <Compile Include="Assets\Scripts\Network\Exceptions.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AckItem.cs" />
      <Compile Include="Assets\Scripts\Network\Handlers\Game\GalacticKittensHandler.cs" />
@@ -90,8 +93,10 @@
      <Compile Include="Assets\Scripts\Network\Messages\Server.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Selection\CharacterContainer.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\KittensCharachter.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
+     <Compile Include="Assets\Scripts\Network\Sync\NetworkTransform.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpClient.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpPeer.cs" />
@@ -117,6 +122,7 @@
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\kcp" />
      <Folder Include="Assets\Scripts\Lobby\UI\Common" />
      <Folder Include="Assets\Scripts" />
+     <Folder Include="Assets\Scripts\Network\Sync" />
      <Folder Include="Assets\Scripts\Game\GalacticKittens\Selection" />
      <Folder Include="Assets\Scripts\Lobby\UI\Index" />
      <Folder Include="Assets\Scripts\Network" />

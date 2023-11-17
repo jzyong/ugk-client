@@ -6,6 +6,7 @@ using System.Reflection;
 using Google.Protobuf;
 using kcp2k;
 using System.Linq;
+using Network.Sync;
 using Tools;
 using UnityEngine.Networking;
 

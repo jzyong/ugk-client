@@ -2,6 +2,7 @@ using System;
 using Common;
 using Common.Tools;
 using Network;
+using Network.Sync;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;

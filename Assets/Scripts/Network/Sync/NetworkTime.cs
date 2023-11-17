@@ -13,7 +13,7 @@ using UnityEngine;
 using Stopwatch = System.Diagnostics.Stopwatch;
 #endif
 
-namespace Network
+namespace Network.Sync
 {
     // TODO 待测试
     /// <summary>Synchronizes server time to clients. </summary>
