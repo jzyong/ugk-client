@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Common.Tools;
 using Common.Tools.SnapshotInterpolation;
+using Network.Serialize;
 using UnityEngine;
 
 namespace Network.Sync

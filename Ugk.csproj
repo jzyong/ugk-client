@@ -53,7 +53,6 @@
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Parallax.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Constant.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Common\NoticePanel.cs" />
-     <Compile Include="Assets\Scripts\Common\Tools\Compression.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\Extensions.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Pool.cs" />
      <Compile Include="Assets\Scripts\Network\MessageMapAttribute.cs" />
@@ -66,6 +65,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Kcp.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\LobbyPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriter.cs" />
+     <Compile Include="Assets\Scripts\Network\Serialize\DeltaCompression.cs" />
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Log.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\TransformSnapshot.cs" />
@@ -105,6 +105,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\NetworkTransform.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Common.cs" />
+     <Compile Include="Assets\Scripts\Network\Serialize\Compression.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpClient.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriterPooled.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkReaderPooled.cs" />
