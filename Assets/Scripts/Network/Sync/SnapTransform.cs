@@ -20,12 +20,6 @@ namespace Network.Sync
         //缓存的快照
         public readonly SortedList<double, TransformSnapshot> snapshots = new SortedList<double, TransformSnapshot>();
 
-        // delta compression needs to remember 'last' to compress against
-        protected Vector3Long lastSerializedPosition = Vector3Long.zero;
-        protected Vector3Long lastDeserializedPosition = Vector3Long.zero;
-
-        protected Vector3Long lastSerializedScale = Vector3Long.zero;
-        protected Vector3Long lastDeserializedScale = Vector3Long.zero;
 
         // Used to store last sent snapshots
         protected TransformSnapshot last;

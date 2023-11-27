@@ -1,3 +1,4 @@
+using Common.Tools;
 using UnityEngine;
 
 namespace Network.Sync
@@ -65,6 +66,12 @@ namespace Network.Sync
         protected long id;
         //下次消息发送时间
         protected double nextSendTime;
+        // delta compression needs to remember 'last' to compress against
+        protected Vector3Long lastSerializedPosition = Vector3Long.zero;
+        protected Vector3Long lastDeserializedPosition = Vector3Long.zero;
+
+        protected Vector3Long lastSerializedScale = Vector3Long.zero;
+        protected Vector3Long lastDeserializedScale = Vector3Long.zero;
 
 
         // make sure to call this when inheriting too!
