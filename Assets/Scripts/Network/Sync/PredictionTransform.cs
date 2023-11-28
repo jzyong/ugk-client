@@ -2,12 +2,13 @@
 using Common.Tools;
 using Google.Protobuf;
 using Network.Serialize;
+using UnityEngine;
 
 namespace Network.Sync
 {
+    
     /// <summary>
     /// 预测同步 TODO 怎样平滑处理？
-    /// TODO 通过权重优先级实现,参考fps ？
     /// 
     /// </summary>
     public class PredictionTransform : NetworkTransform
@@ -30,7 +31,7 @@ namespace Network.Sync
 
         public void OnTransformChange()
         {
-            //TODO 增加权重
+            //TODO 
         }
         
         //TODO 序列化和反序列化

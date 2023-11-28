@@ -29,7 +29,7 @@ namespace Network.Sync
         public SnapSyncRequest SnapSyncMessage { get; set; }
 
         /// <summary>
-        /// 批量预测同步消息 , TODO 使用优先级队列，每次最多发送64个对象，防止消息同步过多
+        /// 批量预测同步消息 
         /// </summary>
         public PredictionSyncRequest PredictionSyncMessage { get; set; }
 
@@ -43,16 +43,21 @@ namespace Network.Sync
 
         private void OnEnable()
         {
-            _snapTransforms.Clear();
-            _predictionTransforms.Clear();
+            ResetData();
         }
 
         private void OnDisable()
         {
-            _snapTransforms.Clear();
-            _predictionTransforms.Clear();
+            ResetData();
         }
 
+        private void ResetData()
+        {
+            _snapTransforms.Clear();
+            _predictionTransforms.Clear();
+            SnapSyncMessage.Payload.Clear();
+            PredictionSyncMessage.Payload.Clear();
+        }
 
         /// <summary>
         /// 收到同步消息
@@ -60,6 +65,10 @@ namespace Network.Sync
         /// <param name="response"></param>
         public void OnSnapSyncReceive(SnapSyncResponse response)
         {
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
             foreach (var kv in response.Payload)
             {
                 if (!_snapTransforms.TryGetValue(kv.Key, out SnapTransform snapTransform))
@@ -78,6 +87,10 @@ namespace Network.Sync
         /// <param name="response"></param>
         public void OnPredictionSyncReceive(PredictionSyncResponse response)
         {
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
             foreach (var kv in response.Payload)
             {
                 if (!_predictionTransforms.TryGetValue(kv.Key, out PredictionTransform predictionTransform))
@@ -85,7 +98,6 @@ namespace Network.Sync
                     Debug.LogWarning($"同步对象{kv.Key} 不存在");
                     continue;
                 }
-
                 predictionTransform.OnDeserialize(kv.Value, false);
             }
         }
@@ -100,9 +112,14 @@ namespace Network.Sync
                 SnapSyncMessage.Payload.Clear();
             }
 
-            if (PredictionSyncMessage.Payload.Count > 0)
+            var predictionCount = PredictionSyncMessage.Payload.Count;
+            if (predictionCount > 0)
             {
                 NetworkManager.Singleton.Send(MID.PredictionSyncReq, PredictionSyncMessage);
+                if (predictionCount > 64)
+                {
+                    Debug.LogWarning($"同步消息太多{predictionCount} =>{PredictionSyncMessage.Payload.Keys}");
+                }
                 PredictionSyncMessage.Payload.Clear();
             }
         }

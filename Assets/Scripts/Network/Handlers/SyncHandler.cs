@@ -19,12 +19,23 @@ namespace Network.Handlers
         /// </summary>
         /// <param name="ugkMessage"></param>
         [MessageMap(MID.SnapSyncRes)]
-        private static void Heart(UgkMessage ugkMessage)
+        private static void SnapSync(UgkMessage ugkMessage)
         {
-            // Debug.Log($" 收到心跳返回：{timeStamp}");
             var response = new SnapSyncResponse();
             response.MergeFrom(ugkMessage.Bytes);
             SyncManager.Instance.OnSnapSyncReceive(response);
+        }
+        
+        /// <summary>
+        /// 快照插值同步
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.PredictionSyncRes)]
+        private static void PredictionSync(UgkMessage ugkMessage)
+        {
+            var response = new PredictionSyncResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            SyncManager.Instance.OnPredictionSyncReceive(response);
         }
 
     }
