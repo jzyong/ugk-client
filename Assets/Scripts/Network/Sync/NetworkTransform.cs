@@ -18,27 +18,8 @@ namespace Network.Sync
         public bool syncRotation = true; // do not change at runtime!
         public bool syncScale = false; // do not change at runtime! rare. off by default.
 
-        // interpolation is on by default, but can be disabled to jump to
-        // the destination immediately. some projects need this.
-        [Header("Interpolation")] [Tooltip("Set to false to have a snap-like effect on position movement.")]
-        public bool interpolatePosition = true;
-
-        [Tooltip("Set to false to have a snap-like effect on rotations.")]
-        public bool interpolateRotation = true;
-
-        [Tooltip(
-            "Set to false to remove scale smoothing. Example use-case: Instant flipping of sprites that use -X and +X for direction.")]
-        public bool interpolateScale = true;
-
         [Tooltip("消息发送间隔")] public double sendInterval = 0.033;
         
-        [Header("Sync Only If Changed")]
-        [Tooltip("When true, changes are not sent unless greater than sensitivity values below.")]
-        public bool onlySyncOnChange = true;
-
-        
-        [Header("Rotation")] [Tooltip("Sensitivity of changes needed before an updated state is sent over the network")]
-        public float rotationSensitivity = 0.01f;
 
         [Tooltip(
             "Apply smallest-three quaternion compression. This is lossy, you can disable it if the small rotation inaccuracies are noticeable in your project.")]
@@ -63,7 +44,7 @@ namespace Network.Sync
         /**
          * 每个对象的唯一id
          */
-        protected long id;
+        public long Id { get; set; }
         //下次消息发送时间
         protected double nextSendTime;
         // delta compression needs to remember 'last' to compress against
@@ -72,6 +53,11 @@ namespace Network.Sync
 
         protected Vector3Long lastSerializedScale = Vector3Long.zero;
         protected Vector3Long lastDeserializedScale = Vector3Long.zero;
+        
+        /// <summary>
+        /// 是否为本地玩家拥有者
+        /// </summary>
+        public bool Onwer { get; set; }
 
 
         // make sure to call this when inheriting too!

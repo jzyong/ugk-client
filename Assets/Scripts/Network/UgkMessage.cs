@@ -35,6 +35,16 @@ namespace Network
             TimeStamp = 0;
             Bytes = null;
         }
+
+        /// <summary>
+        /// long时间转 double
+        /// </summary>
+        /// <returns></returns>
+        public double GetTime()
+        {
+            return TimeStamp / 1000d;
+        }
+        
     }
     
    

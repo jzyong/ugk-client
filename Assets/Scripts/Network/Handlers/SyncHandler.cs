@@ -35,7 +35,7 @@ namespace Network.Handlers
         {
             var response = new PredictionSyncResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            SyncManager.Instance.OnPredictionSyncReceive(response);
+            SyncManager.Instance.OnPredictionSyncReceive(ugkMessage,response);
         }
 
     }

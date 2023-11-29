@@ -30,7 +30,7 @@ namespace Network.Handlers
             //时间平滑插值
             if (ugkMessage.TimeStamp < 86400000)
             {
-                double remoteTime = ugkMessage.TimeStamp / 1000d;
+                double remoteTime = ugkMessage.GetTime();
                 NetworkTimeInterpolation.OnTimeSnapshot(new TimeSnapshot(remoteTime, NetworkTime.LocalTime));
                 Debug.Log($"localServerTime={NetworkTime.ServerTime}-remoteServerTime={remoteTime}={NetworkTime.ServerTime-remoteTime}s rtt={newRtt} rttValue={NetworkTime.RTT}" );
             }

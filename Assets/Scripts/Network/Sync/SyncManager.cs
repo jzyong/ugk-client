@@ -85,7 +85,7 @@ namespace Network.Sync
         /// 收到同步消息
         /// </summary>
         /// <param name="response"></param>
-        public void OnPredictionSyncReceive(PredictionSyncResponse response)
+        public void OnPredictionSyncReceive(UgkMessage ugkMessage,PredictionSyncResponse response)
         {
             if (!gameObject.activeSelf)
             {
@@ -98,7 +98,7 @@ namespace Network.Sync
                     Debug.LogWarning($"同步对象{kv.Key} 不存在");
                     continue;
                 }
-                predictionTransform.OnDeserialize(kv.Value, false);
+                predictionTransform.OnDeserialize(ugkMessage,kv.Value, false);
             }
         }
 

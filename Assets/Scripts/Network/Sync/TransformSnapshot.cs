@@ -45,7 +45,7 @@ namespace Network.Sync
         }
 
         /// <summary>
-        /// 
+        ///  插值计算
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>

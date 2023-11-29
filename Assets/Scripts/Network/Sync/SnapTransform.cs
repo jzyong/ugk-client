@@ -20,6 +20,24 @@ namespace Network.Sync
         //缓存的快照
         public readonly SortedList<double, TransformSnapshot> snapshots = new SortedList<double, TransformSnapshot>();
 
+        [Header("Sync Only If Changed")]
+        [Tooltip("When true, changes are not sent unless greater than sensitivity values below.")]
+        public bool onlySyncOnChange = true;
+        
+        // interpolation is on by default, but can be disabled to jump to
+        // the destination immediately. some projects need this.
+        [Header("Interpolation")] [Tooltip("Set to false to have a snap-like effect on position movement.")]
+        public bool interpolatePosition = true;
+
+        [Tooltip("Set to false to have a snap-like effect on rotations.")]
+        public bool interpolateRotation = true;
+
+        [Tooltip(
+            "Set to false to remove scale smoothing. Example use-case: Instant flipping of sprites that use -X and +X for direction.")]
+        public bool interpolateScale = true;
+        
+        [Header("Rotation")] [Tooltip("Sensitivity of changes needed before an updated state is sent over the network")]
+        public float rotationSensitivity = 0.01f;
 
         // Used to store last sent snapshots
         protected TransformSnapshot last;
@@ -236,7 +254,7 @@ namespace Network.Sync
 
                 //发送数据
                 var data = ByteString.CopyFrom(writer.ToArray());
-                SyncManager.Instance.SnapSyncMessage.Payload[id] = data;
+                SyncManager.Instance.SnapSyncMessage.Payload[Id] = data;
             }
         }
 
