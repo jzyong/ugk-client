@@ -105,5 +105,33 @@ namespace Network.Handlers.Game
                 Debug.LogWarning($"准备确认取消失败：{response.Result.Msg}");
             }
         }
+        
+        /// <summary>
+        /// 游戏对象产出
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensObjectSpawnRes)]
+        private static void ObjectSpawn(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensObjectSpawnResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensObjectSpawn, response);
+        }
+        
+        /// <summary>
+        /// 开火请求 ,只有玩家控制的对象请求，子弹服务器生成推送
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensFireRes)]
+        private static void Fire(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensFireResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            if (response.Result!=null&&response.Result.Status != 200)
+            {
+                Debug.LogWarning($"开火失败：{response.Result.Msg}");
+            }
+           
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Network
         
         //GalacticKittens
         GalacticKittensRoomInfo,
+        GalacticKittensObjectSpawn,
     }
     
     /// <summary>

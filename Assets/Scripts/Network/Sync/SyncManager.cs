@@ -77,6 +77,13 @@ namespace Network.Sync
                     continue;
                 }
 
+                // 自己的消息丢弃
+                if (snapTransform.Onwer)
+                {
+                    continue;
+                }
+                
+
                 snapTransform.OnDeserialize(kv.Value, false);
             }
         }
