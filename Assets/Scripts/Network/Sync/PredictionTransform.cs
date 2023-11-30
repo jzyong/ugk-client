@@ -52,7 +52,8 @@ namespace Network.Sync
 
         public void Update()
         {
-            //TODO 计算位置和方向并应用
+            // 计算位置和方向并应用
+            CalculateTransform(Time.deltaTime);
         }
 
         public void LateUpdate()
@@ -161,7 +162,6 @@ namespace Network.Sync
         /// <param name="initialState"></param>
         public void OnDeserialize(UgkMessage ugkMessage, ByteString data, bool initialState)
         {
-            //TODO 服务器端 如果是初始化，需要进行时间补偿，因为网络延迟 
 
             var segment = new ArraySegment<byte>(data.ToByteArray());
             using (NetworkReaderPooled reader = NetworkReaderPool.Get(segment))
@@ -233,7 +233,7 @@ namespace Network.Sync
                     }
                 }
 
-                ReconciliationTransform(position, rotation, scale, linearVelocity, angularVelocity,ugkMessage);
+                ReconciliationTransform(position, rotation, scale, linearVelocity, angularVelocity, ugkMessage);
                 // save deserialized as 'last' for next delta compression
                 if (syncPosition)
                     Compression.ScaleToLong(position.Value, positionPrecision, out lastDeserializedPosition);
@@ -256,22 +256,39 @@ namespace Network.Sync
         /// <param name="linearVelocity"></param>
         /// <param name="angularVelocity"></param>
         private void ReconciliationTransform(Vector3? position, Quaternion? rotation, Vector3? scale,
-            Vector3? linearVelocity, Vector3? angularVelocity,UgkMessage ugkMessage)
+            Vector3? linearVelocity, Vector3? angularVelocity, UgkMessage ugkMessage)
         {
-
-            //进行时间补偿，使与服务器一致
-            double delayTime = NetworkTime.ServerTime - ugkMessage.GetTime();
-            if (delayTime>0)
-            {
-                //TODO 进行位置计算
-            }
-            
-            //直接赋值，是否会抖动？
-            if (position.HasValue) target.position = position.Value;
-            if (rotation.HasValue) target.rotation = rotation.Value;
-            if (scale.HasValue) target.localScale = scale.Value;
             if (linearVelocity.HasValue) LinearVelocity = linearVelocity.Value;
             if (angularVelocity.HasValue) AngularVelocity = angularVelocity.Value;
+            if (scale.HasValue) target.localScale = scale.Value;
+
+            //直接赋值，是否会抖动？
+            //进行时间补偿，使与服务器一致
+            double delayTime = NetworkTime.ServerTime - ugkMessage.GetTime();
+            if (delayTime > 0)
+            {
+                // 进行位置计算
+                CalculateTransform((float)delayTime);
+            }
+            else
+            {
+                if (position.HasValue) target.position = position.Value;
+                if (rotation.HasValue) target.rotation = rotation.Value;
+            }
+        }
+
+        /// <summary>
+        /// 计算位置方向
+        /// </summary>
+        /// <param name="deltaTime"></param>
+        private void CalculateTransform(float deltaTime)
+        {
+            target.position += LinearVelocity * deltaTime;
+            if (syncAngularVelocity)
+            {
+                var rotation = Quaternion.Euler(AngularVelocity * deltaTime);
+                target.transform.rotation = Quaternion.LerpUnclamped(target.transform.rotation, rotation, 1);
+            }
         }
     }
 }
