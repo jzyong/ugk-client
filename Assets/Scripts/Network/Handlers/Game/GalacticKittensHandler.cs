@@ -145,13 +145,35 @@ namespace Network.Handlers.Game
 
             if (response.Result != null && response.Result.Status != 200)
             {
-                Debug.LogWarning($"开火失败：{response.Result.Msg}");
+                Debug.LogWarning($"使用护盾失败：{response.Result.Msg}");
             }
 
+        }
+        
+        /// <summary>
+        /// 护盾状态
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensShipShieldStateRes)]
+        private static void ShipShieldState(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensShipShieldStateResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            
             //TODO 获取 飞船对象，激活或取消护盾
-            if (response.ShipId > 0)
-            {
-            }
+        }
+        
+        /// <summary>
+        /// 飞船移动状态
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensShipMoveStateRes)]
+        private static void ShipMoveState(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensShipMoveStateResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            
+            //TODO 获取 飞船对象，设置移动状态
         }
     }
 }

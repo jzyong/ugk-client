@@ -96,7 +96,7 @@ namespace Game.GalacticKittens.Manager
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                NetworkManager.Singleton.Send(MID.GalacticKittensQuitRoomReq, new GalacticKittensQuitRoomRequest());
+                NetworkManager.Instance.Send(MID.GalacticKittensQuitRoomReq, new GalacticKittensQuitRoomRequest());
                 DestroyImmediate(GalacticKittensAudioManager.Instance.gameObject);
                 SceneManager.LoadScene("Lobby");
             }
@@ -120,7 +120,7 @@ namespace Game.GalacticKittens.Manager
             {
                 CharacterId = charachterIndex
             };
-            NetworkManager.Singleton.Send(MID.GalacticKittenSelectCharacterReq, selectCharacterRequest);
+            NetworkManager.Instance.Send(MID.GalacticKittenSelectCharacterReq, selectCharacterRequest);
             SetPlayer(playerIndex, charachterIndex, true);
         }
 
@@ -337,7 +337,7 @@ namespace Game.GalacticKittens.Manager
                 {
                     Prepare = true
                 };
-                NetworkManager.Singleton.Send(MID.GalacticKittensPrepareReq, request);
+                NetworkManager.Instance.Send(MID.GalacticKittensPrepareReq, request);
                 GalacticKittensAudioManager.Instance.PlaySoundEffect(m_confirmClip);
                 NetworkTimeInterpolation.InitTimeInterpolation();
             }
@@ -382,7 +382,7 @@ namespace Game.GalacticKittens.Manager
                 {
                     Prepare = false
                 };
-                NetworkManager.Singleton.Send(MID.GalacticKittensPrepareReq, request);
+                NetworkManager.Instance.Send(MID.GalacticKittensPrepareReq, request);
                 GalacticKittensAudioManager.Instance.PlaySoundEffect(m_cancelClip);
             }
             else

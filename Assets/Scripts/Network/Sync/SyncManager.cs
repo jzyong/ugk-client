@@ -115,14 +115,14 @@ namespace Network.Sync
             //批量同步消息
             if (SnapSyncMessage.Payload.Count > 0)
             {
-                NetworkManager.Singleton.Send(MID.SnapSyncReq, SnapSyncMessage);
+                NetworkManager.Instance.Send(MID.SnapSyncReq, SnapSyncMessage);
                 SnapSyncMessage.Payload.Clear();
             }
 
             var predictionCount = PredictionSyncMessage.Payload.Count;
             if (predictionCount > 0)
             {
-                NetworkManager.Singleton.Send(MID.PredictionSyncReq, PredictionSyncMessage);
+                NetworkManager.Instance.Send(MID.PredictionSyncReq, PredictionSyncMessage);
                 if (predictionCount > 64)
                 {
                     Debug.LogWarning($"同步消息太多{predictionCount} =>{PredictionSyncMessage.Payload.Keys}");

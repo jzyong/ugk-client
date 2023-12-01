@@ -18,8 +18,8 @@ public class NetworkManagerTestScript
     public void ConnectServer()
     {
         // Use the Assert class to test conditions
-        NetworkManager.Singleton.Start();
-        bool connect = NetworkManager.Singleton.isNetworkActive;
+        NetworkManager.Instance.Start();
+        bool connect = NetworkManager.Instance.isNetworkActive;
         Assert.AreEqual(true,connect);
         Assert.That(true==connect,"服务器连接失败");
     }
@@ -32,8 +32,8 @@ public class NetworkManagerTestScript
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         // Use the Assert class to test conditions
-        NetworkManager.Singleton.Start();
-        bool connect = NetworkManager.Singleton.isNetworkActive;
+        NetworkManager.Instance.Start();
+        bool connect = NetworkManager.Instance.isNetworkActive;
         Assert.AreEqual(true,connect);
         Assert.That(true==connect,"服务器连接失败");
         yield return null;

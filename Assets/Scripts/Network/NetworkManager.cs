@@ -51,7 +51,7 @@ namespace Network
 
 
         /// <summary>The one and only NetworkManager </summary>
-        public static NetworkManager Singleton { get; internal set; }
+        public static NetworkManager Instance { get; internal set; }
 
 
         /// <summary>True if the server is running or client is connected/connecting.</summary>
@@ -156,10 +156,10 @@ namespace Network
 
         bool InitializeSingleton()
         {
-            if (Singleton != null && Singleton == this)
+            if (Instance != null && Instance == this)
                 return true;
 
-            if (Singleton != null)
+            if (Instance != null)
             {
                 Debug.LogWarning(
                     "Multiple NetworkManagers detected in the scene. Only one NetworkManager can exist at a time. The duplicate NetworkManager will be destroyed.");
@@ -170,7 +170,7 @@ namespace Network
             }
 
             //Debug.Log("NetworkManager created singleton (DontDestroyOnLoad)");
-            Singleton = this;
+            Instance = this;
             if (Application.isPlaying)
             {
                 // Force the object to scene root, in case user made it a child of something
@@ -234,7 +234,7 @@ namespace Network
         public static void ResetStatics()
         {
             // and finally (in case it isn't null already)...
-            Singleton = null;
+            Instance = null;
         }
 
         public void OnDestroy()

@@ -36,7 +36,7 @@ namespace Game.GalacticKittens
         private void FireReq()
         {
             GalacticKittensFireRequest request = new GalacticKittensFireRequest();
-            NetworkManager.Singleton.Send(MID.GalacticKittensFireReq, request);
+            NetworkManager.Instance.Send(MID.GalacticKittensFireReq, request);
         }
     }
 }

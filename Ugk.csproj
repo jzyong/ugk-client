@@ -95,6 +95,7 @@
      <Compile Include="Assets\Scripts\Network\Handlers\LoginHandler.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\SnapshotInterpolation.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Extensions.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerMovementInputLimitAdjuster.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AssemblyInfo.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\LoadingFadeEffect.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
@@ -119,6 +120,7 @@
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriterPooled.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkReaderPooled.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpPeer.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerShipMovement.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Manager\GalacticKittensRoomManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\ErrorCode.cs" />
      <Compile Include="Assets\Scripts\Network\UgkMessage.cs" />

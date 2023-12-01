@@ -169,7 +169,7 @@ namespace Network
                 try
                 {
                     // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
-                    var handler = NetworkManager.Singleton.GetMessageHandler(ugkMessage.MessageId);
+                    var handler = NetworkManager.Instance.GetMessageHandler(ugkMessage.MessageId);
                     if (handler == null)
                     {
                         Debug.LogWarning($"消息{(MID)ugkMessage.MessageId}处理方法未实现");
@@ -240,7 +240,7 @@ namespace Network
             {
                 ClientTime = NetworkTime.LocalTime
             };
-            NetworkManager.Singleton.Send(MID.HeartReq, request);
+            NetworkManager.Instance.Send(MID.HeartReq, request);
         }
 
 

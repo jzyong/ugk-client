@@ -38,7 +38,7 @@ namespace Lobby.UI.Login
                 Account = accountInput.text,
                 Password = passwordInput.text
             };
-            NetworkManager.Singleton.Send(MID.LoginReq, request);
+            NetworkManager.Instance.Send(MID.LoginReq, request);
         }
 
         private void LoginRes(LoginResponse response)
@@ -46,7 +46,7 @@ namespace Lobby.UI.Login
             // 登录成功
             if (response.Result == null || response.Result.Status == 200)
             {
-                NetworkManager.Singleton.Send(MID.LoadPlayerReq,new LoadPlayerRequest()
+                NetworkManager.Instance.Send(MID.LoadPlayerReq,new LoadPlayerRequest()
                 {
                     PlayerId = response.PlayerId
                 });
