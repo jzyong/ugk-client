@@ -1,6 +1,6 @@
-using System;
 using Common;
 using Common.Tools;
+using Game.GalacticKittens.Selection;
 using Network;
 using Network.Sync;
 using UnityEngine;
@@ -12,7 +12,7 @@ using UnityEngine.UI;
 */
 
 
-namespace Game.GalacticKittens.Selection
+namespace Game.GalacticKittens.Manager
 {
     /// <summary>
     /// 角色选择管理

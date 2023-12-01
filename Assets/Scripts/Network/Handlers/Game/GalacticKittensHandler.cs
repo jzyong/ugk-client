@@ -24,7 +24,7 @@ namespace Network.Handlers.Game
             response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($"进入房间消息结果：{response}");
         }
-        
+
         /// <summary>
         /// 退出房间
         /// </summary>
@@ -51,27 +51,27 @@ namespace Network.Handlers.Game
             response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($"房间消息：{response}");
 
-            GalacticKittens galacticKittens= DataManager.Singleton.GalacticKittens;
-            if (galacticKittens==null)
+            GalacticKittens galacticKittens = DataManager.Singleton.GalacticKittens;
+            if (galacticKittens == null)
             {
                 galacticKittens = new GalacticKittens();
                 DataManager.Singleton.GalacticKittens = galacticKittens;
             }
-            
-            
+
+
             // 修改UI显示页面
             MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensRoomInfo, response);
-            
+
             //切换为加载场景
             if (response.Room.State == (uint)RoomState.Load && galacticKittens.RoomState != response.Room.State)
             {
                 SceneManager.LoadScene("GalacticKittensControls");
             }
-            else if (response.Room.State==(uint)RoomState.Gameing&&response.Room.State!=galacticKittens.RoomState)
+            else if (response.Room.State == (uint)RoomState.Gameing && response.Room.State != galacticKittens.RoomState)
             {
                 SceneManager.LoadScene("GalacticKittensGamePlay");
             }
-            
+
 
             galacticKittens.RoomState = response.Room.State;
         }
@@ -90,7 +90,7 @@ namespace Network.Handlers.Game
                 Debug.LogWarning($"选择角色失败：{response.Result.Msg}");
             }
         }
-        
+
         /// <summary>
         /// 准备
         /// </summary>
@@ -100,12 +100,12 @@ namespace Network.Handlers.Game
         {
             var response = new GalacticKittensPrepareResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            if (response.Result!=null&&response.Result.Status != 200)
+            if (response.Result != null && response.Result.Status != 200)
             {
                 Debug.LogWarning($"准备确认取消失败：{response.Result.Msg}");
             }
         }
-        
+
         /// <summary>
         /// 游戏对象产出
         /// </summary>
@@ -117,7 +117,7 @@ namespace Network.Handlers.Game
             response.MergeFrom(ugkMessage.Bytes);
             MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensObjectSpawn, response);
         }
-        
+
         /// <summary>
         /// 开火请求 ,只有玩家控制的对象请求，子弹服务器生成推送
         /// </summary>
@@ -127,11 +127,31 @@ namespace Network.Handlers.Game
         {
             var response = new GalacticKittensFireResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            if (response.Result!=null&&response.Result.Status != 200)
+            if (response.Result != null && response.Result.Status != 200)
             {
                 Debug.LogWarning($"开火失败：{response.Result.Msg}");
             }
-           
+        }
+
+        /// <summary>
+        /// 使用护盾
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensUseShieldRes)]
+        private static void UseShield(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensUseShieldResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+
+            if (response.Result != null && response.Result.Status != 200)
+            {
+                Debug.LogWarning($"开火失败：{response.Result.Msg}");
+            }
+
+            //TODO 获取 飞船对象，激活或取消护盾
+            if (response.ShipId > 0)
+            {
+            }
         }
     }
 }
