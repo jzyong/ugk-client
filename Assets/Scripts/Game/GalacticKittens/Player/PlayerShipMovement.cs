@@ -212,13 +212,14 @@ namespace Game.GalacticKittens.Player
         private void MovePlayerShip()
         {
             // Take the value from the input and multiply by speed and time
+            // Debug.LogWarning($"横向速度：{m_inputX} 纵向速度：{m_inputY}");
             float speedTimesDeltaTime = m_speed * Time.deltaTime;
 
             float newYposition = m_inputY * speedTimesDeltaTime;
             float newXposition = m_inputX * speedTimesDeltaTime;
 
             // move the ship
-            transform.Translate(newXposition, newYposition, 0f);
+            transform.Translate(newXposition, newYposition, 0f,Space.World);
         }
     }
 }

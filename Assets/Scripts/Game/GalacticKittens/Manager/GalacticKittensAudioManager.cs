@@ -32,7 +32,7 @@ namespace Game.GalacticKittens
         private void Start()
         {
             // We know that the menu scene if the first to use this script
-            PlayMusic(MusicName.intro);
+            // PlayMusic(MusicName.intro); //TODO 开发暂时屏蔽
         }
    
         public void PlaySoundEffect(AudioClip clip, float volume = 1f)

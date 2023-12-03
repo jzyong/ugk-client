@@ -23,7 +23,7 @@ namespace Network.Sync
         [Header("Sync Only If Changed")]
         [Tooltip("When true, changes are not sent unless greater than sensitivity values below.")]
         public bool onlySyncOnChange = true;
-        
+
         // interpolation is on by default, but can be disabled to jump to
         // the destination immediately. some projects need this.
         [Header("Interpolation")] [Tooltip("Set to false to have a snap-like effect on position movement.")]
@@ -35,7 +35,7 @@ namespace Network.Sync
         [Tooltip(
             "Set to false to remove scale smoothing. Example use-case: Instant flipping of sprites that use -X and +X for direction.")]
         public bool interpolateScale = true;
-        
+
         [Header("Rotation")] [Tooltip("Sensitivity of changes needed before an updated state is sent over the network")]
         public float rotationSensitivity = 0.01f;
 
@@ -174,7 +174,7 @@ namespace Network.Sync
         protected virtual void UpdateClient()
         {
             // only while we have snapshots
-            if (snapshots.Count > 0)
+            if (snapshots.Count > 0 && !Onwer)
             {
                 // step the interpolation without touching time.
                 // NetworkClient is responsible for time globally.
@@ -313,18 +313,39 @@ namespace Network.Sync
                     }
                 }
 
-                OnReceiveTransform(position, rotation, scale);
+                // 自己并且是初始化，直接引用，因为是服务器传送过来的
+                if (Onwer && initialState)
+                {
+                    if (position.HasValue)
+                    {
+                        target.transform.position = position.Value;
+                    }
 
-                // save deserialized as 'last' for next delta compression
-                if (syncPosition)
-                    Compression.ScaleToLong(position.Value, positionPrecision, out lastDeserializedPosition);
-                if (syncScale) Compression.ScaleToLong(scale.Value, scalePrecision, out lastDeserializedScale);
+                    if (rotation.HasValue)
+                    {
+                        target.transform.rotation = rotation.Value;
+                    }
+
+                    if (scale.HasValue)
+                    {
+                        target.transform.localScale = scale.Value;
+                    }
+                }
+                else
+                {
+                    OnReceiveTransform(position, rotation, scale);
+
+                    // save deserialized as 'last' for next delta compression
+                    if (syncPosition)
+                        Compression.ScaleToLong(position.Value, positionPrecision, out lastDeserializedPosition);
+                    if (syncScale) Compression.ScaleToLong(scale.Value, scalePrecision, out lastDeserializedScale);
+                }
             }
         }
 
 
         // check if position / rotation / scale changed since last sync 
-        protected  bool Changed(TransformSnapshot current) =>
+        protected bool Changed(TransformSnapshot current) =>
             // position is quantized and delta compressed.
             // only consider it changed if the quantized representation is changed.
             QuantizedChanged(last.position, current.position, positionPrecision) ||
@@ -347,7 +368,7 @@ namespace Network.Sync
 
 
         // server broadcasts sync message to all clients
-        protected  void OnReceiveTransform(Vector3? position, Quaternion? rotation, Vector3? scale)
+        protected void OnReceiveTransform(Vector3? position, Quaternion? rotation, Vector3? scale)
         {
             // 'only sync on change' needs a correction on every new move sequence.
             if (onlySyncOnChange && NeedsCorrection(snapshots, NetworkTime.ServerTime, sendInterval, 2))

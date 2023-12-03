@@ -58,11 +58,13 @@ namespace Common.Tools
         {
             if (Instance == null)
             {
+                // Debug.LogWarning($"创建对象：{gameObject.name}");
                 Instance = this as T;
                 DontDestroyOnLoad(this);
             }
             else
             {
+                // Debug.LogWarning($"销毁对象：{gameObject.name}");
                 Destroy(gameObject);
             }
         }

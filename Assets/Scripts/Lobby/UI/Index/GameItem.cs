@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Game.GalacticKittens.Manager;
 using Network;
 using TMPro;
 using UnityEngine;
@@ -39,8 +40,8 @@ namespace Lobby.UI.Index
         {
             Debug.Log("进入GalacticKittens");
             var request = new GalacticKittensEnterRoomRequest();
-            NetworkManager.Instance.Send(MID.GalacticKittensEnterRoomReq,request);
-            
+            NetworkManager.Instance.Send(MID.GalacticKittensEnterRoomReq, request);
+
             //进入选择界面  应该收到返回消息再加载
             SceneManager.LoadScene("GalacticKittensCharacterSelection");
         }

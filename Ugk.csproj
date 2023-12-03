@@ -56,7 +56,6 @@
      <Compile Include="Assets\Scripts\Lobby\UI\Common\NoticePanel.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\Extensions.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\SyncManager.cs" />
-     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\GalacticKittensRoomManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Pool.cs" />
      <Compile Include="Assets\Scripts\Network\MessageMapAttribute.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\ExponentialMovingAverage.cs" />
@@ -67,6 +66,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Kcp.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\LobbyPanel.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriter.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\Spaceship.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\DeltaCompression.cs" />
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\KittensCharachter.cs" />

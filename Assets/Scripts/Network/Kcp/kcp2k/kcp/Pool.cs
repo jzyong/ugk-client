@@ -35,7 +35,7 @@ namespace kcp2k
         // return an element to the pool
         public void Return(T item)
         {
-            objectResetter(item);
+            objectResetter?.Invoke(item);
             objects.Push(item);
         }
 

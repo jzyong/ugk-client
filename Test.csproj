@@ -45,10 +45,10 @@
     <Analyzer Include="G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Tests\Network\NetworkManagerTestScript.cs" />
-     <Folder Include="Assets\Tests\Network" />
-     <None Include="Assets\Tests\Ugk.Tests.asmdef" />
-     <Folder Include="Assets\Tests" />
+     <Compile Include="Assets\Scripts\Tests\Network\NetworkManagerTestScript.cs" />
+     <Folder Include="Assets\Scripts\Tests\Network" />
+     <None Include="Assets\Scripts\Tests\Ugk.Tests.asmdef" />
+     <Folder Include="Assets\Scripts\Tests" />
      <Reference Include="UnityEngine">
      <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
