@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Common.Tools;
 using Common.Tools.SnapshotInterpolation;
 using Google.Protobuf;
+using kcp2k;
 using Network.Serialize;
 using UnityEngine;
 
@@ -90,6 +91,8 @@ namespace Network.Sync
             if (!scale.HasValue)
                 scale = snapshots.Count > 0 ? snapshots.Values[snapshots.Count - 1].scale : target.lossyScale;
 
+            Debug.Log($"收到Transform position={position.Value} rotation={rotation.Value} scale={scale.Value}");
+            
             // insert transform snapshot
             SnapshotInterpolation.InsertIfNotExists(snapshots, new TransformSnapshot(
                 timeStamp, // arrival remote timestamp. NOT remote time.
@@ -313,33 +316,12 @@ namespace Network.Sync
                     }
                 }
 
-                // 自己并且是初始化，直接引用，因为是服务器传送过来的
-                if (Onwer && initialState)
-                {
-                    if (position.HasValue)
-                    {
-                        target.transform.position = position.Value;
-                    }
+                OnReceiveTransform(position, rotation, scale);
 
-                    if (rotation.HasValue)
-                    {
-                        target.transform.rotation = rotation.Value;
-                    }
-
-                    if (scale.HasValue)
-                    {
-                        target.transform.localScale = scale.Value;
-                    }
-                }
-                else
-                {
-                    OnReceiveTransform(position, rotation, scale);
-
-                    // save deserialized as 'last' for next delta compression
-                    if (syncPosition)
-                        Compression.ScaleToLong(position.Value, positionPrecision, out lastDeserializedPosition);
-                    if (syncScale) Compression.ScaleToLong(scale.Value, scalePrecision, out lastDeserializedScale);
-                }
+                // save deserialized as 'last' for next delta compression
+                if (syncPosition)
+                    Compression.ScaleToLong(position.Value, positionPrecision, out lastDeserializedPosition);
+                if (syncScale) Compression.ScaleToLong(scale.Value, scalePrecision, out lastDeserializedScale);
             }
         }
 

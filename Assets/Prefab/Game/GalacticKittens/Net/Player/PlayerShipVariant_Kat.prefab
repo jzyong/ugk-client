@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.325
       objectReference: {fileID: 0}
+    - target: {fileID: 3741620404854846472, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
+      propertyPath: sendInterval
+      value: 0.033
+      objectReference: {fileID: 0}
     - target: {fileID: 4455599089423587300, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
       propertyPath: m_Sprite
       value: 

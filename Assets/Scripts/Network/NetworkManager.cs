@@ -261,7 +261,7 @@ namespace Network
             byte[] msgId = BitConverter.GetBytes((int)mid);
             ++_seq;
             byte[] seq = BitConverter.GetBytes(_seq);
-            long time = (long)(NetworkTime.LocalTime*1000); 
+            long time = (long)(NetworkTime.ServerTime*1000); 
             byte[] timeStamp = BitConverter.GetBytes(time);
             byte[] datas = new byte[20 + data.Length];
 

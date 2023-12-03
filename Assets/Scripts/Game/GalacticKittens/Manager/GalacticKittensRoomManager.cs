@@ -33,7 +33,7 @@ namespace Game.GalacticKittens.Manager
         {
             foreach (var spawnInfo in response.Spawn)
             {
-                Debug.Log($"{spawnInfo.Id} ConfigID={spawnInfo.ConfigId} 出生");
+                Debug.Log($"{spawnInfo.Id} ConfigID={spawnInfo.ConfigId} 出生于 {spawnInfo.Position}");
 
                 switch (spawnInfo.ConfigId)
                 {
@@ -61,11 +61,13 @@ namespace Game.GalacticKittens.Manager
             var spaceship = Instantiate(spaceships[0], null);
             var snapTransform = spaceship.GetComponent<SnapTransform>();
             snapTransform.Id = spawnInfo.Id;
-            snapTransform.OnDeserialize(spawnInfo.SyncPayload, true);
+            var position = new Vector3(spawnInfo.Position.X, spawnInfo.Position.Y, spawnInfo.Position.Y);
+            spaceship.transform.position = position;
             if (snapTransform.Id == DataManager.Singleton.PlayerInfo.PlayerId)
             {
                 snapTransform.Onwer = true;
             }
+
             SyncManager.Instance.AddSnapTransform(snapTransform);
         }
     }
