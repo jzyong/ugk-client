@@ -1,12 +1,9 @@
-﻿using System;
-using Common;
-using Game.GalacticKittens;
-using Game.GalacticKittens.Manager;
+﻿using Game.GalacticKittens;
+using Game.GalacticKittens.Player;
 using Google.Protobuf;
+using Lobby;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
-
 
 namespace Network.Handlers.Game
 {
@@ -53,11 +50,11 @@ namespace Network.Handlers.Game
             response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($"房间消息：{response}");
 
-            GalacticKittens galacticKittens = DataManager.Singleton.GalacticKittens;
+            GalacticKittens galacticKittens = DataManager.Instance.GalacticKittens;
             if (galacticKittens == null)
             {
                 galacticKittens = new GalacticKittens();
-                DataManager.Singleton.GalacticKittens = galacticKittens;
+                DataManager.Instance.GalacticKittens = galacticKittens;
             }
 
 
@@ -149,9 +146,8 @@ namespace Network.Handlers.Game
             {
                 Debug.LogWarning($"使用护盾失败：{response.Result.Msg}");
             }
-
         }
-        
+
         /// <summary>
         /// 护盾状态
         /// </summary>
@@ -161,10 +157,24 @@ namespace Network.Handlers.Game
         {
             var response = new GalacticKittensShipShieldStateResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            
-            //TODO 获取 飞船对象，激活或取消护盾
+            var spaceship = DataManager.Instance.GalacticKittens.Spaceships[response.ShipId];
+            if (spaceship == null)
+            {
+                Debug.LogWarning($"未正确获得飞船：{response.ShipId}");
+                return;
+            }
+
+            var defenseMatrix = spaceship.GetComponent<DefenseMatrix>(); //TODO 待测试，unity设置对象
+            if (response.State == 0)
+            {
+                defenseMatrix.TurnOffShield();
+            }
+            else
+            {
+                defenseMatrix.TurnOffShield();
+            }
         }
-        
+
         /// <summary>
         /// 飞船移动状态
         /// </summary>
@@ -174,8 +184,20 @@ namespace Network.Handlers.Game
         {
             var response = new GalacticKittensShipMoveStateResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            
-            //TODO 获取 飞船对象，设置移动状态
+            if (response.ShipId == DataManager.Instance.PlayerInfo.PlayerId)
+            {
+                return;
+            }
+
+            var spaceship = DataManager.Instance.GalacticKittens.Spaceships[response.ShipId];
+            if (spaceship == null)
+            {
+                Debug.LogWarning($"未正确获得飞船：{response.ShipId}");
+                return;
+            }
+
+            var playerShipMovement = spaceship.GetComponent<PlayerShipMovement>();
+            playerShipMovement.NewVerticalMovementClientType((PlayerShipMovement.VerticalMovementType)response.State); //TODO 待测试
         }
     }
 }

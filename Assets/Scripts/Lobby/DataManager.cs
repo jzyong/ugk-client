@@ -2,7 +2,7 @@
 using Common.Tools;
 using Game.GalacticKittens;
 
-namespace Common
+namespace Lobby
 {
     /// <summary>
     /// 玩家数据存储

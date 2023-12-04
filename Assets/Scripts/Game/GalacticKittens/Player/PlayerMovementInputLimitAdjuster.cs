@@ -8,7 +8,7 @@ namespace Game.GalacticKittens.Player
     /// </summary>
     public static class PlayerMovementInputLimitAdjuster
     {
-        static public void AdjustInputValuesBasedOnPositionLimits(
+        public static void AdjustInputValuesBasedOnPositionLimits(
             Vector3 currentPlayerPosition,
             ref float xInput,
             ref float yInput,
@@ -20,7 +20,7 @@ namespace Game.GalacticKittens.Player
             AdjustYinput(currentPlayerPosition.y, ref yInput, yScreenLimits);
         }
 
-        static private void AdjustXinput(
+        private static void AdjustXinput(
             float currentPlayerPosition_X,
             ref float xInput,
             PositionLimits xScreenLimits)
@@ -43,7 +43,7 @@ namespace Game.GalacticKittens.Player
             }
         }
 
-        static private void AdjustYinput(
+        private static void AdjustYinput(
             float currentPlayerPosition_Y,
             ref float yInput,
             PositionLimits yScreenLimits)

@@ -26,10 +26,6 @@ namespace Lobby.UI.Login
             MessageEventManager.Singleton.RemoveEvent<LoginResponse>(MessageEvent.Login, LoginRes);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        }
 
         private void Login()
         {

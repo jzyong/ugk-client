@@ -42,7 +42,7 @@ namespace Network.Sync
         protected Vector3Long lastDeserializedAngularVelocity = Vector3Long.zero;
 
 
-        protected override void Awake()
+        protected  void Awake()
         {
             if (sendInterval < 1)
             {

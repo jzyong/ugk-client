@@ -15,7 +15,6 @@ using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Network.Sync
 {
-    // TODO 待测试
     /// <summary>Synchronizes server time to clients. </summary>
     public static class NetworkTime
     {

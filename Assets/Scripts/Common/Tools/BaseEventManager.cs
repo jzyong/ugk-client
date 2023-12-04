@@ -1,4 +1,3 @@
-//#define NeedTry
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace Common.Tools
     {
         Dictionary<Type, Delegate> eventMap;
 
-        public BaseEventManager()
+        protected BaseEventManager()
         {
             eventMap = new Dictionary<Type, Delegate>();
         }
@@ -91,14 +90,13 @@ namespace Common.Tools
                         continue;
                     }
 
-                    System.Action action = gateList[i] as System.Action;
-                    if (action != null)
+                    if (gateList[i] is Action action)
                     {
                         action();
                     }
                     else
                     {
-                        Debug.Log(string.Format("对象{0}脚本注册的GameEventEnum.{1}事件参数类型未转换成功", str, eventName));
+                        Debug.Log($"对象{str}脚本注册的GameEventEnum.{eventName}事件参数类型未转换成功");
                     }
                 }
             }
@@ -161,7 +159,7 @@ namespace Common.Tools
                     }
                     else
                     {
-                        UnityEngine.Debug.Log(string.Format("对象{0}脚本注册的GameEventEnum.{1}事件参数类型未转换成功", str, eventName));
+                        UnityEngine.Debug.Log($"对象{str}脚本注册的GameEventEnum.{eventName}事件参数类型未转换成功");
                     }
                 }
             }

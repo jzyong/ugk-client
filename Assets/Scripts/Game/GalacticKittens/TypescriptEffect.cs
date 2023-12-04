@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace Common.Tools
+namespace Game.GalacticKittens
 {
     /// <summary>
     /// 文字动画效果：逐字显示，缩放

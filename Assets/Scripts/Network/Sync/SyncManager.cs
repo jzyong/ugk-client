@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Common.Tools;
 using UnityEngine;
 
@@ -7,19 +6,18 @@ namespace Network.Sync
 {
     /// <summary>
     /// 同步管理器，保存需要同步管理的对象
-    /// TODO
     /// </summary>
     public class SyncManager : SingletonPersistent<SyncManager>
     {
         /// <summary>
         /// 场景中所有快照同步对象
         /// </summary>
-        private Dictionary<long, SnapTransform> _snapTransforms = new Dictionary<long, SnapTransform>();
+        private readonly Dictionary<long, SnapTransform> _snapTransforms = new Dictionary<long, SnapTransform>();
 
         /// <summary>
         /// 场景中所有预测同步对象
         /// </summary>
-        private Dictionary<long, PredictionTransform> _predictionTransforms =
+        private readonly Dictionary<long, PredictionTransform> _predictionTransforms =
             new Dictionary<long, PredictionTransform>();
 
 
@@ -90,7 +88,6 @@ namespace Network.Sync
         /// <summary>
         /// 收到同步消息
         /// </summary>
-        /// <param name="response"></param>
         public void OnPredictionSyncReceive(UgkMessage ugkMessage,PredictionSyncResponse response)
         {
             if (!gameObject.activeSelf)

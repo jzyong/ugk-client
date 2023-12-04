@@ -1,4 +1,5 @@
 using Common.Tools;
+using Network.Serialize;
 using UnityEngine;
 
 namespace Network.Sync
@@ -60,10 +61,7 @@ namespace Network.Sync
         public bool Onwer { get; set; }
 
 
-        // make sure to call this when inheriting too!
-        protected virtual void Awake()
-        {
-        }
+ 
 
         protected void OnValidate()
         {
@@ -71,6 +69,14 @@ namespace Network.Sync
             if (target == null) target = transform;
         }
 
+        /// <summary>
+        /// 设置最后一次反序列化缓存的坐标，增量压缩还原需要
+        /// </summary>
+        /// <param name="position"></param>
+        public void SetLastDeserializedPositon(Vector3 position)
+        {
+            Compression.ScaleToLong(position, positionPrecision, out lastDeserializedPosition);
+        }
 
     }
 }

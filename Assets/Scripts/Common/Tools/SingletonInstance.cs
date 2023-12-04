@@ -7,10 +7,10 @@ namespace Common.Tools
     /// </summary>
     public class SingletonInstance<T> where T : class, new()
     {
-        private static T instance = default(T);
+        private static T instance;
 
 
-        public static T Singleton
+        public static T Instance
         {
             get
             {

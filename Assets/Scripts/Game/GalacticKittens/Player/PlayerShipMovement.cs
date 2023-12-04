@@ -16,7 +16,7 @@ namespace Game.GalacticKittens.Player
             momentum
         }
 
-        enum VerticalMovementType
+       public  enum VerticalMovementType
         {
             none,
             upward,
@@ -177,10 +177,10 @@ namespace Game.GalacticKittens.Player
 
 
         /// <summary>
-        /// 飞船飞行状态  TODO需要服务器广播
+        /// 飞船飞行状态  
         /// </summary>
         /// <param name="newVerticalMovementType"></param>
-        private void NewVerticalMovementClientRPC(VerticalMovementType newVerticalMovementType)
+        public void NewVerticalMovementClientType(VerticalMovementType newVerticalMovementType)
         {
             switch (newVerticalMovementType)
             {

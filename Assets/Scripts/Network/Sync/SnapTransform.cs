@@ -133,7 +133,7 @@ namespace Network.Sync
         /// <summary>
         /// 
         /// </summary>
-        public virtual void Reset()
+        public  void Reset()
         {
             // disabled objects aren't updated anymore.
             // so let's clear the buffers.

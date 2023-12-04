@@ -1,10 +1,9 @@
-using System.Collections;
 using UnityEngine;
 
-namespace Game.GalacticKittens.Room
+namespace Game.GalacticKittens.Player
 {
     /// <summary>
-    /// 防御护盾
+    /// 防御护盾 TODO unity对象操作
     /// </summary>
     public class DefenseMatrix :MonoBehaviour
     {
@@ -31,7 +30,7 @@ namespace Game.GalacticKittens.Room
 
        
         
-        private void TurnOffShield()
+        public void TurnOffShield()
         {
             isShieldActive = false;
 

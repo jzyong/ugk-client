@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.GalacticKittens.Player;
 
 namespace Game.GalacticKittens
 {
@@ -17,7 +18,7 @@ namespace Game.GalacticKittens
         /// <summary>
         /// 角色数据
         /// </summary>
-        public Dictionary<long, KittensCharacter> Characters = new Dictionary<long, KittensCharacter>(4);
+        public readonly Dictionary<long, Spaceship> Spaceships = new Dictionary<long, Spaceship>(4);
     }
 
 

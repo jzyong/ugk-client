@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Common;
 using Common.Tools.SnapshotInterpolation;
 using Google.Protobuf;
+using Lobby;
 using Network.Sync;
 using UnityEngine;
 
@@ -63,9 +64,9 @@ namespace Network.Handlers
             response.MergeFrom(ugkMessage.Bytes);
 
             // 大厅面板,游戏列表处理
-            DataManager.Singleton.PlayerInfo = response.PlayerInfo;
+            DataManager.Instance.PlayerInfo = response.PlayerInfo;
             List<GameInfo> gameLists = new List<GameInfo>(response.GameInfo);
-            DataManager.Singleton.GameList = gameLists;
+            DataManager.Instance.GameList = gameLists;
             Debug.Log($" 收到数据加载消息：{response} 结果：{response.Result?.Msg}");
             MessageEventManager.Singleton.OnEvent(MessageEvent.LoadPlayer, response);
         }

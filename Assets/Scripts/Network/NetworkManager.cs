@@ -279,7 +279,6 @@ namespace Network
         ///
         /// 参考：
         /// </summary>
-        /// <param name="messageHandlerGroupId"></param>
         /// <exception cref="NonStaticHandlerException"></exception>
         protected void CreateMessageHandlersDictionary()
         {

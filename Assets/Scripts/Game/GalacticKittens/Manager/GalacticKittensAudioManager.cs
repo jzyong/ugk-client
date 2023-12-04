@@ -2,7 +2,7 @@ using System.Collections;
 using Common.Tools;
 using UnityEngine;
 
-namespace Game.GalacticKittens
+namespace Game.GalacticKittens.Manager
 {
     public class GalacticKittensAudioManager : SingletonPersistent<GalacticKittensAudioManager>
     {

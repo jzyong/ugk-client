@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.GalacticKittens.Selection
+namespace Game.GalacticKittens.Player
 {
 
     

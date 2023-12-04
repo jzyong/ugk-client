@@ -38,7 +38,7 @@ namespace Network
         // server.interval, etc. mirror是30
         public static int sendRate => 1;
         public static float sendInterval => sendRate < int.MaxValue ? 1f / sendRate : 0; // for 30 Hz, that's 33ms
-        static double lastSendTime;
+        // static double lastSendTime;
 
 
         /// <summary>Client's NetworkConnection to server.  TODO </summary>
@@ -273,7 +273,7 @@ namespace Network
         {
             // reset statics
             connectState = ConnectState.None;
-            lastSendTime = 0;
+            // lastSendTime = 0;
 
             // clear events. someone might have hooked into them before, but
             // we don't want to use those hooks after Shutdown anymore.

@@ -1,6 +1,7 @@
 using Common;
 using Common.Tools;
-using Game.GalacticKittens.Selection;
+using Game.GalacticKittens.Player;
+using Lobby;
 using Network;
 using Network.Sync;
 using UnityEngine;
@@ -8,7 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /*
-* Singleton to control the changes on the char sprites and the flow of the scene
+* Instance to control the changes on the char sprites and the flow of the scene
 */
 
 
@@ -130,11 +131,11 @@ namespace Game.GalacticKittens.Manager
             {
                 if (m_readyButton.gameObject.activeSelf)
                 {
-                    PlayerReady(DataManager.Singleton.PlayerInfo.PlayerId,playerIndex,charachterIndex);
+                    PlayerReady(DataManager.Instance.PlayerInfo.PlayerId,playerIndex,charachterIndex);
                 }
                 else
                 {
-                    PlayerNotReady(DataManager.Singleton.PlayerInfo.PlayerId,playerIndex,charachterIndex);
+                    PlayerNotReady(DataManager.Instance.PlayerInfo.PlayerId,playerIndex,charachterIndex);
                 }
             }
         }
@@ -261,7 +262,7 @@ namespace Game.GalacticKittens.Manager
             {
                 m_charactersContainers[i].Init(playerInfo);
                 //自己
-                if (playerInfo.PlayerId == DataManager.Singleton.PlayerInfo.PlayerId)
+                if (playerInfo.PlayerId == DataManager.Instance.PlayerInfo.PlayerId)
                 {
                     playerIndex = i;
                     SetPlayer(i, playerInfo.CharacterId, true);
@@ -310,7 +311,7 @@ namespace Game.GalacticKittens.Manager
 
         void PlayerReady()
         {
-            PlayerReady(DataManager.Singleton.PlayerInfo.PlayerId,playerIndex,charachterIndex);
+            PlayerReady(DataManager.Instance.PlayerInfo.PlayerId,playerIndex,charachterIndex);
         }
 
         /// <summary>
@@ -327,7 +328,7 @@ namespace Game.GalacticKittens.Manager
             charactersData[characterSelected].clientId = playerId;
 
             //自己
-            if (playerId == DataManager.Singleton.PlayerInfo.PlayerId)
+            if (playerId == DataManager.Instance.PlayerInfo.PlayerId)
             {
                 m_readyButton.gameObject.SetActive(false);
                 m_cancelButton.gameObject.SetActive(true);
@@ -355,7 +356,7 @@ namespace Game.GalacticKittens.Manager
 
         void PlayerNotReady()
         {
-            PlayerNotReady(DataManager.Singleton.PlayerInfo.PlayerId,playerIndex,charachterIndex);
+            PlayerNotReady(DataManager.Instance.PlayerInfo.PlayerId,playerIndex,charachterIndex);
         }
         
         /// <summary>
@@ -371,7 +372,7 @@ namespace Game.GalacticKittens.Manager
             charactersData[characterSelected].clientId = 0L;
             charactersData[characterSelected].playerId = -1;
 
-            if (playerId == DataManager.Singleton.PlayerInfo.PlayerId)
+            if (playerId == DataManager.Instance.PlayerInfo.PlayerId)
             {
                 m_charactersContainers[playerIndex].borderClient.SetActive(true);
                 m_charactersContainers[playerIndex].backgroundClientShipReady.SetActive(false);

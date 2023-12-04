@@ -1,4 +1,3 @@
-using Common;
 using Network;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,15 +24,13 @@ namespace Lobby.UI.Index
             MessageEventManager.Singleton.RemoveEvent<LoadPlayerResponse>(MessageEvent.LoadPlayer, LoadPlayerRes);
         }
 
-        void Update()
-        {
-        }
+
 
         private void InitDatas()
         {
-            if (DataManager.Singleton.GameList!=null)
+            if (DataManager.Instance.GameList!=null)
             {
-                foreach (var info in DataManager.Singleton.GameList)
+                foreach (var info in DataManager.Instance.GameList)
                 {
                     var addGameInfo = Instantiate<GameItem>(gameItem, gameListView.content);
                     addGameInfo.SetInfo(info);
