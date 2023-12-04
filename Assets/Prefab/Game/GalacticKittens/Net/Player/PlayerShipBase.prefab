@@ -403,7 +403,7 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
-  onlySyncOnChange: 0
+  onlySyncOnChange: 1
   interpolatePosition: 1
   interpolateRotation: 1
   interpolateScale: 1

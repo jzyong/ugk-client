@@ -96,45 +96,38 @@ namespace Network.Sync
             // insert transform snapshot
             SnapshotInterpolation.InsertIfNotExists(snapshots, new TransformSnapshot(
                 timeStamp, // arrival remote timestamp. NOT remote time.
-                NetworkTime.LocalTime, // Unity 2019 doesn't have timeAsDouble yet
+                NetworkTime.ServerTime, // Unity 2019 doesn't have timeAsDouble yet
                 position.Value,
                 rotation.Value,
                 scale.Value
             ));
         }
 
-        // apply a snapshot to the Transform.
-        // -> start, end, interpolated are all passed in caes they are needed
-        // -> a regular game would apply the 'interpolated' snapshot
-        // -> a board game might want to jump to 'goal' directly
-        // (it's easier to always interpolate and then apply selectively,
-        //  instead of manually interpolating x, y, z, ... depending on flags)
-        // => internal for testing
-        //
-        // NOTE: stuck detection is unnecessary here.
-        //       we always set transform.position anyway, we can't get stuck. 
-        protected virtual void Apply(TransformSnapshot interpolated, TransformSnapshot endGoal)
+        protected  void Apply(TransformSnapshot from, TransformSnapshot to, float t)
         {
-            // local position/rotation for VR support
-            //
-            // if syncPosition/Rotation/Scale is disabled then we received nulls
-            // -> current position/rotation/scale would've been added as snapshot
-            // -> we still interpolated
-            // -> but simply don't apply it. if the user doesn't want to sync
-            //    scale, then we should not touch scale etc.
-
             if (syncPosition)
-                target.position = interpolatePosition ? interpolated.position : endGoal.position;
+            {
+                target.position = interpolatePosition
+                    ? Vector3.LerpUnclamped(from.position, to.position, (float)t)
+                    : to.position;
+            }
 
             if (syncRotation)
-                target.rotation = interpolateRotation ? interpolated.rotation : endGoal.rotation;
+            {
+                target.rotation = interpolateRotation
+                    ? Quaternion.SlerpUnclamped(from.rotation, to.rotation, (float)t)
+                    : to.rotation;
+            }
+
 
             // Unity doesn't support setting world scale.
             // OnValidate disables syncScale in world mode.
             // else
             // target.lossyScale = scale; //
             if (syncScale)
-                target.localScale = interpolateScale ? interpolated.scale : endGoal.scale;
+            {
+                target.localScale = interpolateScale ? Vector3.LerpUnclamped(from.scale, to.scale, t) : to.scale;
+            }
         }
 
         /// <summary>
@@ -149,12 +142,12 @@ namespace Network.Sync
             last = new TransformSnapshot(0, 0, Vector3.zero, Quaternion.identity, Vector3.zero);
         }
 
-        protected virtual void OnEnable()
+        protected  void OnEnable()
         {
             Reset();
         }
 
-        protected virtual void OnDisable()
+        protected  void OnDisable()
         {
             Reset();
         }
@@ -174,7 +167,7 @@ namespace Network.Sync
             }
         }
 
-        protected virtual void UpdateClient()
+        protected  void UpdateClient()
         {
             // only while we have snapshots
             if (snapshots.Count > 0 && !Onwer)
@@ -188,9 +181,9 @@ namespace Network.Sync
                     out TransformSnapshot to,
                     out double t);
 
-                // interpolate & apply
-                TransformSnapshot computed = TransformSnapshot.Interpolate(from, to, t);
-                Apply(computed, to);
+                // // interpolate & apply
+                // TransformSnapshot computed = TransformSnapshot.Interpolate(from, to, t);
+                Apply(from, to,(float)t);
             }
         }
 
@@ -264,9 +257,7 @@ namespace Network.Sync
         /// <summary>
         /// 接收同步数据
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="initialState"></param>
-        public void OnDeserialize(ByteString data, bool initialState)
+        public void OnDeserialize(UgkMessage ugkMessage,ByteString data, bool initialState)
         {
             var segment = new ArraySegment<byte>(data.ToByteArray());
             using (NetworkReaderPooled reader = NetworkReaderPool.Get(segment))
@@ -316,7 +307,7 @@ namespace Network.Sync
                     }
                 }
 
-                OnReceiveTransform(position, rotation, scale);
+                OnReceiveTransform(position, rotation, scale,ugkMessage.GetTime()+sendInterval);
 
                 // save deserialized as 'last' for next delta compression
                 if (syncPosition)
@@ -350,14 +341,14 @@ namespace Network.Sync
 
 
         // server broadcasts sync message to all clients
-        protected void OnReceiveTransform(Vector3? position, Quaternion? rotation, Vector3? scale)
+        protected void OnReceiveTransform(Vector3? position, Quaternion? rotation, Vector3? scale, double timeStamp)
         {
             // 'only sync on change' needs a correction on every new move sequence.
-            if (onlySyncOnChange && NeedsCorrection(snapshots, NetworkTime.ServerTime, sendInterval, 2))
+            if (onlySyncOnChange && NeedsCorrection(snapshots, timeStamp, sendInterval, 2))
             {
                 RewriteHistory(
                     snapshots,
-                    NetworkTime.ServerTime, // arrival remote timestamp. NOT remote timeline.
+                    timeStamp, // arrival remote timestamp. NOT remote timeline.
                     NetworkTime.LocalTime, // Unity 2019 doesn't have timeAsDouble yet
                     sendInterval,
                     target.position,
@@ -365,7 +356,7 @@ namespace Network.Sync
                     target.lossyScale);
             }
 
-            AddSnapshot(NetworkTime.ServerTime, position, rotation, scale);
+            AddSnapshot(timeStamp, position, rotation, scale);
         }
 
         // only sync on change /////////////////////////////////////////////////

@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 1e81f2a0a4a2a004ab20734a419a77c0, type: 2}
     - target: {fileID: 566269887275667757, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
       propertyPath: m_moveType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 566269887275667757, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
       propertyPath: m_upSprite
@@ -87,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 3741620404854846472, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
       propertyPath: sendInterval
       value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3741620404854846472, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
+      propertyPath: onlySyncOnChange
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4455599089423587300, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
       propertyPath: m_Sprite

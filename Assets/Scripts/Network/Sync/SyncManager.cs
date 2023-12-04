@@ -62,8 +62,7 @@ namespace Network.Sync
         /// <summary>
         /// 收到同步消息
         /// </summary>
-        /// <param name="response"></param>
-        public void OnSnapSyncReceive(SnapSyncResponse response)
+        public void OnSnapSyncReceive(UgkMessage ugkMessage,SnapSyncResponse response)
         {
             if (!gameObject.activeSelf)
             {
@@ -84,7 +83,7 @@ namespace Network.Sync
                 }
                 
 
-                snapTransform.OnDeserialize(kv.Value, false);
+                snapTransform.OnDeserialize(ugkMessage,kv.Value, false);
             }
         }
 

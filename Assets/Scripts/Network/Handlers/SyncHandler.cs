@@ -23,7 +23,7 @@ namespace Network.Handlers
         {
             var response = new SnapSyncResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            SyncManager.Instance.OnSnapSyncReceive(response);
+            SyncManager.Instance.OnSnapSyncReceive(ugkMessage,response);
         }
         
         /// <summary>

@@ -1,5 +1,6 @@
 using System;
 using Network;
+using Network.Sync;
 using UnityEngine;
 
 namespace Game.GalacticKittens.Player
@@ -10,7 +11,7 @@ namespace Game.GalacticKittens.Player
     public class PlayerShipMovement : MonoBehaviour
     {
         enum MoveType
-        { 
+        {
             constant,
             momentum
         }
@@ -29,30 +30,22 @@ namespace Game.GalacticKittens.Player
             public float maxLimit;
         }
 
-        [SerializeField]
-        MoveType m_moveType = MoveType.momentum;
+        [SerializeField] MoveType m_moveType = MoveType.momentum;
 
-        [SerializeField]
-        PlayerLimits m_verticalLimits;
+        [SerializeField] PlayerLimits m_verticalLimits;
 
-        [SerializeField]
-        PlayerLimits m_hortizontalLimits;
+        [SerializeField] PlayerLimits m_hortizontalLimits;
 
-        [Header("ShipSprites")]
-        [SerializeField]
+        [Header("ShipSprites")] [SerializeField]
         SpriteRenderer m_shipRenderer;
 
-        [SerializeField]
-        Sprite m_normalSprite;
+        [SerializeField] Sprite m_normalSprite;
 
-        [SerializeField]
-        Sprite m_upSprite;
+        [SerializeField] Sprite m_upSprite;
 
-        [SerializeField]
-        Sprite m_downSprite;
+        [SerializeField] Sprite m_downSprite;
 
-        [SerializeField]
-        private float m_speed;
+        [SerializeField] private float m_speed;
 
         private float m_inputX;
         private float m_inputY;
@@ -63,14 +56,20 @@ namespace Game.GalacticKittens.Player
         const string k_horizontalAxis = "Horizontal";
         const string k_verticalAxis = "Vertical";
 
+        private SnapTransform _snapTransform;
+
+
+        private void Start()
+        {
+            _snapTransform = GetComponent<SnapTransform>();
+        }
+
         // Update is called once per frame
         void Update()
         {
-            // We're only updating the ship's movements when we're surely updating on the owning
-            // instance
-            //TODO 需要判断是否为自己
-            // if (!IsOwner)
-            //     return;
+            // 需要判断是否为自己
+            if (!_snapTransform.Onwer)
+                return;
 
             HandleKeyboardInput();
 
@@ -151,7 +150,7 @@ namespace Game.GalacticKittens.Player
                 {
                     State = (uint)m_currentVerticalMovementType
                 };
-                NetworkManager.Instance.Send(MID.GalacticKittensShipMoveStateReq,request);
+                NetworkManager.Instance.Send(MID.GalacticKittensShipMoveStateReq, request);
             }
         }
 
@@ -219,7 +218,7 @@ namespace Game.GalacticKittens.Player
             float newXposition = m_inputX * speedTimesDeltaTime;
 
             // move the ship
-            transform.Translate(newXposition, newYposition, 0f,Space.World);
+            transform.Translate(newXposition, newYposition, 0f, Space.World);
         }
     }
 }
