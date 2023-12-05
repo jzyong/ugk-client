@@ -68,7 +68,7 @@ namespace Game.GalacticKittens.Player
         void Update()
         {
             // 需要判断是否为自己
-            if (!_snapTransform.Onwer)
+            if (!_snapTransform.IsOnwer)
                 return;
 
             HandleKeyboardInput();

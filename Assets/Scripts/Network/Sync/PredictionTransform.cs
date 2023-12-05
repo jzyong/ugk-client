@@ -59,7 +59,7 @@ namespace Network.Sync
         public void LateUpdate()
         {
             //超时强制同步一下
-            if (Onwer && NetworkTime.ServerTime > nextSendTime)
+            if (IsOnwer && NetworkTime.ServerTime > nextSendTime)
             {
                 nextSendTime += sendInterval;
                 OnSerialize(false);
@@ -71,7 +71,7 @@ namespace Network.Sync
         /// </summary>
         public void OnVelocityChange()
         {
-            if (Onwer)
+            if (IsOnwer)
             {
                 OnSerialize(false);
             }
@@ -167,7 +167,7 @@ namespace Network.Sync
             using (NetworkReaderPooled reader = NetworkReaderPool.Get(segment))
             {
                 //客户端 判断自己控制对象的位置，需要使用服务器的权威位置，但是又不能被老数据覆盖，因此通过序列号判断数据是否为老数据
-                if (Onwer && ugkMessage.Seq <= LastMessageSeq)
+                if (IsOnwer && ugkMessage.Seq <= LastMessageSeq)
                 {
                     return;
                 }
@@ -290,6 +290,24 @@ namespace Network.Sync
                 // target.transform.rotation = Quaternion.LerpUnclamped(target.transform.rotation, rotation, 1);
                 target.transform.Rotate(deltaTime*AngularVelocity);
             }
+        }
+        
+        /// <summary>
+        /// 设置最后一次反序列化缓存的线速度，增量压缩还原需要
+        /// </summary>
+        /// <param name="position"></param>
+        public void SetLastDeserializedLinearVelocity(Vector3 position)
+        {
+            Compression.ScaleToLong(position, velocityPrecision, out lastDeserializedLinearVelocity);
+        }
+        
+        /// <summary>
+        /// 设置最后一次反序列化缓存的线速度，增量压缩还原需要
+        /// </summary>
+        /// <param name="position"></param>
+        public void SetLastDeserializedAngularVelocity(Vector3 position)
+        {
+            Compression.ScaleToLong(position, velocityPrecision, out lastDeserializedAngularVelocity);
         }
     }
 }

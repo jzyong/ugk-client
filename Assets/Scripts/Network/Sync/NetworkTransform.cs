@@ -58,7 +58,7 @@ namespace Network.Sync
         /// <summary>
         /// 是否为本地玩家拥有者
         /// </summary>
-        public bool Onwer { get; set; }
+        public bool IsOnwer { get; set; }
 
 
  
@@ -76,6 +76,15 @@ namespace Network.Sync
         public void SetLastDeserializedPositon(Vector3 position)
         {
             Compression.ScaleToLong(position, positionPrecision, out lastDeserializedPosition);
+        }
+        
+        /// <summary>
+        /// 设置最后一次反序列化缓存的缩放，增量压缩还原需要
+        /// </summary>
+        /// <param name="scale"></param>
+        public void SetLastDeserializedScale(Vector3 scale)
+        {
+            Compression.ScaleToLong(scale, scalePrecision, out lastDeserializedScale);
         }
 
     }

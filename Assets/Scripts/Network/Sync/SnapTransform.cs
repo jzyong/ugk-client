@@ -170,7 +170,7 @@ namespace Network.Sync
         protected  void UpdateClient()
         {
             // only while we have snapshots
-            if (snapshots.Count > 0 && !Onwer)
+            if (snapshots.Count > 0 && !IsOnwer)
             {
                 // step the interpolation without touching time.
                 // NetworkClient is responsible for time globally.

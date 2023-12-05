@@ -75,7 +75,7 @@ namespace Network.Sync
                 }
 
                 // 自己的消息丢弃
-                if (snapTransform.Onwer)
+                if (snapTransform.IsOnwer)
                 {
                     continue;
                 }

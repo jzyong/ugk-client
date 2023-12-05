@@ -3,8 +3,10 @@ using Common.Tools;
 using Game.GalacticKittens.Player;
 using Lobby;
 using Network;
+using Network.Messages;
 using Network.Sync;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.GalacticKittens.Manager
 {
@@ -14,6 +16,7 @@ namespace Game.GalacticKittens.Manager
     public class GalacticKittensRoomManager : SingletonPersistent<GalacticKittensRoomManager>
     {
         [SerializeField] private Spaceship[] spaceships;
+        [SerializeField] private SapceshipBullet _shipShootBullet;
 
 
         private void OnEnable()
@@ -44,6 +47,12 @@ namespace Game.GalacticKittens.Manager
                     case 3: //玩家
                         SpawnSpaceShip(spawnInfo);
                         break;
+                    case 30: //玩家发射子弹
+                        spawnPlayerBullet(spawnInfo);
+                        break;
+                    default:
+                        Debug.Log($"{spawnInfo.ConfigId} spawn 未实现");
+                        break;
                 }
 
 
@@ -59,13 +68,14 @@ namespace Game.GalacticKittens.Manager
         private void SpawnSpaceShip(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
             var spaceship = Instantiate(spaceships[spawnInfo.ConfigId], null); //TODO 完善飞船对象
+            spaceship.name = $"Spaceship{spaceship.Id}";
             var snapTransform = spaceship.GetComponent<SnapTransform>();
             snapTransform.Id = spawnInfo.Id;
-            var position = new Vector3(spawnInfo.Position.X, spawnInfo.Position.Y, spawnInfo.Position.Y);
+            var position = ProtoUtil.BuildVector3(spawnInfo.Position);
             spaceship.transform.position = position;
             if (snapTransform.Id == DataManager.Instance.PlayerInfo.PlayerId)
             {
-                snapTransform.Onwer = true;
+                snapTransform.IsOnwer = true;
             }
             else
             {
@@ -76,5 +86,41 @@ namespace Game.GalacticKittens.Manager
             SyncManager.Instance.AddSnapTransform(snapTransform);
             DataManager.Instance.GalacticKittens.Spaceships[snapTransform.Id] = spaceship;
         }
+
+        /// <summary>
+        /// 产生玩家子弹 //TODO 待测试
+        /// </summary>
+        /// <param name="spawnInfo"></param>
+        private void spawnPlayerBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+            var spaceship = DataManager.Instance.GalacticKittens.Spaceships[spawnInfo.OwnerId];
+            if (spaceship == null)
+            {
+                Debug.Log($"子弹 {spawnInfo.Id} 主人{spawnInfo.OwnerId} 不存在");
+                return;
+            }
+
+            var sapceshipBullet = Instantiate(_shipShootBullet, spaceship.transform);
+            sapceshipBullet.name = $"SpaceshipBullet{spawnInfo.Id}";
+            PredictionTransform predictionTransform = spaceship.GetComponent<PredictionTransform>();
+            predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
+            sapceshipBullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
+            predictionTransform.SetLastDeserializedPositon(spaceship.transform.position);
+            predictionTransform.SetLastDeserializedLinearVelocity(predictionTransform.LinearVelocity);
+
+            sapceshipBullet.PlayShootBulletSound();
+        }
+
+
+        /// <summary>
+        /// 退出到大厅
+        /// </summary>
+        public void quitToLobby()
+        {
+            SceneManager.LoadScene("Lobby");
+            Destroy(GalacticKittensAudioManager.Instance);
+            Destroy(Instance);
+        }
+        
     }
 }
