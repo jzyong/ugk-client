@@ -6,6 +6,7 @@ using System.Reflection;
 using Google.Protobuf;
 using kcp2k;
 using System.Linq;
+using Network.Serialize;
 using Network.Sync;
 using Tools;
 using UnityEngine.Networking;
@@ -57,6 +58,9 @@ namespace Network
         /// <summary>True if the server is running or client is connected/connecting.</summary>
         public bool isNetworkActive => NetworkClient.active;
 
+        //消息批量缓存
+        private Batcher _batcher = new Batcher();
+
 
         public void Awake()
         {
@@ -75,6 +79,7 @@ namespace Network
 
         public void Update()
         {
+           BatchSendMsg();
         }
 
         // virtual so that inheriting classes' LateUpdate() can call base.LateUpdate() too
@@ -254,7 +259,6 @@ namespace Network
 
         public void Send(MID mid, byte[] data)
         {
-            // Send((int) mid, data);
 
             // 消息长度4+消息id4+序列号4+时间戳8+protobuf消息体
             byte[] msgLength = BitConverter.GetBytes(data.Length + 16);
@@ -271,7 +275,34 @@ namespace Network
             Array.Copy(timeStamp, 0, datas, 12, seq.Length);
             Array.Copy(data, 0, datas, 20, data.Length);
             ArraySegment<byte> segment = new ArraySegment<byte>(datas);
-            Transport.active.ClientSend(segment);
+            
+            // Transport.active.ClientSend(segment);
+            // 不直接发送，放入batcher中批量发送
+            _batcher.AddMessage(segment);
+        }
+        
+        /// <summary>
+        /// 批量发送消息
+        /// </summary>
+        private void BatchSendMsg()
+        {
+            //批量发送数据
+            if (_batcher.HasMessage())
+            {
+                // make and send as many batches as necessary from the stored
+                // messages.
+                using (NetworkWriterPooled writer = NetworkWriterPool.Get())
+                {
+                    // make a batch with our local time (double precision)
+                    while (_batcher.GetBatch(writer))
+                    {
+                        ArraySegment<byte> segment = writer.ToArraySegment();
+                        Transport.active.ClientSend(segment);
+                        // reset writer for each new batch
+                        writer.Position = 0;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -338,5 +369,7 @@ namespace Network
             }
             return null;
         }
+
+
     }
 }

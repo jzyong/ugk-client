@@ -90,6 +90,7 @@
      <Compile Include="Assets\Scripts\Network\Messages\Sync.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\SnapshotInterpolationSettings.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriterPool.cs" />
+     <Compile Include="Assets\Scripts\Network\Serialize\Batcher.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Manager\GalacticKittensAudioManager.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkReaderExtensions.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\GameItem.cs" />
