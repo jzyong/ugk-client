@@ -16,11 +16,12 @@ namespace Network.Sync
         // selective sync 
         [Header("Selective Sync\nDon't change these at Runtime")]
         public bool syncPosition = true; // do not change at runtime!
+
         public bool syncRotation = false; // do not change at runtime!
         public bool syncScale = false; // do not change at runtime! rare. off by default.
 
         [Tooltip("消息发送间隔")] public double sendInterval = 0.033;
-        
+
 
         [Tooltip(
             "Apply smallest-three quaternion compression. This is lossy, you can disable it if the small rotation inaccuracies are noticeable in your project.")]
@@ -42,26 +43,31 @@ namespace Network.Sync
         [Range(0.00_01f, 1f)] // disallow 0 division. 1mm to 1m precision is enough range.
         public float scalePrecision = 0.01f; // 1 cm
 
+        /// <summary>
+        /// 是否初始位置
+        /// </summary>
+        protected bool initPosition;
+
         /**
          * 每个对象的唯一id
          */
         public long Id { get; set; }
+
         //下次消息发送时间
         protected double nextSendTime;
+
         // delta compression needs to remember 'last' to compress against
         protected Vector3Long lastSerializedPosition = Vector3Long.zero;
         protected Vector3Long lastDeserializedPosition = Vector3Long.zero;
 
         protected Vector3Long lastSerializedScale = Vector3Long.zero;
         protected Vector3Long lastDeserializedScale = Vector3Long.zero;
-        
+
         /// <summary>
         /// 是否为本地玩家拥有者
         /// </summary>
         public bool IsOnwer { get; set; }
 
-
- 
 
         protected void OnValidate()
         {
@@ -69,23 +75,26 @@ namespace Network.Sync
             if (target == null) target = transform;
         }
 
-        /// <summary>
-        /// 设置最后一次反序列化缓存的坐标，增量压缩还原需要
-        /// </summary>
-        /// <param name="position"></param>
-        public void SetLastDeserializedPositon(Vector3 position)
-        {
-            Compression.ScaleToLong(position, positionPrecision, out lastDeserializedPosition);
-        }
-        
-        /// <summary>
-        /// 设置最后一次反序列化缓存的缩放，增量压缩还原需要
-        /// </summary>
-        /// <param name="scale"></param>
-        public void SetLastDeserializedScale(Vector3 scale)
-        {
-            Compression.ScaleToLong(scale, scalePrecision, out lastDeserializedScale);
-        }
-
+        // /// <summary>
+        // /// 初始化最新 序列号和反序列化坐标，增量压缩还原需要
+        // /// </summary>
+        // /// <param name="position"></param>
+        // public virtual void InitLastVector3LongPositon(Vector3 position)
+        // {
+        //     Compression.ScaleToLong(position, positionPrecision, out lastDeserializedPosition);
+        //     lastSerializedPosition = new Vector3Long(lastDeserializedPosition.x, lastDeserializedPosition.y,
+        //         lastDeserializedPosition.z);
+        // }
+        //
+        // /// <summary>
+        // /// 设置最后一次反序列化缓存的缩放，增量压缩还原需要
+        // /// </summary>
+        // /// <param name="scale"></param>
+        // public virtual void InitLastVector3LongScale(Vector3 scale)
+        // {
+        //     Compression.ScaleToLong(scale, scalePrecision, out lastDeserializedScale);
+        //     lastSerializedScale =
+        //         new Vector3Long(lastDeserializedScale.x, lastDeserializedScale.y, lastDeserializedScale.z);
+        // }
     }
 }

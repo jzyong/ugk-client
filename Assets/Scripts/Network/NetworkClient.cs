@@ -37,6 +37,7 @@ namespace Network
         // a component sends with client.interval but interpolates with
         // server.interval, etc. mirror是30
         public static int sendRate => 1;
+
         public static float sendInterval => sendRate < int.MaxValue ? 1f / sendRate : 0; // for 30 Hz, that's 33ms
         // static double lastSendTime;
 
@@ -158,29 +159,38 @@ namespace Network
         //消息合并压缩后，可能有多个消息,但是每个消息包过来都是几个完整的消息
         internal static void OnTransportData(ArraySegment<byte> data)
         {
+            if (data.Count<20)
+            {
+                Debug.LogWarning($"收到消息长度不足20的网络消息包：length={data.Count}"); //为什么？
+                return;
+            }
+            
             var bytes = data.ToArray();
-            // if (bytes==null)
-            // {
-            //     Debug.LogWarning("收到空消息包");
-            //     return;
-            // }
             var readerIndx = 0; //读取索引
+            
 
-            while (readerIndx<bytes.Length)
+            while (readerIndx < bytes.Length)
             {
                 using (UgkMessage ugkMessage = UgkMessagePool.Get())
                 {
-                    //  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
-                    Int32 messageLength = BitConverter.ToInt32(bytes, readerIndx);
-                    readerIndx += 4;
-                    ugkMessage.MessageId = BitConverter.ToUInt32(bytes, readerIndx);
-                    readerIndx += 4;
-                    ugkMessage.Seq = BitConverter.ToUInt32(bytes, readerIndx);
-                    readerIndx += 4;
-                    ugkMessage.TimeStamp = BitConverter.ToInt64(bytes, readerIndx);
-                    readerIndx += 8;
                     try
                     {
+                        //  `消息长度4+消息id4+序列号4+时间戳8+protobuf消息体`
+                        Int32 messageLength = BitConverter.ToInt32(bytes, readerIndx);
+                        if (messageLength > short.MaxValue)
+                        {
+                            Debug.LogWarning($"收到消息长度异常：{messageLength} readerIndex={readerIndx} 总消息长度={bytes.Length}");
+                            break;
+                        }
+
+                        readerIndx += 4;
+                        ugkMessage.MessageId = BitConverter.ToUInt32(bytes, readerIndx);
+                        readerIndx += 4;
+                        ugkMessage.Seq = BitConverter.ToUInt32(bytes, readerIndx);
+                        readerIndx += 4;
+                        ugkMessage.TimeStamp = BitConverter.ToInt64(bytes, readerIndx);
+                        readerIndx += 8;
+
                         // Debug.Log($"收到消息 ID={messageId} Seq={seq} timeStamp={timeStamp}");
                         var handler = NetworkManager.Instance.GetMessageHandler(ugkMessage.MessageId);
                         if (handler == null)
@@ -199,7 +209,7 @@ namespace Network
                     catch (Exception e)
                     {
                         //捕获一下异常，不然逻辑异常传入网络层，会终止网络
-                        Debug.LogError($"消息执行错误：{e}");
+                        Debug.LogError($"消息执行错误：readerIndex={readerIndx} byteLength={bytes.Length} {e}");
                     }
                 }
             }

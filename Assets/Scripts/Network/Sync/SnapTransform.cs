@@ -57,7 +57,7 @@ namespace Network.Sync
             // NetworkTime.localTime for double precision until Unity has it too
             return new TransformSnapshot(
                 // our local time is what the other end uses as remote time
-                NetworkTime.LocalTime, // Unity 2019 doesn't have timeAsDouble yet
+                NetworkTime.ServerTime, // Unity 2019 doesn't have timeAsDouble yet
                 0, // the other end fills out local time itself
                 target.position,
                 target.rotation,
@@ -91,8 +91,8 @@ namespace Network.Sync
             if (!scale.HasValue)
                 scale = snapshots.Count > 0 ? snapshots.Values[snapshots.Count - 1].scale : target.lossyScale;
 
-            Debug.Log($"收到Transform position={position.Value} rotation={rotation.Value} scale={scale.Value}");
-            
+            // Debug.Log($"收到Transform position={position.Value} rotation={rotation.Value} scale={scale.Value}");
+
             // insert transform snapshot
             SnapshotInterpolation.InsertIfNotExists(snapshots, new TransformSnapshot(
                 timeStamp, // arrival remote timestamp. NOT remote time.
@@ -103,7 +103,7 @@ namespace Network.Sync
             ));
         }
 
-        protected  void Apply(TransformSnapshot from, TransformSnapshot to, float t)
+        protected void Apply(TransformSnapshot from, TransformSnapshot to, float t)
         {
             if (syncPosition)
             {
@@ -133,7 +133,7 @@ namespace Network.Sync
         /// <summary>
         /// 
         /// </summary>
-        public  void Reset()
+        public void Reset()
         {
             // disabled objects aren't updated anymore.
             // so let's clear the buffers.
@@ -142,12 +142,12 @@ namespace Network.Sync
             last = new TransformSnapshot(0, 0, Vector3.zero, Quaternion.identity, Vector3.zero);
         }
 
-        protected  void OnEnable()
+        protected void OnEnable()
         {
             Reset();
         }
 
-        protected  void OnDisable()
+        protected void OnDisable()
         {
             Reset();
         }
@@ -160,14 +160,16 @@ namespace Network.Sync
 
         void LateUpdate()
         {
-            if (NetworkTime.ServerTime > nextSendTime && (!onlySyncOnChange || Changed(Construct())))
+            //客户端需要监测是否为自己，只推送拥有者
+            if (IsOnwer && initPosition && NetworkTime.ServerTime > nextSendTime &&
+                (!onlySyncOnChange || Changed(Construct())))
             {
-                OnSerialize(false);
+                OnSerialize();
                 nextSendTime += sendInterval;
             }
         }
 
-        protected  void UpdateClient()
+        protected void UpdateClient()
         {
             // only while we have snapshots
             if (snapshots.Count > 0 && !IsOnwer)
@@ -183,61 +185,46 @@ namespace Network.Sync
 
                 // // interpolate & apply
                 // TransformSnapshot computed = TransformSnapshot.Interpolate(from, to, t);
-                Apply(from, to,(float)t);
+                Apply(from, to, (float)t);
             }
         }
 
         /// <summary>
         /// 发送同步数据,序列化
         /// </summary>
-        protected void OnSerialize(bool initialState)
+        protected void OnSerialize()
         {
+            if (!initPosition)
+            {
+                return;
+            }
+
             using (NetworkWriterPooled writer = NetworkWriterPool.Get())
             {
                 // get current snapshot for broadcasting.
                 TransformSnapshot snapshot = Construct();
 
-                // initial
-                if (initialState)
+                if (syncPosition)
                 {
-                    if (last.remoteTime > 0) snapshot = last;
-                    if (syncPosition) writer.WriteVector3(snapshot.position);
-                    if (syncRotation)
-                    {
-                        // (optional) smallest three compression for now. no delta.
-                        if (compressRotation)
-                            writer.WriteUInt(Compression.CompressQuaternion(snapshot.rotation));
-                        else
-                            writer.WriteQuaternion(snapshot.rotation);
-                    }
-
-                    if (syncScale) writer.WriteVector3(snapshot.scale);
+                    // quantize -> delta -> varint
+                    Compression.ScaleToLong(snapshot.position, positionPrecision, out Vector3Long quantized);
+                    DeltaCompression.Compress(writer, lastSerializedPosition, quantized);
                 }
-                // delta
-                else
+
+                if (syncRotation)
                 {
-                    if (syncPosition)
-                    {
-                        // quantize -> delta -> varint
-                        Compression.ScaleToLong(snapshot.position, positionPrecision, out Vector3Long quantized);
-                        DeltaCompression.Compress(writer, lastSerializedPosition, quantized);
-                    }
+                    // (optional) smallest three compression for now. no delta.
+                    if (compressRotation)
+                        writer.WriteUInt(Compression.CompressQuaternion(snapshot.rotation));
+                    else
+                        writer.WriteQuaternion(snapshot.rotation);
+                }
 
-                    if (syncRotation)
-                    {
-                        // (optional) smallest three compression for now. no delta.
-                        if (compressRotation)
-                            writer.WriteUInt(Compression.CompressQuaternion(snapshot.rotation));
-                        else
-                            writer.WriteQuaternion(snapshot.rotation);
-                    }
-
-                    if (syncScale)
-                    {
-                        // quantize -> delta -> varint
-                        Compression.ScaleToLong(snapshot.scale, scalePrecision, out Vector3Long quantized);
-                        DeltaCompression.Compress(writer, lastSerializedScale, quantized);
-                    }
+                if (syncScale)
+                {
+                    // quantize -> delta -> varint
+                    Compression.ScaleToLong(snapshot.scale, scalePrecision, out Vector3Long quantized);
+                    DeltaCompression.Compress(writer, lastSerializedScale, quantized);
                 }
 
                 // save serialized as 'last' for next delta compression
@@ -248,6 +235,7 @@ namespace Network.Sync
                 // set 'last'
                 last = snapshot;
 
+                Debug.Log($"{Id} 发送坐标{last.position} {lastSerializedPosition}");
                 //发送数据
                 var data = ByteString.CopyFrom(writer.ToArray());
                 SyncManager.Instance.SnapSyncMessage.Payload[Id] = data;
@@ -257,57 +245,43 @@ namespace Network.Sync
         /// <summary>
         /// 接收同步数据
         /// </summary>
-        public void OnDeserialize(UgkMessage ugkMessage,ByteString data, bool initialState)
+        public void OnDeserialize(UgkMessage ugkMessage, ByteString data, bool initialState)
         {
+            if (!initPosition)
+            {
+                return;
+            }
+
             var segment = new ArraySegment<byte>(data.ToByteArray());
             using (NetworkReaderPooled reader = NetworkReaderPool.Get(segment))
             {
                 Vector3? position = null;
                 Quaternion? rotation = null;
                 Vector3? scale = null;
-
-                // initial
-                if (initialState)
+                // varint -> delta -> quantize
+                if (syncPosition)
                 {
-                    if (syncPosition) position = reader.ReadVector3();
-                    if (syncRotation)
-                    {
-                        // (optional) smallest three compression for now. no delta.
-                        if (compressRotation)
-                            rotation = Compression.DecompressQuaternion(reader.ReadUInt());
-                        else
-                            rotation = reader.ReadQuaternion();
-                    }
-
-                    if (syncScale) scale = reader.ReadVector3();
-                }
-                // delta
-                else
-                {
-                    // varint -> delta -> quantize
-                    if (syncPosition)
-                    {
-                        Vector3Long quantized = DeltaCompression.Decompress(reader, lastDeserializedPosition);
-                        position = Compression.ScaleToFloat(quantized, positionPrecision);
-                    }
-
-                    if (syncRotation)
-                    {
-                        // (optional) smallest three compression for now. no delta.
-                        if (compressRotation)
-                            rotation = Compression.DecompressQuaternion(reader.ReadUInt());
-                        else
-                            rotation = reader.ReadQuaternion();
-                    }
-
-                    if (syncScale)
-                    {
-                        Vector3Long quantized = DeltaCompression.Decompress(reader, lastDeserializedScale);
-                        scale = Compression.ScaleToFloat(quantized, scalePrecision);
-                    }
+                    Vector3Long quantized = DeltaCompression.Decompress(reader, lastDeserializedPosition);
+                    position = Compression.ScaleToFloat(quantized, positionPrecision);
                 }
 
-                OnReceiveTransform(position, rotation, scale,ugkMessage.GetTime()+sendInterval);
+                if (syncRotation)
+                {
+                    // (optional) smallest three compression for now. no delta.
+                    if (compressRotation)
+                        rotation = Compression.DecompressQuaternion(reader.ReadUInt());
+                    else
+                        rotation = reader.ReadQuaternion();
+                }
+
+                if (syncScale)
+                {
+                    Vector3Long quantized = DeltaCompression.Decompress(reader, lastDeserializedScale);
+                    scale = Compression.ScaleToFloat(quantized, scalePrecision);
+                }
+
+                Debug.Log($"{Id} 接收坐标{position} {lastDeserializedPosition} {ugkMessage.Seq}");
+                OnReceiveTransform(position, rotation, scale, ugkMessage.GetTime() + sendInterval);
 
                 // save deserialized as 'last' for next delta compression
                 if (syncPosition)
@@ -399,6 +373,32 @@ namespace Network.Sync
                 rotation,
                 scale
             ));
+        }
+
+
+        /// <summary>
+        /// 出生初始化
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="scale"></param>
+        public void InitTransform(Vector3? position, Vector3? scale)
+        {
+            initPosition = true;
+            if (position.HasValue)
+            {
+                Compression.ScaleToLong(position.Value, positionPrecision, out lastDeserializedPosition);
+                lastSerializedPosition = new Vector3Long(lastDeserializedPosition.x, lastDeserializedPosition.y,
+                    lastDeserializedPosition.z);
+                last.position = new Vector3(position.Value.x, position.Value.y, position.Value.z);
+            }
+
+            if (scale.HasValue)
+            {
+                Compression.ScaleToLong(scale.Value, scalePrecision, out lastDeserializedScale);
+                lastSerializedScale =
+                    new Vector3Long(lastDeserializedScale.x, lastDeserializedScale.y, lastDeserializedScale.z);
+                last.scale = new Vector3(scale.Value.x, scale.Value.y, scale.Value.z);
+            }
         }
     }
 }

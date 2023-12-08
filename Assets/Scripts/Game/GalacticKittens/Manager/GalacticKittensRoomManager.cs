@@ -68,7 +68,7 @@ namespace Game.GalacticKittens.Manager
         private void SpawnSpaceShip(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
             var spaceship = Instantiate(spaceships[spawnInfo.ConfigId], null); //TODO 完善飞船对象
-            spaceship.name = $"Spaceship{spaceship.Id}";
+            spaceship.name = $"Spaceship{spawnInfo.Id}";
             var snapTransform = spaceship.GetComponent<SnapTransform>();
             snapTransform.Id = spawnInfo.Id;
             var position = ProtoUtil.BuildVector3(spawnInfo.Position);
@@ -77,11 +77,8 @@ namespace Game.GalacticKittens.Manager
             {
                 snapTransform.IsOnwer = true;
             }
-            else
-            {
-                // 其他玩家需要初始化 SnapTransform 的初始坐标
-                snapTransform.SetLastDeserializedPositon(position);
-            }
+            // SnapTransform 的初始坐标
+            snapTransform.InitTransform(position,null);
 
             SyncManager.Instance.AddSnapTransform(snapTransform);
             DataManager.Instance.GalacticKittens.Spaceships[snapTransform.Id] = spaceship;
@@ -105,7 +102,7 @@ namespace Game.GalacticKittens.Manager
             PredictionTransform predictionTransform = spaceship.GetComponent<PredictionTransform>();
             predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
             sapceshipBullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
-            predictionTransform.SetLastDeserializedPositon(spaceship.transform.position);
+            //predictionTransform.InitLastVector3LongPositon(spaceship.transform.position); TODO 初始化
             predictionTransform.SetLastDeserializedLinearVelocity(predictionTransform.LinearVelocity);
 
             sapceshipBullet.PlayShootBulletSound();
