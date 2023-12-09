@@ -292,22 +292,22 @@ namespace Network.Sync
             }
         }
         
-        /// <summary>
-        /// 设置最后一次反序列化缓存的线速度，增量压缩还原需要
-        /// </summary>
-        /// <param name="position"></param>
-        public void SetLastDeserializedLinearVelocity(Vector3 position)
-        {
-            Compression.ScaleToLong(position, velocityPrecision, out lastDeserializedLinearVelocity);
-        }
-        
-        /// <summary>
-        /// 设置最后一次反序列化缓存的线速度，增量压缩还原需要
-        /// </summary>
-        /// <param name="position"></param>
-        public void SetLastDeserializedAngularVelocity(Vector3 position)
-        {
-            Compression.ScaleToLong(position, velocityPrecision, out lastDeserializedAngularVelocity);
-        }
+        // /// <summary>
+        // /// 设置最后一次反序列化缓存的线速度，增量压缩还原需要
+        // /// </summary>
+        // /// <param name="position"></param>
+        // public void SetLastDeserializedLinearVelocity(Vector3 position)
+        // {
+        //     Compression.ScaleToLong(position, velocityPrecision, out lastDeserializedLinearVelocity);
+        // }
+        //
+        // /// <summary>
+        // /// 设置最后一次反序列化缓存的线速度，增量压缩还原需要
+        // /// </summary>
+        // /// <param name="position"></param>
+        // public void SetLastDeserializedAngularVelocity(Vector3 position)
+        // {
+        //     Compression.ScaleToLong(position, velocityPrecision, out lastDeserializedAngularVelocity);
+        // }
     }
 }

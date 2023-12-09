@@ -16,7 +16,7 @@ namespace Game.GalacticKittens.Player
             momentum
         }
 
-       public  enum VerticalMovementType
+        public enum VerticalMovementType
         {
             none,
             upward,
@@ -175,26 +175,33 @@ namespace Game.GalacticKittens.Player
             }
         }
 
-
         /// <summary>
-        /// 飞船飞行状态  
+        /// 设置移动状态，其他玩家控制的飞船
         /// </summary>
-        /// <param name="newVerticalMovementType"></param>
-        public void NewVerticalMovementClientType(VerticalMovementType newVerticalMovementType)
+        /// <param name="movementType"></param>
+        public void SetMoveType(VerticalMovementType movementType)
         {
-            switch (newVerticalMovementType)
+            //自己状态，本地控制
+            if (_snapTransform.IsOnwer)
             {
-                case VerticalMovementType.none:
-                    m_shipRenderer.sprite = m_normalSprite;
-                    break;
+                return;
+            }
+
+            switch (movementType)
+            {
                 case VerticalMovementType.upward:
                     m_shipRenderer.sprite = m_upSprite;
                     break;
                 case VerticalMovementType.downward:
                     m_shipRenderer.sprite = m_downSprite;
                     break;
+                default:
+                    m_shipRenderer.sprite = m_normalSprite;
+                    break;
             }
         }
+
+        
 
         // Check the limits of the player and adjust the input
         private void AdjustInputValuesBasedOnPositionLimits()

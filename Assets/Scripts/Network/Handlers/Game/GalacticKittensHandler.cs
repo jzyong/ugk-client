@@ -197,7 +197,7 @@ namespace Network.Handlers.Game
             }
 
             var playerShipMovement = spaceship.GetComponent<PlayerShipMovement>();
-            playerShipMovement.NewVerticalMovementClientType((PlayerShipMovement.VerticalMovementType)response.State); //TODO 待测试
+            playerShipMovement.SetMoveType((PlayerShipMovement.VerticalMovementType)response.State); //TODO 待测试
         }
     }
 }

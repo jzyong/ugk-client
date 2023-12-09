@@ -36,20 +36,19 @@ namespace Game.GalacticKittens.Player
 
         private void Update()
         {
-            //TODO 暂时屏蔽，需要设置引用
             
-            // if (!_snapTransform.IsOnwer)
-            // {
-            //     return;
-            // }
+            if (!_snapTransform.IsOnwer)
+            {
+                return;
+            }
+            
+            // 监听按键事件，开火
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                FireReq();
+            }
             //
-            // // 监听按键事件，开火
-            // if (Input.GetKeyDown(KeyCode.Space))
-            // {
-            //     FireReq();
-            // }
-            //
-            // //使用护盾 TODO 需要判断护盾是否充足
+            // //使用护盾 TODO 需要判断护盾是否充足 ，暂时屏蔽，需要设置引用
             // if (!_defenseMatrix.isShieldActive && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.LeftShift)))
             // {
             //     UseShieldReq();

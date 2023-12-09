@@ -102,8 +102,8 @@ namespace Game.GalacticKittens.Manager
             PredictionTransform predictionTransform = spaceship.GetComponent<PredictionTransform>();
             predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
             sapceshipBullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
-            //predictionTransform.InitLastVector3LongPositon(spaceship.transform.position); TODO 初始化
-            predictionTransform.SetLastDeserializedLinearVelocity(predictionTransform.LinearVelocity);
+            // predictionTransform.InitLastVector3LongPositon(spaceship.transform.position);
+            // predictionTransform.SetLastDeserializedLinearVelocity(predictionTransform.LinearVelocity);
 
             sapceshipBullet.PlayShootBulletSound();
         }
