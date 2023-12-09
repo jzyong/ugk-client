@@ -2,6 +2,7 @@
 using Common;
 using Common.Tools;
 using Game.GalacticKittens.Player;
+using Game.GalacticKittens.Room.Enemy;
 using Lobby;
 using Network;
 using Network.Messages;
@@ -18,6 +19,8 @@ namespace Game.GalacticKittens.Manager
     {
         [SerializeField] private Spaceship[] spaceships;
         [SerializeField] private SapceshipBullet _shipShootBullet;
+        [SerializeField] private GhostEnemy ghostEnemy;
+        [SerializeField] private ShooterEnemy shooterEnemy;
 
         /// <summary>
         /// 场景所有对象
@@ -45,6 +48,7 @@ namespace Game.GalacticKittens.Manager
             {
                 Debug.Log($"{spawnInfo.Id} ConfigID={spawnInfo.ConfigId} 出生于 {spawnInfo.Position}");
 
+                // 0-3玩家飞船；20Boss；30玩家子弹，31敌人子弹；40射击敌人、41幽灵敌人、41陨石
                 switch (spawnInfo.ConfigId)
                 {
                     case 0: //玩家
@@ -54,7 +58,13 @@ namespace Game.GalacticKittens.Manager
                         SpawnSpaceShip(spawnInfo);
                         break;
                     case 30: //玩家发射子弹
-                        spawnPlayerBullet(spawnInfo);
+                        SpawnPlayerBullet(spawnInfo);
+                        break;
+                    case 40:
+                        SpawnShooterEnemy(spawnInfo);
+                        break;
+                    case 41:
+                        SpawnGhostEnemy(spawnInfo);
                         break;
                     default:
                         Debug.Log($"{spawnInfo.ConfigId} spawn 未实现");
@@ -96,7 +106,7 @@ namespace Game.GalacticKittens.Manager
         /// 产生玩家子弹 
         /// </summary>
         /// <param name="spawnInfo"></param>
-        private void spawnPlayerBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        private void SpawnPlayerBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
             var spaceship = DataManager.Instance.GalacticKittens.Spaceships[spawnInfo.OwnerId];
             if (spaceship == null)
@@ -106,7 +116,7 @@ namespace Game.GalacticKittens.Manager
             }
 
             var sapceshipBullet = Instantiate(_shipShootBullet, Instance.transform);
-            sapceshipBullet.name = $"SpaceshipBullet{spawnInfo.Id}";
+            sapceshipBullet.name = $"Enemy{spawnInfo.Id}";
             PredictionTransform predictionTransform = sapceshipBullet.GetComponent<PredictionTransform>();
             predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
             sapceshipBullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
@@ -114,10 +124,48 @@ namespace Game.GalacticKittens.Manager
 
             sapceshipBullet.StartShoot(spaceship);
             sceneObjects[spawnInfo.Id] = sapceshipBullet.gameObject;
+            SyncManager.Instance.AddPredictionTransform(predictionTransform);
         }
+
+        /// <summary>
+        /// 产生幽灵敌人
+        /// </summary>
+        /// <param name="spawnInfo"></param>
+        private void SpawnGhostEnemy(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+            var enemy = Instantiate(ghostEnemy, Instance.transform);
+            enemy.name = $"GhostEnemy{spawnInfo.Id}";
+            var snapTransform = enemy.GetComponent<SnapTransform>();
+            var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
+            enemy.transform.position = spawnPosition;
+            snapTransform.Id = spawnInfo.Id;
+            snapTransform.InitTransform(spawnPosition,null);
+            sceneObjects[spawnInfo.Id] = enemy.gameObject;
+            SyncManager.Instance.AddSnapTransform(snapTransform);
+        }
+
+        /// <summary>
+        /// 产生攻击敌人
+        /// </summary>
+        /// <param name="spawnInfo"></param>
+        private void SpawnShooterEnemy(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+            var enemy = Instantiate(shooterEnemy, Instance.transform);
+            enemy.name = $"ShooterEnemy{spawnInfo.Id}";
+            var snapTransform = enemy.GetComponent<SnapTransform>();
+            var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
+            enemy.transform.position = spawnPosition;
+            snapTransform.InitTransform(spawnPosition,null);
+            snapTransform.Id = spawnInfo.Id;
+            sceneObjects[spawnInfo.Id] = enemy.gameObject;
+            SyncManager.Instance.AddSnapTransform(snapTransform);
+        }
+
 
         public void DespawnObject(GalacticKittensObjectDieResponse response)
         {
+            SyncManager.Instance.RemoveSyncObject(response.Id);
+
             if (sceneObjects.Remove(response.Id, out GameObject gameObject))
             {
                 Destroy(gameObject);

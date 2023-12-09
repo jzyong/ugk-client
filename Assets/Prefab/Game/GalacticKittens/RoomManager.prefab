@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceships:
   - {fileID: 5684575863820264827, guid: 6ee35708ec1f39e4693e0795f6582bf6, type: 3}
+  _shipShootBullet: {fileID: -7405409699859480113, guid: 2159aa0d27b39dc41bb372a7ac84039d, type: 3}
+  ghostEnemy: {fileID: -1257979259520101526, guid: 55ba4a568374a154dababe39db54d302, type: 3}
+  shooterEnemy: {fileID: -4534592265095162652, guid: fb788bc15d1791b44ba081e57e6dd30e, type: 3}

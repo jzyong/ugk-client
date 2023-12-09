@@ -107,6 +107,7 @@
      <Compile Include="Assets\Scripts\Network\Sync\PredictionTransform.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\Mathd.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkClient.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\GhostEnemy.cs" />
      <Compile Include="Assets\Scripts\Network\Handlers\SyncHandler.cs" />
      <Compile Include="Assets\Scripts\Network\Exceptions.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AckItem.cs" />
@@ -114,6 +115,7 @@
      <Compile Include="Assets\Scripts\Lobby\UI\Login\LoginPanel.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\CharacterContainer.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Server.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\ShooterEnemy.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Login.cs" />
      <Compile Include="Assets\Scripts\Network\TransportError.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\KcpTransport.cs" />
@@ -138,6 +140,7 @@
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel" />
      <Folder Include="Assets\Scripts\Common\Tools" />
      <Folder Include="Assets\Scripts\Network\Messages" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy" />
      <Folder Include="Assets\Scripts\Network\Handlers" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k" />
      <Folder Include="Assets\Scripts\Game\GalacticKittens\Utility" />

@@ -6,7 +6,7 @@ namespace Network.Sync
 {
     /// <summary>
     /// 同步管理器，保存需要同步管理的对象
-    /// </summary>
+    /// </summary>o
     public class SyncManager : SingletonPersistent<SyncManager>
     {
         /// <summary>
@@ -60,12 +60,13 @@ namespace Network.Sync
         /// <summary>
         /// 收到同步消息
         /// </summary>
-        public void OnSnapSyncReceive(UgkMessage ugkMessage,SnapSyncResponse response)
+        public void OnSnapSyncReceive(UgkMessage ugkMessage, SnapSyncResponse response)
         {
             if (!gameObject.activeSelf)
             {
                 return;
             }
+
             foreach (var kv in response.Payload)
             {
                 if (!_snapTransforms.TryGetValue(kv.Key, out SnapTransform snapTransform))
@@ -79,21 +80,22 @@ namespace Network.Sync
                 {
                     continue;
                 }
-                
 
-                snapTransform.OnDeserialize(ugkMessage,kv.Value, false);
+
+                snapTransform.OnDeserialize(ugkMessage, kv.Value, false);
             }
         }
 
         /// <summary>
         /// 收到同步消息
         /// </summary>
-        public void OnPredictionSyncReceive(UgkMessage ugkMessage,PredictionSyncResponse response)
+        public void OnPredictionSyncReceive(UgkMessage ugkMessage, PredictionSyncResponse response)
         {
             if (!gameObject.activeSelf)
             {
                 return;
             }
+
             foreach (var kv in response.Payload)
             {
                 if (!_predictionTransforms.TryGetValue(kv.Key, out PredictionTransform predictionTransform))
@@ -101,10 +103,11 @@ namespace Network.Sync
                     Debug.LogWarning($"同步对象{kv.Key} 不存在");
                     continue;
                 }
-                predictionTransform.OnDeserialize(ugkMessage,kv.Value, false);
+
+                predictionTransform.OnDeserialize(ugkMessage, kv.Value, false);
             }
         }
-        
+
         /// <summary>
         /// 移除
         /// </summary>
@@ -152,7 +155,24 @@ namespace Network.Sync
 
             return false;
         }
-        
+
+        /// <summary>
+        /// 移除同步对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type">0移除，1移除并隐藏，2移除并销毁</param>
+        /// <returns></returns>
+        public bool RemoveSyncObject(long id, int type = 0)
+        {
+            if (RemoveSnapTransform(id, type))
+            {
+                return true;
+            }
+
+            return RemovePredictionTransform(id, type);
+        }
+
+
         public void AddSnapTransform(SnapTransform snapTransform)
         {
             _snapTransforms[snapTransform.Id] = snapTransform;
@@ -182,6 +202,7 @@ namespace Network.Sync
                 {
                     Debug.LogWarning($"同步消息太多{predictionCount} =>{PredictionSyncMessage.Payload.Keys}");
                 }
+
                 PredictionSyncMessage.Payload.Clear();
             }
         }

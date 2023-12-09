@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4567805413435945189}
   - component: {fileID: 4567805413435945188}
   - component: {fileID: 9164393908041808244}
+  - component: {fileID: -1257979259520101526}
+  - component: {fileID: -1976113791529698933}
   m_Layer: 6
   m_Name: SpaceGhostEnemy
   m_TagString: Enemy
@@ -256,3 +258,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1257979259520101526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567805413435945178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889887320691414993fac5dc05c6e021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1976113791529698933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567805413435945178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5b700123844d22865fb47dea9597ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4567805413435945176}
+  syncPosition: 1
+  syncRotation: 0
+  syncScale: 0
+  sendInterval: 0.033
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
+  onlySyncOnChange: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  rotationSensitivity: 0.01

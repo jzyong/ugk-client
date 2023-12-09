@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 5848059733458262133}
   - component: {fileID: 5848059733458262132}
   - component: {fileID: 3494035740985395362}
+  - component: {fileID: -4534592265095162652}
+  - component: {fileID: -5580506269887525407}
+  - component: {fileID: 3475469489774976735}
   m_Layer: 6
   m_Name: SpaceShooterEnemy
   m_TagString: Enemy
@@ -256,3 +259,62 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4534592265095162652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848059733458262090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7a11bc9ef24e80bf4318a87adedd86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5580506269887525407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848059733458262090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7508275c7ca44d4870f342924880ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 5848059733458262088}
+  syncPosition: 1
+  syncRotation: 0
+  syncScale: 0
+  sendInterval: 0.033
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
+  syncAngularVelocity: 0
+  velocityPrecision: 0.01
+--- !u!114 &3475469489774976735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848059733458262090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5b700123844d22865fb47dea9597ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 5848059733458262088}
+  syncPosition: 1
+  syncRotation: 0
+  syncScale: 0
+  sendInterval: 0.033
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
+  onlySyncOnChange: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  rotationSensitivity: 0.01
