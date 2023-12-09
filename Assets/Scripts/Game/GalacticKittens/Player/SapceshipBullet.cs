@@ -19,6 +19,7 @@ namespace Game.GalacticKittens.Player
         public void PlayShootBulletSound()
         {
             GalacticKittensAudioManager.Instance.PlaySoundEffect(m_shootClip);
+            
         }
        
     }

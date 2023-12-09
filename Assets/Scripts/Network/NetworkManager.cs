@@ -79,12 +79,12 @@ namespace Network
 
         public void Update()
         {
-           BatchSendMsg();
+           
         }
 
-        // virtual so that inheriting classes' LateUpdate() can call base.LateUpdate() too
         public void LateUpdate()
         {
+            BatchSendMsg();
         }
 
 

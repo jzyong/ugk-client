@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using System.Collections.Generic;
+using Common;
 using Common.Tools;
 using Game.GalacticKittens.Player;
 using Lobby;
@@ -17,6 +18,11 @@ namespace Game.GalacticKittens.Manager
     {
         [SerializeField] private Spaceship[] spaceships;
         [SerializeField] private SapceshipBullet _shipShootBullet;
+
+        /// <summary>
+        /// 场景所有对象
+        /// </summary>
+        private Dictionary<long, GameObject> sceneObjects = new Dictionary<long, GameObject>();
 
 
         private void OnEnable()
@@ -67,8 +73,9 @@ namespace Game.GalacticKittens.Manager
         /// <param name="spawnInfo"></param>
         private void SpawnSpaceShip(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
-            var spaceship = Instantiate(spaceships[spawnInfo.ConfigId], null); //TODO 完善飞船对象
+            var spaceship = Instantiate(spaceships[spawnInfo.ConfigId], Instance.transform); 
             spaceship.name = $"Spaceship{spawnInfo.Id}";
+            spaceship.Id = spawnInfo.Id;
             var snapTransform = spaceship.GetComponent<SnapTransform>();
             snapTransform.Id = spawnInfo.Id;
             var position = ProtoUtil.BuildVector3(spawnInfo.Position);
@@ -79,13 +86,14 @@ namespace Game.GalacticKittens.Manager
             }
             // SnapTransform 的初始坐标
             snapTransform.InitTransform(position,null);
-
+            sceneObjects[spaceship.Id] = spaceship.gameObject;
             SyncManager.Instance.AddSnapTransform(snapTransform);
             DataManager.Instance.GalacticKittens.Spaceships[snapTransform.Id] = spaceship;
+            
         }
 
         /// <summary>
-        /// 产生玩家子弹 //TODO 待测试
+        /// 产生玩家子弹 
         /// </summary>
         /// <param name="spawnInfo"></param>
         private void spawnPlayerBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
@@ -97,16 +105,28 @@ namespace Game.GalacticKittens.Manager
                 return;
             }
 
-            var sapceshipBullet = Instantiate(_shipShootBullet, spaceship.transform);
+            var sapceshipBullet = Instantiate(_shipShootBullet, Instance.transform);
             sapceshipBullet.name = $"SpaceshipBullet{spawnInfo.Id}";
-            PredictionTransform predictionTransform = spaceship.GetComponent<PredictionTransform>();
+            PredictionTransform predictionTransform = sapceshipBullet.GetComponent<PredictionTransform>();
             predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
             sapceshipBullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
-            // predictionTransform.InitLastVector3LongPositon(spaceship.transform.position);
-            // predictionTransform.SetLastDeserializedLinearVelocity(predictionTransform.LinearVelocity);
-
+            predictionTransform.Id = spawnInfo.Id;
             sapceshipBullet.PlayShootBulletSound();
+            sceneObjects[spawnInfo.Id] = sapceshipBullet.gameObject;
         }
+
+        public void DespawnObject(GalacticKittensObjectDieResponse response)
+        {
+            if (sceneObjects.Remove(response.Id,out GameObject gameObject))
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log($"销毁对象 {response.Id} 未找到");
+            }
+        }
+        
 
 
         /// <summary>

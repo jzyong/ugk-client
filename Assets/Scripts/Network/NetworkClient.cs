@@ -196,6 +196,7 @@ namespace Network
                         if (handler == null)
                         {
                             Debug.LogWarning($"消息{(MID)ugkMessage.MessageId}处理方法未实现");
+                            break;
                         }
                         else
                         {

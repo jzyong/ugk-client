@@ -77,4 +77,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9413326a011a425d8173e4beb2d8f151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shootClip: {fileID: 0}
+  m_shootClip: {fileID: 8300000, guid: 13cf73b828d6d4a45b61b7c7b8d8397b, type: 3}

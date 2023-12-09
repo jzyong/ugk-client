@@ -1,4 +1,5 @@
 ﻿using Game.GalacticKittens;
+using Game.GalacticKittens.Manager;
 using Game.GalacticKittens.Player;
 using Google.Protobuf;
 using Lobby;
@@ -115,6 +116,18 @@ namespace Network.Handlers.Game
             var response = new GalacticKittensObjectSpawnResponse();
             response.MergeFrom(ugkMessage.Bytes);
             MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensObjectSpawn, response);
+        }
+
+        /// <summary>
+        /// 游戏对象死亡
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensObjectDieRes)]
+        private static void ObjectDie(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensObjectDieResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            GalacticKittensRoomManager.Instance.DespawnObject(response);
         }
 
         /// <summary>

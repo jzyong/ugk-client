@@ -54,12 +54,12 @@ namespace Game.GalacticKittens.Player
             //     UseShieldReq();
             // }
             //
-            // // 退出游戏
-            // if (Input.GetKeyDown(KeyCode.Escape))
-            // {
-            //     GalacticKittensRoomManager.Instance.quitToLobby();
-            //     //TODO 需要告知服务器退出游戏
-            // }
+            // 退出游戏
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GalacticKittensRoomManager.Instance.quitToLobby();
+                //TODO 需要告知服务器退出游戏
+            }
         }
 
         /// <summary>
