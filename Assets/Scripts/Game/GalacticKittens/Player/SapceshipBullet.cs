@@ -9,18 +9,27 @@ namespace Game.GalacticKittens.Player
     /// </summary>
     public class SapceshipBullet : MonoBehaviour
     {
-        
-        [SerializeField]
-        AudioClip m_shootClip;
+        [SerializeField] AudioClip m_shootClip;
+
+
+        [SerializeField] [Tooltip("射击特效")] GameObject m_shootVfx;
 
         /// <summary>
-        /// 收到子弹消息播放音效 
+        /// 
         /// </summary>
-        public void PlayShootBulletSound()
+        public void StartShoot(Spaceship spaceship)
         {
-            GalacticKittensAudioManager.Instance.PlaySoundEffect(m_shootClip);
+            GetComponent<SpriteRenderer>().color = spaceship._characterDataSo.color;
             
+            //收到子弹消息播放音效 
+            GalacticKittensAudioManager.Instance.PlaySoundEffect(m_shootClip);
+            //播放特效
+            var shootVfx = Instantiate(m_shootVfx, spaceship.transform).GetComponent<ParticleSystem>();
+            var shipPosition = spaceship.transform.position;
+            shootVfx.transform.position = new Vector3(shipPosition.x+0.9f, shipPosition.y - 0.3f, shipPosition.z);
+            shootVfx.Play();
+
+           
         }
-       
     }
 }

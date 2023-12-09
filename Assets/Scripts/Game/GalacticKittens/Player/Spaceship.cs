@@ -23,6 +23,8 @@ namespace Game.GalacticKittens.Player
         float m_hitEffectDuration;
         [SerializeField]
         SpriteRenderer m_shipRenderer;
+
+        public CharacterDataSO _characterDataSo;
         
         const string k_hitEffect = "_Hit";
 

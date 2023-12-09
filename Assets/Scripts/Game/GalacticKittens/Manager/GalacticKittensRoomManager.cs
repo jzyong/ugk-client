@@ -73,7 +73,7 @@ namespace Game.GalacticKittens.Manager
         /// <param name="spawnInfo"></param>
         private void SpawnSpaceShip(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
-            var spaceship = Instantiate(spaceships[spawnInfo.ConfigId], Instance.transform); 
+            var spaceship = Instantiate(spaceships[spawnInfo.ConfigId], Instance.transform);
             spaceship.name = $"Spaceship{spawnInfo.Id}";
             spaceship.Id = spawnInfo.Id;
             var snapTransform = spaceship.GetComponent<SnapTransform>();
@@ -84,12 +84,12 @@ namespace Game.GalacticKittens.Manager
             {
                 snapTransform.IsOnwer = true;
             }
+
             // SnapTransform 的初始坐标
-            snapTransform.InitTransform(position,null);
+            snapTransform.InitTransform(position, null);
             sceneObjects[spaceship.Id] = spaceship.gameObject;
             SyncManager.Instance.AddSnapTransform(snapTransform);
             DataManager.Instance.GalacticKittens.Spaceships[snapTransform.Id] = spaceship;
-            
         }
 
         /// <summary>
@@ -111,13 +111,14 @@ namespace Game.GalacticKittens.Manager
             predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
             sapceshipBullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
             predictionTransform.Id = spawnInfo.Id;
-            sapceshipBullet.PlayShootBulletSound();
+
+            sapceshipBullet.StartShoot(spaceship);
             sceneObjects[spawnInfo.Id] = sapceshipBullet.gameObject;
         }
 
         public void DespawnObject(GalacticKittensObjectDieResponse response)
         {
-            if (sceneObjects.Remove(response.Id,out GameObject gameObject))
+            if (sceneObjects.Remove(response.Id, out GameObject gameObject))
             {
                 Destroy(gameObject);
             }
@@ -126,7 +127,6 @@ namespace Game.GalacticKittens.Manager
                 Debug.Log($"销毁对象 {response.Id} 未找到");
             }
         }
-        
 
 
         /// <summary>
@@ -138,6 +138,5 @@ namespace Game.GalacticKittens.Manager
             Destroy(GalacticKittensAudioManager.Instance);
             Destroy(Instance);
         }
-        
     }
 }

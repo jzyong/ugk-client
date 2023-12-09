@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_normalSprite
       value: 
       objectReference: {fileID: 21300000, guid: 7eb5dad5a6d132c49b96cae3ccb89fd0, type: 3}
+    - target: {fileID: 1953437558097330677, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
+      propertyPath: _characterDataSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 46bead526ee126640bf9e9a4191f22e5, type: 2}
     - target: {fileID: 2238951243271855893, guid: 403484b6c20b84b4eb78e30a558e1163, type: 3}
       propertyPath: m_RootOrder
       value: 1
