@@ -420,6 +420,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377dfadb30324d719f5928bc257ddc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defenseMatrix: {fileID: 0}
+  playerUI: {fileID: 0}
+  m_hitClip: {fileID: 0}
+  m_hitEffectDuration: 0.2
+  spriteRenderer: {fileID: 4455599089423587300}
+  LaserCannon: {fileID: 5202601799221992705}
+  _characterDataSo: {fileID: 0}
 --- !u!1 &5202601799221992705
 GameObject:
   m_ObjectHideFlags: 0

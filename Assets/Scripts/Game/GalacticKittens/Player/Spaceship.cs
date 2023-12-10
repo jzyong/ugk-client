@@ -22,7 +22,7 @@ namespace Game.GalacticKittens.Player
         [SerializeField]
         float m_hitEffectDuration;
         [SerializeField]
-        SpriteRenderer m_shipRenderer;
+        private SpriteRenderer spriteRenderer;
 
         public CharacterDataSO _characterDataSo;
         
@@ -73,8 +73,8 @@ namespace Game.GalacticKittens.Player
         }
 
 
-        // Set the hit animation effect  TODO
-        public IEnumerator HitEffect()
+        // Set the hit animation effect  
+        private IEnumerator HitEffect()
         {
             bool active = false;
             float timer = 0f;
@@ -82,14 +82,20 @@ namespace Game.GalacticKittens.Player
             while (timer < m_hitEffectDuration)
             {
                 active = !active;
-                m_shipRenderer.material.SetInt(k_hitEffect, active ? 1 : 0);
+                spriteRenderer.material.SetInt(k_hitEffect, active ? 1 : 0);
                 yield return new WaitForEndOfFrame();
                 timer += Time.deltaTime;
             }
 
-            m_shipRenderer.material.SetInt(k_hitEffect, 0);
+            spriteRenderer.material.SetInt(k_hitEffect, 0);
         }
 
+        public void PlayHitEffect()
+        {
+            StopCoroutine(HitEffect());
+            StartCoroutine(HitEffect());
+        }
+        
 
         /// <summary>
         /// 玩家开火

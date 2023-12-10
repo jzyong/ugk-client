@@ -20,6 +20,7 @@ namespace Game.GalacticKittens.Manager
     {
         [SerializeField] private Spaceship[] spaceships;
         [SerializeField] private SapceshipBullet _shipShootBullet;
+        [SerializeField] private EnemyBullet _enemyShootBullet;
         [SerializeField] private GhostEnemy ghostEnemy;
         [SerializeField] private ShooterEnemy shooterEnemy;
         [SerializeField] private Meteor _meteor;
@@ -43,7 +44,6 @@ namespace Game.GalacticKittens.Manager
         }
 
 
-        //TODO 向场景中添加对象
         private void SpawnObject(GalacticKittensObjectSpawnResponse response)
         {
             foreach (var spawnInfo in response.Spawn)
@@ -61,6 +61,9 @@ namespace Game.GalacticKittens.Manager
                         break;
                     case 30: //玩家发射子弹
                         SpawnPlayerBullet(spawnInfo);
+                        break;
+                    case 31:
+                        SpawnEnemyBullet(spawnInfo);
                         break;
                     case 40:
                         SpawnShooterEnemy(spawnInfo);
@@ -130,6 +133,25 @@ namespace Game.GalacticKittens.Manager
 
             sapceshipBullet.StartShoot(spaceship);
             sceneObjects[spawnInfo.Id] = sapceshipBullet.gameObject;
+            SyncManager.Instance.AddPredictionTransform(predictionTransform);
+        }
+        
+        /// <summary>
+        /// 产生敌人子弹 
+        /// </summary>
+        /// <param name="spawnInfo"></param>
+        private void SpawnEnemyBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+
+            var bullet = Instantiate(_enemyShootBullet, Instance.transform);
+            bullet.name = $"EnemyBullet{spawnInfo.Id}";
+            PredictionTransform predictionTransform = bullet.GetComponent<PredictionTransform>();
+            predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
+            bullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
+            predictionTransform.Id = spawnInfo.Id;
+
+            bullet.StartShoot();
+            sceneObjects[spawnInfo.Id] = bullet.gameObject;
             SyncManager.Instance.AddPredictionTransform(predictionTransform);
         }
 

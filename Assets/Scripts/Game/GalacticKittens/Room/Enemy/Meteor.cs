@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Game.GalacticKittens.Manager;
+using Game.GalacticKittens.Player;
 using Game.GalacticKittens.Utility;
 using Network.Sync;
 using UnityEngine;
@@ -28,59 +29,24 @@ namespace Game.GalacticKittens.Room.Enemy
                 m_meteors[Random.Range(0, m_meteors.Length)];
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
-        {
-            // if (!IsServer)
-            //     return;
-            //
-            // if (collider.TryGetComponent(out IDamagable damagable))
-            // {
-            //     // Hit the object that collide with me
-            //     damagable.Hit(m_damage);
-            //
-            //     // Hit me too!
-            //     Hit(m_damage);
-            // }
-        }
 
-        public IEnumerator HitEffect()
-        {
-            bool active = false;
-            float timer = 0f;
-            while (timer < m_hitEffectDuration)
-            {
-                active = !active;
-                m_spriteRenderer.material.SetInt("_Hit", active ? 1 : 0);
-
-                yield return new WaitForEndOfFrame();
-
-                timer += Time.deltaTime;
-            }
-
-            m_spriteRenderer.material.SetInt("_Hit", 0);
-        }
-
-        // public void Hit(int damage)
-        // {
-        //     m_health -= damage;
-        //     if (m_health <= 0)
-        //     {
-        //         PowerUpSpawnController.instance.OnPowerUpSpawn(transform.position);
-        //         NetworkObjectSpawner.SpawnNewNetworkObject(m_vfxExplosion, transform.position);
-        //
-        //         NetworkObjectDespawner.DespawnNetworkObject(NetworkObject);
-        //     }
-        //
-        //     StopCoroutine(HitEffect());
-        //     StartCoroutine(HitEffect());
-        // }
         public void Despawn(GalacticKittensObjectDieResponse response)
         {
-            var explosion = Instantiate(m_vfxExplosion, transform.position,Quaternion.identity,GalacticKittensRoomManager.Instance.transform);
+            var sceneObject = GalacticKittensRoomManager.Instance.GetSceneObject(response.KillerId);
+            if (sceneObject != null)
+            {
+                var spaceship = sceneObject.GetComponent<Spaceship>();
+                if (spaceship != null)
+                {
+                    spaceship.PlayHitEffect();
+                }
+            }
+
+            var explosion = Instantiate(m_vfxExplosion, transform.position, Quaternion.identity,
+                GalacticKittensRoomManager.Instance.transform);
             explosion.GetComponent<ParticleSystem>().Play();
             SyncManager.Instance.RemoveSyncObject(GetComponent<PredictionTransform>().Id);
             Destroy(gameObject);
         }
-
     }
 }

@@ -127,6 +127,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Common.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\ProtoUtil.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Manager\CharacterSelectionManager.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\EnemyBullet.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\Compression.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpClient.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriterPooled.cs" />

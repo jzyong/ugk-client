@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Game.GalacticKittens.Manager;
+using Game.GalacticKittens.Player;
 using Game.GalacticKittens.Utility;
 using Network.Sync;
 using UnityEngine;
@@ -10,12 +11,11 @@ namespace Game.GalacticKittens.Room.Enemy
     /// <summary>
     /// 敌人基类
     /// </summary>
-    public class BaseEnemy : MonoBehaviour,IObjectDestory
+    public class BaseEnemy : MonoBehaviour, IObjectDestory
     {
-         protected SpriteRenderer m_sprite;
+        protected SpriteRenderer m_sprite;
 
-        [SerializeField]
-        protected float m_hitEffectDuration=0.2f;
+        [SerializeField] protected float m_hitEffectDuration = 0.2f;
 
         [SerializeField] protected GameObject m_vfxExplosion;
 
@@ -26,15 +26,26 @@ namespace Game.GalacticKittens.Room.Enemy
 
         public void Despawn(GalacticKittensObjectDieResponse response)
         {
+            var sceneObject = GalacticKittensRoomManager.Instance.GetSceneObject(response.KillerId);
+            if (sceneObject != null)
+            {
+                var spaceship = sceneObject.GetComponent<Spaceship>();
+                if (spaceship != null)
+                {
+                    spaceship.PlayHitEffect();
+                }
+            }
+
             var blast = Instantiate(m_vfxExplosion, transform);
             blast.GetComponent<ParticleSystem>().Play();
-            
-            var explosion = Instantiate(m_vfxExplosion, transform.position,Quaternion.identity,GalacticKittensRoomManager.Instance.transform);
+
+            var explosion = Instantiate(m_vfxExplosion, transform.position, Quaternion.identity,
+                GalacticKittensRoomManager.Instance.transform);
             explosion.GetComponent<ParticleSystem>().Play();
             SyncManager.Instance.RemoveSyncObject(GetComponent<SnapTransform>().Id);
             Destroy(gameObject);
         }
-        
+
         private IEnumerator HitEffect()
         {
             bool active = false;
@@ -56,6 +67,5 @@ namespace Game.GalacticKittens.Room.Enemy
             StopCoroutine(HitEffect());
             StartCoroutine(HitEffect());
         }
-        
     }
 }
