@@ -6,6 +6,7 @@ namespace Network.Sync
 {
     /// <summary>
     /// Transform 同步  TODO 添加网络同步统计信息
+    /// <para>同步参数应该通过拉取配置方式获取，方便客户端和服务器参数同步</para>
     /// </summary>
     public abstract class NetworkTransform : MonoBehaviour
     {

@@ -99,6 +99,7 @@ namespace Game.GalacticKittens.Manager
                 snapTransform.IsOnwer = true;
             }
 
+            spaceship._characterDataSo.clientId = spawnInfo.ConfigId;
             // SnapTransform 的初始坐标
             snapTransform.InitTransform(position, null);
             sceneObjects[spaceship.Id] = spaceship.gameObject;
