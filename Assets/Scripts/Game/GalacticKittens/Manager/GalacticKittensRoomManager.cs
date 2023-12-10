@@ -21,6 +21,7 @@ namespace Game.GalacticKittens.Manager
         [SerializeField] private SapceshipBullet _shipShootBullet;
         [SerializeField] private GhostEnemy ghostEnemy;
         [SerializeField] private ShooterEnemy shooterEnemy;
+        [SerializeField] private Meteor _meteor;
 
         /// <summary>
         /// 场景所有对象
@@ -48,7 +49,7 @@ namespace Game.GalacticKittens.Manager
             {
                 Debug.Log($"{spawnInfo.Id} ConfigID={spawnInfo.ConfigId} 出生于 {spawnInfo.Position}");
 
-                // 0-3玩家飞船；20Boss；30玩家子弹，31敌人子弹；40射击敌人、41幽灵敌人、41陨石
+                // 0-3玩家飞船；20Boss；30玩家子弹，31敌人子弹；40射击敌人、41幽灵敌人、42陨石
                 switch (spawnInfo.ConfigId)
                 {
                     case 0: //玩家
@@ -65,6 +66,9 @@ namespace Game.GalacticKittens.Manager
                         break;
                     case 41:
                         SpawnGhostEnemy(spawnInfo);
+                        break;
+                    case 42:
+                        SpawnMeteor(spawnInfo);
                         break;
                     default:
                         Debug.Log($"{spawnInfo.ConfigId} spawn 未实现");
@@ -116,7 +120,7 @@ namespace Game.GalacticKittens.Manager
             }
 
             var sapceshipBullet = Instantiate(_shipShootBullet, Instance.transform);
-            sapceshipBullet.name = $"Enemy{spawnInfo.Id}";
+            sapceshipBullet.name = $"SpaceshipBullet{spawnInfo.Id}";
             PredictionTransform predictionTransform = sapceshipBullet.GetComponent<PredictionTransform>();
             predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
             sapceshipBullet.transform.position = ProtoUtil.BuildVector3(spawnInfo.Position);
@@ -139,7 +143,7 @@ namespace Game.GalacticKittens.Manager
             var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
             enemy.transform.position = spawnPosition;
             snapTransform.Id = spawnInfo.Id;
-            snapTransform.InitTransform(spawnPosition,null);
+            snapTransform.InitTransform(spawnPosition, null);
             sceneObjects[spawnInfo.Id] = enemy.gameObject;
             SyncManager.Instance.AddSnapTransform(snapTransform);
         }
@@ -155,10 +159,28 @@ namespace Game.GalacticKittens.Manager
             var snapTransform = enemy.GetComponent<SnapTransform>();
             var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
             enemy.transform.position = spawnPosition;
-            snapTransform.InitTransform(spawnPosition,null);
+            snapTransform.InitTransform(spawnPosition, null);
             snapTransform.Id = spawnInfo.Id;
             sceneObjects[spawnInfo.Id] = enemy.gameObject;
             SyncManager.Instance.AddSnapTransform(snapTransform);
+        }
+        
+       /// <summary>
+       /// 产生陨石
+       /// </summary>
+       /// <param name="spawnInfo"></param>
+        private void SpawnMeteor(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+            var meteor = Instantiate(_meteor, Instance.transform);
+            meteor.name = $"Meteor{spawnInfo.Id}";
+            var predictionTransform = meteor.GetComponent<PredictionTransform>();
+            var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
+            meteor.transform.position = spawnPosition;
+            meteor.transform.localScale = ProtoUtil.BuildVector3(spawnInfo.Scale);
+            predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
+            predictionTransform.Id = spawnInfo.Id;
+            sceneObjects[spawnInfo.Id] = meteor.gameObject;
+            SyncManager.Instance.AddPredictionTransform(predictionTransform);
         }
 
 

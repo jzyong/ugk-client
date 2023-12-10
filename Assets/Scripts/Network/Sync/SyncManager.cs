@@ -53,8 +53,8 @@ namespace Network.Sync
         {
             _snapTransforms.Clear();
             _predictionTransforms.Clear();
-            SnapSyncMessage.Payload.Clear();
-            PredictionSyncMessage.Payload.Clear();
+            SnapSyncMessage?.Payload.Clear();
+            PredictionSyncMessage?.Payload.Clear();
         }
 
         /// <summary>

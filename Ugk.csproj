@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Network\Sync\SyncManager.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Pool.cs" />
      <Compile Include="Assets\Scripts\Network\MessageMapAttribute.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\RotateNetworkObjectOnZaxis.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\ExponentialMovingAverage.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkLoop.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpConfig.cs" />
@@ -96,6 +97,7 @@
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkReaderExtensions.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Index\GameItem.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\CharacterDataSO.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\Meteor.cs" />
      <Compile Include="Assets\Scripts\Network\Handlers\LoginHandler.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\SnapshotInterpolation.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Extensions.cs" />

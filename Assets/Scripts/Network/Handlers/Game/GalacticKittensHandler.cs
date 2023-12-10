@@ -202,15 +202,14 @@ namespace Network.Handlers.Game
                 return;
             }
 
-            var spaceship = DataManager.Instance.GalacticKittens.Spaceships[response.ShipId];
-            if (spaceship == null)
+            if (!DataManager.Instance.GalacticKittens.Spaceships.TryGetValue(response.ShipId,out Spaceship spaceship))
             {
                 Debug.LogWarning($"未正确获得飞船：{response.ShipId}");
-                return;
+                return; 
             }
 
             var playerShipMovement = spaceship.GetComponent<PlayerShipMovement>();
-            playerShipMovement.SetMoveType((PlayerShipMovement.VerticalMovementType)response.State); //TODO 待测试
+            playerShipMovement.SetMoveType((PlayerShipMovement.VerticalMovementType)response.State); 
         }
     }
 }

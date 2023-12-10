@@ -280,8 +280,9 @@ namespace Network.Sync
                     scale = Compression.ScaleToFloat(quantized, scalePrecision);
                 }
 
-                Debug.Log($"{Id} 接收坐标{position} {lastDeserializedPosition} {ugkMessage.Seq}");
-                OnReceiveTransform(position, rotation, scale, ugkMessage.GetTime() + sendInterval);
+                // Debug.Log($"{Id} 接收坐标{position} {lastDeserializedPosition} {ugkMessage.Seq}"); 
+                //加上RTT 让更平滑，但是增加了延迟
+                OnReceiveTransform(position, rotation, scale, ugkMessage.GetTime() + sendInterval+NetworkTime.RTT/2);
 
                 // save deserialized as 'last' for next delta compression
                 if (syncPosition)
