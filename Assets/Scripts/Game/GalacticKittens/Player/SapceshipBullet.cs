@@ -1,5 +1,8 @@
 using Game.GalacticKittens.Manager;
+using Game.GalacticKittens.Room.Enemy;
+using Game.GalacticKittens.Utility;
 using Network;
+using Network.Sync;
 using UnityEngine;
 
 namespace Game.GalacticKittens.Player
@@ -7,7 +10,7 @@ namespace Game.GalacticKittens.Player
     /// <summary>
     /// 玩家子弹 
     /// </summary>
-    public class SapceshipBullet : MonoBehaviour
+    public class SapceshipBullet : MonoBehaviour, IObjectDestory
     {
         [SerializeField] AudioClip m_shootClip;
 
@@ -37,6 +40,24 @@ namespace Game.GalacticKittens.Player
             var shootVfx = Instantiate(m_shootVfx, spaceship.transform).GetComponent<ParticleSystem>();
             shootVfx.transform.position = transform.position;
             shootVfx.Play();
+        }
+
+        public void Despawn(GalacticKittensObjectDieResponse response)
+        {
+            //播放命中效果
+            var sceneObject = GalacticKittensRoomManager.Instance.GetSceneObject(response.KillerId);
+            if (sceneObject != null)
+            {
+                var baseEnemy = sceneObject.GetComponent<BaseEnemy>();
+                if (baseEnemy != null)
+                {
+                    baseEnemy.PlayerHitEffect();
+                }
+            }
+
+
+            SyncManager.Instance.RemoveSyncObject(GetComponent<PredictionTransform>().Id);
+            Destroy(gameObject);
         }
     }
 }

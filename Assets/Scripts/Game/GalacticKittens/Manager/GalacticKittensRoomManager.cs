@@ -3,6 +3,7 @@ using Common;
 using Common.Tools;
 using Game.GalacticKittens.Player;
 using Game.GalacticKittens.Room.Enemy;
+using Game.GalacticKittens.Utility;
 using Lobby;
 using Network;
 using Network.Messages;
@@ -165,11 +166,11 @@ namespace Game.GalacticKittens.Manager
             sceneObjects[spawnInfo.Id] = enemy.gameObject;
             SyncManager.Instance.AddSnapTransform(snapTransform);
         }
-        
-       /// <summary>
-       /// 产生陨石
-       /// </summary>
-       /// <param name="spawnInfo"></param>
+
+        /// <summary>
+        /// 产生陨石
+        /// </summary>
+        /// <param name="spawnInfo"></param>
         private void SpawnMeteor(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
             var meteor = Instantiate(_meteor, Instance.transform);
@@ -187,16 +188,38 @@ namespace Game.GalacticKittens.Manager
 
         public void DespawnObject(GalacticKittensObjectDieResponse response)
         {
-            SyncManager.Instance.RemoveSyncObject(response.Id);
-
-            if (sceneObjects.Remove(response.Id, out GameObject gameObject))
+            if (sceneObjects.Remove(response.Id, out GameObject go))
             {
-                Destroy(gameObject);
+                var objectDestory = go.GetComponent<IObjectDestory>();
+                if (objectDestory != null)
+                {
+                    objectDestory.Despawn(response);
+                }
+                else
+                {
+                    SyncManager.Instance.RemoveSyncObject(response.Id);
+                    Destroy(go); 
+                }
             }
             else
             {
                 Debug.Log($"销毁对象 {response.Id} 未找到");
             }
+        }
+
+        /// <summary>
+        /// 获得场景对象
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public GameObject GetSceneObject(long id)
+        {
+            if (sceneObjects.TryGetValue(id, out GameObject go))
+            {
+                return go;
+            }
+
+            return null;
         }
 
 

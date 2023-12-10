@@ -1,9 +1,14 @@
-﻿using UnityEngine;
-
-namespace Game.GalacticKittens.Room.Enemy
+﻿namespace Game.GalacticKittens.Room.Enemy
 {
-    public class ShooterEnemy : MonoBehaviour
+    
+    
+    /// <summary>
+    /// 会射击的敌人
+    /// </summary>
+    public class ShooterEnemy : BaseEnemy
     {
         
+        
     }
+    
 }

@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\Lobby\DataManager.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriter.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\Spaceship.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\IObjectDestory.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\DeltaCompression.cs" />
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Log.cs" />
@@ -87,6 +88,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkReaderPool.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\NetworkTime.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\BaseEnemy.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\HealthColor.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkWriterExtensions.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Sync.cs" />
