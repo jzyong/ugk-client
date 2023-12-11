@@ -14,7 +14,7 @@ namespace Network.Sync
 {
     /// <summary>
     /// 快照同步
-    /// 客户端只同步玩家自己操作的  TODO 待测试
+    /// 客户端只同步玩家自己操作的  
     /// </summary>
     public class SnapTransform : NetworkTransform
     {
@@ -281,7 +281,7 @@ namespace Network.Sync
                 }
 
                 // Debug.Log($"{Id} 接收坐标{position} {lastDeserializedPosition} {ugkMessage.Seq}"); 
-                //加上RTT 让更平滑，但是增加了延迟
+                //加上RTT 让更平滑，但是增加了延迟 https://developer.valvesoftware.com/wiki/Interpolation
                 OnReceiveTransform(position, rotation, scale, ugkMessage.GetTime() + sendInterval+NetworkTime.RTT/2);
 
                 // save deserialized as 'last' for next delta compression

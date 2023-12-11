@@ -7,9 +7,10 @@ using UnityEngine;
 namespace Network.Sync
 {
     /// <summary>
-    /// 预测同步   TODO 待测试
+    /// 预测同步   
     /// <para>本地控制对象直接应用，然后对结果进行矫正；</para>
     /// <para>其他玩家或服务器控制对象使用航位推测进行计算，然后对结果进行矫正</para>
+    /// <remarks>客户端控制对象移动使用该组件还未经过测试</remarks>
     /// </summary>
     public class PredictionTransform : NetworkTransform
     {
