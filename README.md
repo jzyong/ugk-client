@@ -1,6 +1,7 @@
 # UGK-Client
 
-多人联网游戏demo，UGK-Server：unity、go、kcp server 。开发中......
+&emsp;&emsp;快节奏多人联网游戏demo，ugk-client：unity、go、kcp client，对应服务器及文档[ugk-server](https://github.com/jzyong/ugk-server)。开发中......
+
 
 
 
