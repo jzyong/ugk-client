@@ -71,7 +71,7 @@ namespace Network
         public static Action<TransportError, string> OnErrorEvent;
 
 
-        // initialization ////////////////////////////////////////////////////// @
+        // initialization ////////////////////////////////////////////////////// 
         static void AddTransportHandlers()
         {
             // community Transports may forget to call OnDisconnected.
