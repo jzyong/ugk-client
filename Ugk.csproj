@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\TimeSnapshot.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Parallax.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Constant.cs" />
+     <Compile Include="Assets\Scripts\Network\NetworkPingDisplay.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\AutoDespawn.cs" />
      <Compile Include="Assets\Scripts\Lobby\UI\Common\NoticePanel.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\Extensions.cs" />
