@@ -35,6 +35,8 @@ namespace Network
 
         //场景网络同步对象数
         [HideInInspector] public static int sceneObjectCount;
+        private int fpsCount;
+        private int fps;
 
 
         void Start()
@@ -83,7 +85,11 @@ namespace Network
                 if (NetworkClient.active) UpdateClient();
 
                 intervalStartTime = NetworkTime.LocalTime;
+                fps = fpsCount;
+                fpsCount=0;
             }
+
+            fpsCount++;
         }
 
         void UpdateClient()
@@ -130,7 +136,7 @@ namespace Network
                 $"Recv: {clientReceivedPacketsPerSecond} msgs @ {Utils.PrettyBytes(clientReceivedBytesPerSecond)}/s");
 
             GUILayout.Label(
-                $"Sync object count: {sceneObjectCount}");
+                $"Sync object count: {sceneObjectCount} @ fps {fps}" );
 
             // end background
             GUILayout.EndVertical();
