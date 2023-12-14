@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Network\Serialize\DeltaCompression.cs" />
      <Compile Include="Assets\Scripts\Network\Transport.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Log.cs" />
+     <Compile Include="Assets\Scripts\Common\Tools\Utils.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\TransformSnapshot.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Player.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\SapceshipBullet.cs" />
@@ -136,6 +137,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpPeer.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerShipMovement.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Manager\GalacticKittensRoomManager.cs" />
+     <Compile Include="Assets\Scripts\Network\NetworkStatistics.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\ErrorCode.cs" />
      <Compile Include="Assets\Scripts\Network\UgkMessage.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\BaseEventManager.cs" />
