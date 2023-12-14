@@ -79,8 +79,7 @@ namespace Game.GalacticKittens.Manager
                         break;
                 }
 
-
-                //TODO 创建玩家或敌人对象，并且添加同步组件
+                NetworkStatistics.sceneObjectCount = sceneObjects.Count;
             }
         }
 
@@ -227,6 +226,7 @@ namespace Game.GalacticKittens.Manager
             {
                 Debug.Log($"销毁对象 {response.Id} 未找到");
             }
+            NetworkStatistics.sceneObjectCount = sceneObjects.Count;
         }
 
         /// <summary>

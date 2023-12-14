@@ -21,17 +21,20 @@ namespace Network
 
         // CLIENT (public fields for other components to grab statistics)
         // long bytes to support >2GB
-        [HideInInspector] public int  clientIntervalReceivedPackets;
+        [HideInInspector] public int clientIntervalReceivedPackets;
         [HideInInspector] public long clientIntervalReceivedBytes;
-        [HideInInspector] public int  clientIntervalSentPackets;
+        [HideInInspector] public int clientIntervalSentPackets;
         [HideInInspector] public long clientIntervalSentBytes;
 
         // results from last interval
         // long bytes to support >2GB
-        [HideInInspector] public int  clientReceivedPacketsPerSecond;
+        [HideInInspector] public int clientReceivedPacketsPerSecond;
         [HideInInspector] public long clientReceivedBytesPerSecond;
-        [HideInInspector] public int  clientSentPacketsPerSecond;
+        [HideInInspector] public int clientSentPacketsPerSecond;
         [HideInInspector] public long clientSentBytesPerSecond;
+
+        //场景网络同步对象数
+        [HideInInspector] public static int sceneObjectCount;
 
 
         void Start()
@@ -43,7 +46,9 @@ namespace Network
                 transport.OnClientDataReceived += OnClientReceive;
                 transport.OnClientDataSent += OnClientSend;
             }
-            else Debug.LogError($"NetworkStatistics: no available or active Transport found on this platform: {Application.platform}");
+            else
+                Debug.LogError(
+                    $"NetworkStatistics: no available or active Transport found on this platform: {Application.platform}");
         }
 
         void OnDestroy()
@@ -96,11 +101,11 @@ namespace Network
 
         void OnGUI()
         {
-            if (NetworkClient.active )
+            if (NetworkClient.active)
             {
                 // create main GUI area
                 // 120 is below NetworkManager HUD in all cases.
-                GUILayout.BeginArea(new Rect(10, 120, 215, 300));
+                GUILayout.BeginArea(new Rect(10, 10, 215, 300));
 
                 // show client / server stats if active
                 if (NetworkClient.active) OnClientGUI();
@@ -117,10 +122,15 @@ namespace Network
             GUILayout.Label("<b>Client Statistics</b>");
 
             // sending ("msgs" instead of "packets" to fit larger numbers)
-            GUILayout.Label($"Send: {clientSentPacketsPerSecond} msgs @ {Utils.PrettyBytes(clientSentBytesPerSecond)}/s");
+            GUILayout.Label(
+                $"Send: {clientSentPacketsPerSecond} msgs @ {Utils.PrettyBytes(clientSentBytesPerSecond)}/s");
 
             // receiving ("msgs" instead of "packets" to fit larger numbers)
-            GUILayout.Label($"Recv: {clientReceivedPacketsPerSecond} msgs @ {Utils.PrettyBytes(clientReceivedBytesPerSecond)}/s");
+            GUILayout.Label(
+                $"Recv: {clientReceivedPacketsPerSecond} msgs @ {Utils.PrettyBytes(clientReceivedBytesPerSecond)}/s");
+
+            GUILayout.Label(
+                $"Sync object count: {sceneObjectCount}");
 
             // end background
             GUILayout.EndVertical();
