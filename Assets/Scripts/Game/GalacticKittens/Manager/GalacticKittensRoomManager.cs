@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Common;
 using Common.Tools;
 using Game.GalacticKittens.Player;
 using Game.GalacticKittens.Room.Boss;
@@ -23,6 +22,10 @@ namespace Game.GalacticKittens.Manager
         [SerializeField] private Spaceship[] spaceships;
         [SerializeField] private SapceshipBullet _shipShootBullet;
         [SerializeField] private EnemyBullet _enemyShootBullet;
+        [SerializeField] private BossCicularBullet _bossCicularBullet;
+        [SerializeField] private BossSmallBullet _bossSmallBullet;
+        [SerializeField] private BossSmallBulletCircular _bossSmallBulletCircular;
+        [SerializeField] private BossHomingMisile _bossHomingMisile;
         [SerializeField] private GhostEnemy ghostEnemy;
         [SerializeField] private ShooterEnemy shooterEnemy;
         [SerializeField] private Meteor _meteor;
@@ -55,7 +58,8 @@ namespace Game.GalacticKittens.Manager
             {
                 Debug.Log($"{spawnInfo.Id} ConfigID={spawnInfo.ConfigId} 出生于 {spawnInfo.Position}");
 
-                // 0-3玩家飞船；20Boss；30玩家子弹，31敌人子弹；40射击敌人、41幽灵敌人、42陨石
+                // 0-3玩家飞船；20Boss预警，21Boss；30玩家子弹，31敌人子弹，32 boss三角形小子弹，33 boss环形分裂后小子弹，34 boss环形分裂子弹，35 boss导弹；
+                // 40射击敌人、41幽灵敌人、41陨石；50能量道具
                 switch (spawnInfo.ConfigId)
                 {
                     case 0: //玩家
@@ -75,6 +79,12 @@ namespace Game.GalacticKittens.Manager
                         break;
                     case 31:
                         SpawnEnemyBullet(spawnInfo);
+                        break;
+                    case 32: //Boss 子弹
+                    case 33:
+                    case 34:
+                    case 35:
+                        SpawnBossBullet(spawnInfo);
                         break;
                     case 40:
                         SpawnShooterEnemy(spawnInfo);
@@ -160,6 +170,46 @@ namespace Game.GalacticKittens.Manager
 
         /// <summary>
         /// 产生敌人子弹 
+        /// </summary>
+        /// <param name="spawnInfo"></param>
+        private void SpawnBossBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+            // 32 boss三角形小子弹，33 boss环形分裂后小子弹，34 boss环形分裂子弹，35 boss导弹
+            GameObject bullet = null;
+            switch (spawnInfo.ConfigId)
+            {
+                case 32:
+                    bullet = Instantiate(_bossSmallBullet, Instance.transform).gameObject;
+                    break;
+                case 33:
+                    bullet = Instantiate(_bossSmallBulletCircular, Instance.transform).gameObject;
+                    break;
+                case 34:
+                    bullet = Instantiate(_bossCicularBullet, Instance.transform).gameObject;
+                    break;
+                case 35:
+                    bullet = Instantiate(_bossHomingMisile, Instance.transform).gameObject;
+                    break;
+            }
+
+            if (bullet == null)
+            {
+                Debug.LogWarning($"{spawnInfo.ConfigId} 子弹类型错误");
+                return;
+            }
+
+            bullet.name = $"BossBullet{spawnInfo.Id}";
+            var snapTransform = bullet.GetComponent<SnapTransform>();
+            var position = ProtoUtil.BuildVector3(spawnInfo.Position);
+            bullet.transform.position = position;
+            snapTransform.InitTransform(position, null);
+            snapTransform.Id = spawnInfo.Id;
+            sceneObjects[spawnInfo.Id] = bullet.gameObject;
+            SyncManager.Instance.AddSnapTransform(snapTransform);
+        }
+
+        /// <summary>
+        /// 产生Boss子弹 
         /// </summary>
         /// <param name="spawnInfo"></param>
         private void SpawnEnemyBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)

@@ -80,6 +80,7 @@
      <Compile Include="Assets\Scripts\Network\Messages\Player.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\SapceshipBullet.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\DefenseMatrix.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossCicularBullet.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpServerConnection.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\GameGalacticKittens.cs" />
      <Compile Include="Assets\Scripts\Network\Messages\Common.cs" />
@@ -104,12 +105,14 @@
      <Compile Include="Assets\Scripts\Game\GalacticKittens\CharacterDataSO.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\Meteor.cs" />
      <Compile Include="Assets\Scripts\Network\Handlers\LoginHandler.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossSmallBullet.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\SnapshotInterpolation.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\Extensions.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerUI.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerMovementInputLimitAdjuster.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AssemblyInfo.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\LoadingFadeEffect.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossSmallBulletCircular.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\PredictionTransform.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\Mathd.cs" />
@@ -141,6 +144,7 @@
      <Compile Include="Assets\Scripts\Network\NetworkStatistics.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\ErrorCode.cs" />
      <Compile Include="Assets\Scripts\Network\UgkMessage.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossHomingMisile.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\BaseEventManager.cs" />
      <Folder Include="Assets\Scripts\Lobby" />
      <Folder Include="Assets\Scripts\Network\Handlers\Game" />

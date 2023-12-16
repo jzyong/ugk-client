@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7446514033910554131}
   - component: {fileID: 4584007422342555434}
   - component: {fileID: 5888633015169650513}
+  - component: {fileID: 2393344088694391986}
   m_Layer: 6
   m_Name: HomingMisile
   m_TagString: Enemy
@@ -192,6 +193,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.4930774, y: 0.28463075}
   m_EdgeRadius: 0
+--- !u!114 &2393344088694391986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446514033910554141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff721c58ac547deade905b3f389231e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 7446514033910554131}
+  syncPosition: 1
+  syncRotation: 0
+  syncScale: 0
+  sendInterval: 0.033
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
+  onlySyncOnChange: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  rotationSensitivity: 0.01
 --- !u!1001 &2158028507106703878
 PrefabInstance:
   m_ObjectHideFlags: 0
