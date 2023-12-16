@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Common;
 using Common.Tools;
 using Game.GalacticKittens.Player;
+using Game.GalacticKittens.Room.Boss;
 using Game.GalacticKittens.Room.Enemy;
 using Game.GalacticKittens.Utility;
 using Lobby;
@@ -24,6 +26,9 @@ namespace Game.GalacticKittens.Manager
         [SerializeField] private GhostEnemy ghostEnemy;
         [SerializeField] private ShooterEnemy shooterEnemy;
         [SerializeField] private Meteor _meteor;
+        [SerializeField] private Boss _boss;
+        [SerializeField] private GameObject bossWarningUI;
+        [SerializeField] private AudioClip bossWarningClip;
 
         /// <summary>
         /// 场景所有对象
@@ -59,6 +64,12 @@ namespace Game.GalacticKittens.Manager
                     case 3: //玩家
                         SpawnSpaceShip(spawnInfo);
                         break;
+                    case 20: //boss 出生预警
+                        StartCoroutine(SpawnBossWarning());
+                        break;
+                    case 21: //boss出现
+                        SpawnBoss(spawnInfo);
+                        break;
                     case 30: //玩家发射子弹
                         SpawnPlayerBullet(spawnInfo);
                         break;
@@ -81,6 +92,18 @@ namespace Game.GalacticKittens.Manager
 
                 NetworkStatistics.sceneObjectCount = sceneObjects.Count;
             }
+        }
+
+        /// <summary>
+        /// 播放boss预警
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator SpawnBossWarning()
+        {
+            bossWarningUI.SetActive(true);
+            GalacticKittensAudioManager.Instance.PlaySoundEffect(bossWarningClip);
+            yield return new WaitForSeconds(bossWarningClip.length);
+            bossWarningUI.SetActive(false);
         }
 
 
@@ -134,14 +157,13 @@ namespace Game.GalacticKittens.Manager
             sceneObjects[spawnInfo.Id] = sapceshipBullet.gameObject;
             SyncManager.Instance.AddPredictionTransform(predictionTransform);
         }
-        
+
         /// <summary>
         /// 产生敌人子弹 
         /// </summary>
         /// <param name="spawnInfo"></param>
         private void SpawnEnemyBullet(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
-
             var bullet = Instantiate(_enemyShootBullet, Instance.transform);
             bullet.name = $"EnemyBullet{spawnInfo.Id}";
             PredictionTransform predictionTransform = bullet.GetComponent<PredictionTransform>();
@@ -206,6 +228,23 @@ namespace Game.GalacticKittens.Manager
             SyncManager.Instance.AddPredictionTransform(predictionTransform);
         }
 
+        /// <summary>
+        /// 产生Boss
+        /// </summary>
+        /// <param name="spawnInfo"></param>
+        private void SpawnBoss(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+            var boss = Instantiate(_boss, Instance.transform);
+            boss.name = $"Boss{spawnInfo.Id}";
+            var snapTransform = boss.GetComponent<SnapTransform>();
+            var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
+            boss.transform.position = spawnPosition;
+            snapTransform.Id = spawnInfo.Id;
+            snapTransform.InitTransform(spawnPosition, null);
+            sceneObjects[spawnInfo.Id] = boss.gameObject;
+            SyncManager.Instance.AddSnapTransform(snapTransform);
+        }
+
 
         public void DespawnObject(GalacticKittensObjectDieResponse response)
         {
@@ -219,13 +258,14 @@ namespace Game.GalacticKittens.Manager
                 else
                 {
                     SyncManager.Instance.RemoveSyncObject(response.Id);
-                    Destroy(go); 
+                    Destroy(go);
                 }
             }
             else
             {
                 Debug.Log($"销毁对象 {response.Id} 未找到");
             }
+
             NetworkStatistics.sceneObjectCount = sceneObjects.Count;
         }
 

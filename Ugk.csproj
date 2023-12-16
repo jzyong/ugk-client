@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\Network\Sync\SnapTransform.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\Snapshot.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\Boss.cs" />
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkReaderPool.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\NetworkTime.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\BaseEnemy.cs" />
@@ -151,6 +152,7 @@
      <Folder Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy" />
      <Folder Include="Assets\Scripts\Network\Handlers" />
      <Folder Include="Assets\Scripts\Network\Kcp\kcp2k" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Room\Boss" />
      <Folder Include="Assets\Scripts\Game\GalacticKittens\Utility" />
      <Folder Include="Assets\Scripts\Lobby\UI" />
      <Folder Include="Assets\Scripts\Game\GalacticKittens\Player" />
