@@ -59,7 +59,7 @@ namespace Game.GalacticKittens.Player
             // 退出游戏
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                GalacticKittensRoomManager.Instance.quitToLobby();
+                GalacticKittensRoomManager.Instance.QuitToLobby();
                 //TODO 需要告知服务器退出游戏
             }
         }

@@ -393,6 +393,12 @@ MonoBehaviour:
   - {fileID: 1663477554204834883}
   - {fileID: 2201419499815496471}
   - {fileID: 8868901843423676704}
+  m_maxNumberOfExplosions: 40
+  m_explosionDuration: 2
+  m_explosionPositionsContainer: {fileID: 9168124976242643224}
+  m_explosionVfx: {fileID: 891729954413761739, guid: 57043e97584ceda4a951bca5a5216bd1, type: 3}
+  m_shakeSpeed: 25
+  m_shakeAmount: 0.2
 --- !u!1 &1545438727840920832
 GameObject:
   m_ObjectHideFlags: 0

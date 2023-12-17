@@ -24,7 +24,7 @@ namespace Game.GalacticKittens.Room.Enemy
             m_sprite = GetComponent<SpriteRenderer>();
         }
 
-        public void Despawn(GalacticKittensObjectDieResponse response)
+        public virtual void Despawn(GalacticKittensObjectDieResponse response)
         {
             var sceneObject = GalacticKittensRoomManager.Instance.GetSceneObject(response.KillerId);
             if (sceneObject != null)

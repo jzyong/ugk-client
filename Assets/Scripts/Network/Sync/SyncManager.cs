@@ -49,7 +49,7 @@ namespace Network.Sync
             ResetData();
         }
 
-        private void ResetData()
+        public void ResetData()
         {
             _snapTransforms.Clear();
             _predictionTransforms.Clear();

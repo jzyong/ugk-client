@@ -335,11 +335,25 @@ namespace Game.GalacticKittens.Manager
         }
 
 
+        public void GameFinish()
+        {
+            SyncManager.Instance.ResetData();
+            foreach (var kv in sceneObjects)
+            {
+                Destroy(kv.Value);
+            }
+            sceneObjects.Clear();
+
+            SceneManager.LoadScene("GalacticKittensFinish");
+        }
+        
+
         /// <summary>
         /// 退出到大厅
         /// </summary>
-        public void quitToLobby()
+        public void QuitToLobby()
         {
+            SyncManager.Instance.ResetData();
             SceneManager.LoadScene("Lobby");
             Destroy(GalacticKittensAudioManager.Instance);
             Destroy(Instance);

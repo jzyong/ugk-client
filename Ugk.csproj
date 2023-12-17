@@ -112,6 +112,7 @@
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerMovementInputLimitAdjuster.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\AssemblyInfo.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\LoadingFadeEffect.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\GameFinishPanel.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossSmallBulletCircular.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Network\Sync\PredictionTransform.cs" />
