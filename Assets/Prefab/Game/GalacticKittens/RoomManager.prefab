@@ -59,5 +59,6 @@ MonoBehaviour:
   shooterEnemy: {fileID: -4534592265095162652, guid: fb788bc15d1791b44ba081e57e6dd30e, type: 3}
   _meteor: {fileID: 5743508054378945731, guid: 1cff9b9cd8f5e4348af0d34b04f812f2, type: 3}
   _boss: {fileID: 8447109048275449680, guid: 72413ffe12d5ce74fb384c2a3d9b1564, type: 3}
-  bossWarningUI: {fileID: 0}
+  _powerUp: {fileID: 6627281761494031015, guid: 199dfd9823a70e14a8cfb2c10f6fe388, type: 3}
+  bossWarningUI: {fileID: 2464979113656726803}
   bossWarningClip: {fileID: 8300000, guid: 31ac21d465ea4964ba9ac4cc001e29ab, type: 3}

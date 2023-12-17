@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Common.Tools;
 using Game.GalacticKittens.Player;
+using Game.GalacticKittens.Room;
 using Game.GalacticKittens.Room.Boss;
 using Game.GalacticKittens.Room.Enemy;
 using Game.GalacticKittens.Utility;
@@ -30,6 +31,7 @@ namespace Game.GalacticKittens.Manager
         [SerializeField] private ShooterEnemy shooterEnemy;
         [SerializeField] private Meteor _meteor;
         [SerializeField] private Boss _boss;
+        [SerializeField] private PowerUp _powerUp;
         [SerializeField] private GameObject bossWarningUI;
         [SerializeField] private AudioClip bossWarningClip;
 
@@ -94,6 +96,9 @@ namespace Game.GalacticKittens.Manager
                         break;
                     case 42:
                         SpawnMeteor(spawnInfo);
+                        break;
+                    case 50:
+                        SpawnPowerUp(spawnInfo);
                         break;
                     default:
                         Debug.Log($"{spawnInfo.ConfigId} spawn 未实现");
@@ -275,6 +280,23 @@ namespace Game.GalacticKittens.Manager
             predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
             predictionTransform.Id = spawnInfo.Id;
             sceneObjects[spawnInfo.Id] = meteor.gameObject;
+            SyncManager.Instance.AddPredictionTransform(predictionTransform);
+        }
+        
+        /// <summary>
+        /// 产生能量
+        /// </summary>
+        /// <param name="spawnInfo"></param>
+        private void SpawnPowerUp(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
+        {
+            var powerUp = Instantiate(_powerUp, Instance.transform);
+            powerUp.name = $"PowerUp{spawnInfo.Id}";
+            var predictionTransform = powerUp.GetComponent<PredictionTransform>();
+            var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
+            powerUp.transform.position = spawnPosition;
+            predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
+            predictionTransform.Id = spawnInfo.Id;
+            sceneObjects[spawnInfo.Id] = powerUp.gameObject;
             SyncManager.Instance.AddPredictionTransform(predictionTransform);
         }
 

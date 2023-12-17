@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Pool.cs" />
      <Compile Include="Assets\Scripts\Network\MessageMapAttribute.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\RotateNetworkObjectOnZaxis.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\PowerUp.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\ExponentialMovingAverage.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkLoop.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpConfig.cs" />

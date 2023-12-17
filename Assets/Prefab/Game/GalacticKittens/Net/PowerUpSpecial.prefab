@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1533768069846618637}
   - component: {fileID: 6092193575393509479}
   - component: {fileID: 753346608490192380}
+  - component: {fileID: 6627281761494031015}
   m_Layer: 0
   m_Name: PowerUpSpecial
   m_TagString: PowerUpSpecial
@@ -149,3 +150,25 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.38
+--- !u!114 &6627281761494031015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533768069846618632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8accdfb1e813481bb18eef349f46fea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1533768069846618636}
+  syncPosition: 1
+  syncRotation: 0
+  syncScale: 0
+  sendInterval: 0.033
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
+  syncAngularVelocity: 0
+  velocityPrecision: 0.01
