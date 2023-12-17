@@ -386,6 +386,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a896f8e3f04290940b0afc17fbf2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_hitEffectDuration: 0.2
+  m_vfxExplosion: {fileID: 0}
+  m_animator: {fileID: 9123702397430231113}
+  m_sprites:
+  - {fileID: 1663477554204834883}
+  - {fileID: 2201419499815496471}
+  - {fileID: 8868901843423676704}
 --- !u!1 &1545438727840920832
 GameObject:
   m_ObjectHideFlags: 0

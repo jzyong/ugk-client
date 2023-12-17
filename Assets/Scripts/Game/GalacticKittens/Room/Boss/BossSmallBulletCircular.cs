@@ -3,7 +3,7 @@
 namespace Game.GalacticKittens.Room.Boss
 {
     
-    public class BossSmallBulletCircular : SnapTransform
+    public class BossSmallBulletCircular : BossSmallBullet
     {
         
     }
