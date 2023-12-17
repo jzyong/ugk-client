@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7446514033910554131}
   syncPosition: 1
-  syncRotation: 0
+  syncRotation: 1
   syncScale: 0
   sendInterval: 0.033
   compressRotation: 0
