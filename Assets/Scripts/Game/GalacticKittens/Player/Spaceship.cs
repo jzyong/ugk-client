@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using System.Linq;
 using Game.GalacticKittens.Manager;
+using Game.GalacticKittens.Utility;
+using Lobby;
 using Network;
 using Network.Sync;
 using UnityEngine;
@@ -9,23 +12,24 @@ namespace Game.GalacticKittens.Player
     /// <summary>
     /// 飞船
     /// </summary>
-    public class Spaceship : MonoBehaviour
+    public class Spaceship : MonoBehaviour, IObjectDestory
     {
         private SnapTransform _snapTransform;
 
         [SerializeField] [Tooltip("护盾")] private DefenseMatrix _defenseMatrix;
-        public PlayerUI playerUI;
+
+        [HideInInspector] public PlayerUI playerUI;
 
         [Header("AudioClips")] [SerializeField]
         AudioClip m_hitClip;
-        
-        [SerializeField]
-        float m_hitEffectDuration;
-        [SerializeField]
-        private SpriteRenderer spriteRenderer;
+
+        [SerializeField] float m_hitEffectDuration;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+
+        [SerializeField] protected GameObject m_vfxExplosion;
 
         public CharacterDataSO _characterDataSo;
-        
+
         const string k_hitEffect = "_Hit";
 
         public long Id { set; get; }
@@ -38,17 +42,17 @@ namespace Game.GalacticKittens.Player
 
         private void Update()
         {
-            
             if (!_snapTransform.IsOnwer)
             {
                 return;
             }
-            
+
             // 监听按键事件，开火
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 FireReq();
             }
+
             //
             // //使用护盾 TODO 需要判断护盾是否充足 ，暂时屏蔽，需要设置引用
             // if (!_defenseMatrix.isShieldActive && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.LeftShift)))
@@ -95,7 +99,7 @@ namespace Game.GalacticKittens.Player
             StopCoroutine(HitEffect());
             StartCoroutine(HitEffect());
         }
-        
+
 
         /// <summary>
         /// 玩家开火
@@ -114,6 +118,24 @@ namespace Game.GalacticKittens.Player
             GalacticKittensUseShieldRequest request = new GalacticKittensUseShieldRequest();
             NetworkManager.Instance.Send(MID.GalacticKittensUseShieldReq, request);
             // playerUI.UpdatePowerUp(); TODO 更新UI
+        }
+
+        public void Despawn(GalacticKittensObjectDieResponse response)
+        {
+            if (m_vfxExplosion != null)
+            {
+                var explosion = Instantiate(m_vfxExplosion, transform.position, Quaternion.identity,
+                    GalacticKittensRoomManager.Instance.transform);
+                explosion.GetComponent<ParticleSystem>().Play();
+            }
+
+            gameObject.SetActive(false);
+            SyncManager.Instance.RemoveSyncObject(GetComponent<SnapTransform>().Id);
+            if (DataManager.Instance.GalacticKittens.Spaceships.Values.All((spaceship =>
+                    spaceship.gameObject.activeSelf == false)))
+            {
+                GalacticKittensRoomManager.Instance.GameFinish(false);
+            }
         }
     }
 }

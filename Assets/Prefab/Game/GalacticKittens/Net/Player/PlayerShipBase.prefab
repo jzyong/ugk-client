@@ -425,7 +425,7 @@ MonoBehaviour:
   m_hitClip: {fileID: 0}
   m_hitEffectDuration: 0.2
   spriteRenderer: {fileID: 4455599089423587300}
-  LaserCannon: {fileID: 5202601799221992705}
+  m_vfxExplosion: {fileID: 891729954413761739, guid: 57043e97584ceda4a951bca5a5216bd1, type: 3}
   _characterDataSo: {fileID: 0}
 --- !u!1 &5202601799221992705
 GameObject:

@@ -85,10 +85,10 @@ namespace Game.GalacticKittens.Room.Boss
             }
             StopCoroutine(Shake());
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForEndOfFrame();
             SyncManager.Instance.RemoveSyncObject(GetComponent<SnapTransform>().Id);
             Destroy(gameObject);
-            GalacticKittensRoomManager.Instance.GameFinish();
+            GalacticKittensRoomManager.Instance.GameFinish(true);
             
         }
         

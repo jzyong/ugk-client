@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Game.GalacticKittens.Player
 {
     /// <summary>
-    /// 玩家UI TODO 制作prefab，消息定义
+    /// 玩家UI 
     /// </summary>
     public class PlayerUI : MonoBehaviour
     {
@@ -32,54 +32,30 @@ namespace Game.GalacticKittens.Player
             public Image playerIconDeathImage;
             public TextMeshProUGUI playerIdDeathText;
         }
-        
-        [SerializeField]
-        HealthUI m_healthUI;                // A struct for all the data relate to the health UI
 
-        [SerializeField]
-        DeathUI m_deathUI;                  // A struct for all the data relate to the death UI
+        [SerializeField] HealthUI m_healthUI; // A struct for all the data relate to the health UI
 
-        [Header("Set in runtime")]
-        public int maxHealth;               // Max health the player has, use for the conversion to the
-        // slider and the coloring of the bar
-    
-        /// <summary>
-        /// 更新血条 TODO 添加血条改变消息
-        /// </summary>
-        /// <param name="currentHealth"></param>
-        void UpdateHealthResponse(float currentHealth)
-        {
-        
-            m_healthUI.healthSlider.value = currentHealth;
-            m_healthUI.healthImage.color = m_healthUI.healthColor.GetHealthColor(currentHealth);
+        [SerializeField] DeathUI m_deathUI; // A struct for all the data relate to the death UI
 
-            if (currentHealth <= 0f)
-            {
-                // Turn off lifeUI
-                m_healthUI.healthUI.SetActive(false);
+        [Header("Set in runtime")] public uint maxHealth=30; // Max health the player has, use for the conversion to the
 
-                // Turn on deathUI
-                m_deathUI.deathUI.SetActive(true);
-            }
-        }
-     
+
+
+
         // TODO: check if the initial values are set on client
         // Set the initial values of the UI
-        public void SetUI(
-            int playerId,
-            Sprite playerIcon,
-            Sprite playerDeathIcon,
-            int maxHealth,
-            Color color)
+        public void SetUI(Spaceship spaceship)
         {
-            m_healthUI.playerIconImage.sprite = playerIcon;
+            var characterDataSo = spaceship._characterDataSo;
+            Color color = new Color(characterDataSo.darkColor.r, characterDataSo.darkColor.g,
+                characterDataSo.darkColor.b, 255);
+            m_healthUI.playerIconImage.sprite = characterDataSo.iconSprite;
             m_healthUI.playerIdText.color = color;
-            m_healthUI.playerIdText.text = $"P{(playerId + 1)}";
+            m_healthUI.playerIdText.text = $"P{(spaceship.Id)}";
 
             m_deathUI.playerIdDeathText.color = color;
-            m_deathUI.playerIconDeathImage.sprite = playerDeathIcon;
+            m_deathUI.playerIconDeathImage.sprite = characterDataSo.iconDeathSprite;
 
-            this.maxHealth = maxHealth;
             m_healthUI.healthImage.color = m_healthUI.healthColor.normalColor;
 
             // Turn on my lifeUI
@@ -87,13 +63,12 @@ namespace Game.GalacticKittens.Player
 
             // Safety -> inactive in scene
             m_deathUI.deathUI.SetActive(false);
+            UpdateHealth(maxHealth);
         }
 
         // Update the UI health 
-        public void UpdateHealth(int currentHealth)
+        public void UpdateHealth(uint currentHealth)
         {
-           
-
             // Don't let health to go below 
             currentHealth = currentHealth < 0 ? 0 : currentHealth;
 
@@ -109,30 +84,13 @@ namespace Game.GalacticKittens.Player
                 // Turn on deathUI
                 m_deathUI.deathUI.SetActive(true);
             }
-
-            UpdateHealthResponse(convertedHealth);
         }
+        
 
         // Activate/deactivate the power up icons base on the index pass
         public void UpdatePowerUp(int index, bool hasSpecial)
         {
-           
-
-            m_healthUI.powerUp[index - 1].SetActive(hasSpecial);
-
-            UpdatePowerUpResponse(index, hasSpecial);
-        }
-        
-        /// <summary>
-        /// 更新能量值 TODO 添加能量，血条改变消息
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="hasSpecial"></param>
-        void UpdatePowerUpResponse(int index, bool hasSpecial)
-        {
-           
-
-            m_healthUI.powerUp[index - 1].SetActive(hasSpecial);
+            m_healthUI.powerUp[index].SetActive(hasSpecial);
         }
     }
 }

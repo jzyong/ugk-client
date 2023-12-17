@@ -202,14 +202,44 @@ namespace Network.Handlers.Game
                 return;
             }
 
-            if (!DataManager.Instance.GalacticKittens.Spaceships.TryGetValue(response.ShipId,out Spaceship spaceship))
+            if (!DataManager.Instance.GalacticKittens.Spaceships.TryGetValue(response.ShipId, out Spaceship spaceship))
             {
                 Debug.LogWarning($"未正确获得飞船：{response.ShipId}");
-                return; 
+                return;
             }
 
             var playerShipMovement = spaceship.GetComponent<PlayerShipMovement>();
-            playerShipMovement.SetMoveType((PlayerShipMovement.VerticalMovementType)response.State); 
+            playerShipMovement.SetMoveType((PlayerShipMovement.VerticalMovementType)response.State);
+        }
+
+
+        /// <summary>
+        /// 属性改变
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensPlayerPropertyRes)]
+        private static void PlayerProperty(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensPlayerPropertyResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            foreach (var property in response.PlayerProperty)
+            {
+                if (!DataManager.Instance.GalacticKittens.Spaceships.TryGetValue(property.PlayerId,
+                        out Spaceship spaceship))
+                {
+                    Debug.LogWarning($"未正确获得飞船：{property.PlayerId}");
+                    continue;
+                }
+
+                spaceship.playerUI.UpdateHealth(property.Hp);
+
+                //激活powerUp
+                for (int i = 0; i < 2; i++)
+                {
+                    bool active = property.PowerUpCount > i ? true : false;
+                    spaceship.playerUI.UpdatePowerUp(i, active);
+                }
+            }
         }
     }
 }

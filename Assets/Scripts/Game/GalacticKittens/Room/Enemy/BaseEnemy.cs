@@ -36,9 +36,6 @@ namespace Game.GalacticKittens.Room.Enemy
                 }
             }
             
-            // var blast = Instantiate(m_vfxExplosion, transform);
-            // blast.GetComponent<ParticleSystem>().Play();
-
             if (m_vfxExplosion!=null)
             {
                 var explosion = Instantiate(m_vfxExplosion, transform.position, Quaternion.identity,

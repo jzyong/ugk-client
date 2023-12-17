@@ -18,7 +18,7 @@ namespace Game.GalacticKittens.Manager
     /// <summary>
     /// 房间管理
     /// </summary>
-    public class GalacticKittensRoomManager : SingletonPersistent<GalacticKittensRoomManager>
+    public class GalacticKittensRoomManager : Singleton<GalacticKittensRoomManager>
     {
         [SerializeField] private Spaceship[] spaceships;
         [SerializeField] private SapceshipBullet _shipShootBullet;
@@ -34,6 +34,9 @@ namespace Game.GalacticKittens.Manager
         [SerializeField] private PowerUp _powerUp;
         [SerializeField] private GameObject bossWarningUI;
         [SerializeField] private AudioClip bossWarningClip;
+
+        public PlayerUI[] playerUis;
+
 
         /// <summary>
         /// 场景所有对象
@@ -128,7 +131,7 @@ namespace Game.GalacticKittens.Manager
         /// <param name="spawnInfo"></param>
         private void SpawnSpaceShip(GalacticKittensObjectSpawnResponse.Types.SpawnInfo spawnInfo)
         {
-            var spaceship = Instantiate(spaceships[spawnInfo.ConfigId], Instance.transform);
+            Spaceship spaceship = Instantiate(spaceships[spawnInfo.ConfigId], Instance.transform);
             spaceship.name = $"Spaceship{spawnInfo.Id}";
             spaceship.Id = spawnInfo.Id;
             var snapTransform = spaceship.GetComponent<SnapTransform>();
@@ -146,6 +149,9 @@ namespace Game.GalacticKittens.Manager
             sceneObjects[spaceship.Id] = spaceship.gameObject;
             SyncManager.Instance.AddSnapTransform(snapTransform);
             DataManager.Instance.GalacticKittens.Spaceships[snapTransform.Id] = spaceship;
+            var playerUI = playerUis[spawnInfo.ConfigId];
+            playerUI.SetUI(spaceship);
+            spaceship.playerUI = playerUI;
         }
 
         /// <summary>
@@ -282,7 +288,7 @@ namespace Game.GalacticKittens.Manager
             sceneObjects[spawnInfo.Id] = meteor.gameObject;
             SyncManager.Instance.AddPredictionTransform(predictionTransform);
         }
-        
+
         /// <summary>
         /// 产生能量
         /// </summary>
@@ -291,13 +297,13 @@ namespace Game.GalacticKittens.Manager
         {
             var powerUp = Instantiate(_powerUp, Instance.transform);
             powerUp.name = $"PowerUp{spawnInfo.Id}";
-            var predictionTransform = powerUp.GetComponent<PredictionTransform>();
+            var snapTransform = powerUp.GetComponent<SnapTransform>();
             var spawnPosition = ProtoUtil.BuildVector3(spawnInfo.Position);
             powerUp.transform.position = spawnPosition;
-            predictionTransform.LinearVelocity = ProtoUtil.BuildVector3(spawnInfo.LinearVelocity);
-            predictionTransform.Id = spawnInfo.Id;
+            snapTransform.Id = spawnInfo.Id;
             sceneObjects[spawnInfo.Id] = powerUp.gameObject;
-            SyncManager.Instance.AddPredictionTransform(predictionTransform);
+            snapTransform.InitTransform(spawnPosition, null);
+            SyncManager.Instance.AddSnapTransform(snapTransform);
         }
 
         /// <summary>
@@ -357,18 +363,18 @@ namespace Game.GalacticKittens.Manager
         }
 
 
-        public void GameFinish()
+        public void GameFinish(bool success)
         {
             SyncManager.Instance.ResetData();
             foreach (var kv in sceneObjects)
             {
                 Destroy(kv.Value);
             }
-            sceneObjects.Clear();
 
+            sceneObjects.Clear();
             SceneManager.LoadScene("GalacticKittensFinish");
         }
-        
+
 
         /// <summary>
         /// 退出到大厅
