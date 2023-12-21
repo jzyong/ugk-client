@@ -51,11 +51,13 @@
      <Folder Include="Assets\Plugins\System.Runtime.CompilerServices.Unsafe\lib" />
      <Folder Include="Assets\Plugins\TextMesh Pro\Resources\Fonts &amp; Materials" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <Folder Include="Assets\Plugins\ParrelSync\ScriptableObjects" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\Plugins\TextMesh Pro\Resources" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <Folder Include="Assets\Plugins\TextMesh Pro" />
      <Folder Include="Assets\Plugins\Google.Protobuf\lib\net45" />
+     <Folder Include="Assets\Plugins\ParrelSync" />
      <Folder Include="Assets\Plugins\System.Runtime.CompilerServices.Unsafe\lib\net45" />
      <Folder Include="Assets\Plugins\Google.Protobuf" />
      <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
