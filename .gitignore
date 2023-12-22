@@ -9,6 +9,7 @@ UserSettings/
 kcp2k.csproj
 Assembly-CSharp.csproj
 Build/
+HybridCLRData/
 
 
 
