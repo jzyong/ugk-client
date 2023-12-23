@@ -15,13 +15,13 @@ namespace Lobby.UI.Index
 
         void Start()
         {
-            MessageEventManager.Singleton.AddEvent<LoadPlayerResponse>(MessageEvent.LoadPlayer, LoadPlayerRes);
+            MessageEventManager.Instance.AddEvent<LoadPlayerResponse>(MessageEvent.LoadPlayer, LoadPlayerRes);
             InitDatas();
         }
 
         private void OnDestroy()
         {
-            MessageEventManager.Singleton.RemoveEvent<LoadPlayerResponse>(MessageEvent.LoadPlayer, LoadPlayerRes);
+            MessageEventManager.Instance.RemoveEvent<LoadPlayerResponse>(MessageEvent.LoadPlayer, LoadPlayerRes);
         }
 
 

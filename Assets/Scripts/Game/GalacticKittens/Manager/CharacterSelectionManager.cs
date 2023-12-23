@@ -143,13 +143,13 @@ namespace Game.GalacticKittens.Manager
 
         private void OnEnable()
         {
-            MessageEventManager.Singleton.AddEvent<GalacticKittensRoomInfoResponse>(
+            MessageEventManager.Instance.AddEvent<GalacticKittensRoomInfoResponse>(
                 MessageEvent.GalacticKittensRoomInfo, RoomInfoRes);
         }
 
         void OnDisable()
         {
-            MessageEventManager.Singleton.RemoveEvent<GalacticKittensRoomInfoResponse>(
+            MessageEventManager.Instance.RemoveEvent<GalacticKittensRoomInfoResponse>(
                 MessageEvent.GalacticKittensRoomInfo, RoomInfoRes);
         }
 

@@ -43,7 +43,7 @@ namespace Game.GalacticKittens.Player
             m_ship.transform.localPosition = currentPosition;
         }
 
-        public void SetShip(bool victory, int enemiesDestroyed, int powerUpsUsed, int score)
+        public void SetShip(bool victory, int enemiesDestroyed, int powerUpsUsed, int score,bool best=false)
         {
             // Set vfx depending on the scene we are loading 
             m_vfxSmoke.SetActive(!victory);
@@ -53,12 +53,11 @@ namespace Game.GalacticKittens.Player
             m_enemiesDestroyedText.text = enemiesDestroyed.ToString();
             m_powerUpsUsedText.text = powerUpsUsed.ToString();
             m_scoreText.text = score.ToString();
+            if (best)
+            {
+                m_crown.SetActive(true);
+            }
         }
 
-        // Turn on the crown because I'm the best ship
-        public void BestShip()
-        {
-            m_crown.SetActive(true);
-        }
     }
 }

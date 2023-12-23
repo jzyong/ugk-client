@@ -18,12 +18,12 @@ namespace Lobby.UI.Login
         void Start()
         {
             loginButton.onClick.AddListener(Login);
-            MessageEventManager.Singleton.AddEvent<LoginResponse>(MessageEvent.Login, LoginRes);
+            MessageEventManager.Instance.AddEvent<LoginResponse>(MessageEvent.Login, LoginRes);
         }
 
         private void OnDestroy()
         {
-            MessageEventManager.Singleton.RemoveEvent<LoginResponse>(MessageEvent.Login, LoginRes);
+            MessageEventManager.Instance.RemoveEvent<LoginResponse>(MessageEvent.Login, LoginRes);
         }
 
 

@@ -47,13 +47,13 @@ namespace Game.GalacticKittens.Manager
 
         private void OnEnable()
         {
-            MessageEventManager.Singleton.AddEvent<GalacticKittensObjectSpawnResponse>(
+            MessageEventManager.Instance.AddEvent<GalacticKittensObjectSpawnResponse>(
                 MessageEvent.GalacticKittensObjectSpawn, SpawnObject);
         }
 
         private void OnDisable()
         {
-            MessageEventManager.Singleton.RemoveEvent<GalacticKittensObjectSpawnResponse>(
+            MessageEventManager.Instance.RemoveEvent<GalacticKittensObjectSpawnResponse>(
                 MessageEvent.GalacticKittensObjectSpawn, SpawnObject);
         }
 

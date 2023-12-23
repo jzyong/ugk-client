@@ -51,7 +51,7 @@ namespace Network.Handlers
             var response = new LoginResponse();
             response.MergeFrom(ugkMessage.Bytes);
             Debug.Log($" 收到登录消息：{response.PlayerId} 结果：{response.Result.Msg}");
-            MessageEventManager.Singleton.OnEvent(MessageEvent.Login, response);
+            MessageEventManager.Instance.OnEvent(MessageEvent.Login, response);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Network.Handlers
             List<GameInfo> gameLists = new List<GameInfo>(response.GameInfo);
             DataManager.Instance.GameList = gameLists;
             Debug.Log($" 收到数据加载消息：{response} 结果：{response.Result?.Msg}");
-            MessageEventManager.Singleton.OnEvent(MessageEvent.LoadPlayer, response);
+            MessageEventManager.Instance.OnEvent(MessageEvent.LoadPlayer, response);
         }
     }
 }

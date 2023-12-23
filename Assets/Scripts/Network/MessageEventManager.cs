@@ -16,6 +16,7 @@ namespace Network
         //GalacticKittens
         GalacticKittensRoomInfo,
         GalacticKittensObjectSpawn,
+        GalacticKittensGameFinish,
     }
     
     /// <summary>
@@ -23,7 +24,7 @@ namespace Network
     /// </summary>
     public class MessageEventManager:BaseEventManager<MessageEvent>
     {
-        public static MessageEventManager Singleton
+        public static MessageEventManager Instance
         {
             get;
         } = new MessageEventManager();

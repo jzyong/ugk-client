@@ -3,6 +3,7 @@ using Game.GalacticKittens.Manager;
 using Game.GalacticKittens.Player;
 using Google.Protobuf;
 using Lobby;
+using Network.Sync;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -60,7 +61,7 @@ namespace Network.Handlers.Game
 
 
             // 修改UI显示页面
-            MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensRoomInfo, response);
+            MessageEventManager.Instance.OnEvent(MessageEvent.GalacticKittensRoomInfo, response);
 
             //切换为加载场景
             if (response.Room.State == (uint)RoomState.Load && galacticKittens.RoomState != response.Room.State)
@@ -116,7 +117,7 @@ namespace Network.Handlers.Game
         {
             var response = new GalacticKittensObjectSpawnResponse();
             response.MergeFrom(ugkMessage.Bytes);
-            MessageEventManager.Singleton.OnEvent(MessageEvent.GalacticKittensObjectSpawn, response);
+            MessageEventManager.Instance.OnEvent(MessageEvent.GalacticKittensObjectSpawn, response);
         }
 
         /// <summary>
@@ -242,5 +243,23 @@ namespace Network.Handlers.Game
                 }
             }
         }
+        
+        
+        /// <summary>
+        /// 结束
+        /// </summary>
+        /// <param name="ugkMessage"></param>
+        [MessageMap(MID.GalacticKittensGameFinishRes)]
+        private static void GameFinish(UgkMessage ugkMessage)
+        {
+            var response = new GalacticKittensGameFinishResponse();
+            response.MergeFrom(ugkMessage.Bytes);
+            SyncManager.Instance.ResetData();
+            MessageEventManager.Instance.OnEvent(MessageEvent.GalacticKittensGameFinish, response);
+            DataManager.Instance.GalacticKittens.GameFinishResponse = response;
+            
+            Debug.Log($"游戏结束：{response}");
+        }
+        
     }
 }

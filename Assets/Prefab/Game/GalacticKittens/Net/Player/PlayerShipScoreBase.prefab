@@ -76,6 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3287878277684609715}
+  - component: {fileID: 5346739360659348056}
   m_Layer: 0
   m_Name: PlayerShipScoreBase
   m_TagString: Player
@@ -101,6 +102,49 @@ Transform:
   - {fileID: 2939874737604639682}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5346739360659348056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287878277684609727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d258f2ab79e244829aa213f4b30c46e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_vfxSmoke: {fileID: 517762768397066405}
+  m_vfxJet: {fileID: 4236926853566391632}
+  m_scoreText: {fileID: 8647342219775186816}
+  m_enemiesDestroyedText: {fileID: 3932505912901950047}
+  m_powerUpsUsedText: {fileID: 4588819215210320655}
+  m_ship: {fileID: 7756586696585860551}
+  m_crown: {fileID: 7937895833896872310}
+  m_moveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.40190083
+      value: -0.29162598
+      inSlope: 0.8207707
+      outSlope: 0.8207707
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.12883611
+    - serializedVersion: 3
+      time: 2.2629886
+      value: -0.21745391
+      inSlope: -0.6969391
+      outSlope: -0.6969391
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.67793196
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
 --- !u!1 &4301765679758446019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1717,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cfab2731c8c0ab4bb2f47d8e01eb4d7, type: 3}
+--- !u!1 &4236926853566391632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4236926852007596865, guid: 6cfab2731c8c0ab4bb2f47d8e01eb4d7, type: 3}
+  m_PrefabInstance: {fileID: 2132375057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4236926853566391645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4236926852007596876, guid: 6cfab2731c8c0ab4bb2f47d8e01eb4d7, type: 3}
@@ -1775,6 +1824,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b7ebbaba055e1546977c4514e772624, type: 3}
+--- !u!1 &517762768397066405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6766243336052792766, guid: 1b7ebbaba055e1546977c4514e772624, type: 3}
+  m_PrefabInstance: {fileID: 6542023858088394011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7438028752902339890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4463313210490978345, guid: 1b7ebbaba055e1546977c4514e772624, type: 3}
