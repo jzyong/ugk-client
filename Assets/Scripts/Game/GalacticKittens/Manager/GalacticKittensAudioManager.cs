@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Common.Tools;
 using UnityEngine;
@@ -32,9 +33,11 @@ namespace Game.GalacticKittens.Manager
         private void Start()
         {
             // We know that the menu scene if the first to use this script
-            // PlayMusic(MusicName.intro); //TODO 开发暂时屏蔽
+             PlayMusic(MusicName.intro); 
         }
-   
+
+
+
         public void PlaySoundEffect(AudioClip clip, float volume = 1f)
         {
             m_sfxSource.PlayOneShot(clip, volume);

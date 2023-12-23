@@ -70,6 +70,7 @@ namespace Network.Handlers.Game
             else if (response.Room.State == (uint)RoomState.Gameing && response.Room.State != galacticKittens.RoomState)
             {
                 SceneManager.LoadScene("GalacticKittensGamePlay");
+                GalacticKittensAudioManager.Instance.SwitchToGameplayMusic();
             }
 
 

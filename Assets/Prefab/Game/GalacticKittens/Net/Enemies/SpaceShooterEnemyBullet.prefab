@@ -44,7 +44,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411154881606408662}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -68,8 +67,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -80,6 +78,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 1.65, y: 0.12}
   m_EdgeRadius: 0
 --- !u!50 &5605503099686895695
@@ -195,4 +194,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8887631fd834114beba9342744a8ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shootClip: {fileID: 0}
+  m_shootClip: {fileID: 8300000, guid: ddb3ab12420ddfe44943a38bccedcde2, type: 3}

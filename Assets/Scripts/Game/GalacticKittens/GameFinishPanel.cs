@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.GalacticKittens.Manager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ namespace Game.GalacticKittens
 
         private void BackLobby()
         {
+            DestroyImmediate(GalacticKittensAudioManager.Instance);
             SceneManager.LoadScene("Scenes/Lobby");
         }
     }
