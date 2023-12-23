@@ -66,11 +66,13 @@ namespace Network.Handlers.Game
             //切换为加载场景
             if (response.Room.State == (uint)RoomState.Load && galacticKittens.RoomState != response.Room.State)
             {
-                SceneManager.LoadScene("GalacticKittensControls");
+                LoadingFadeEffect.Instance.LoadScene("GalacticKittensControls");
+                // SceneManager.LoadScene("GalacticKittensControls");
             }
             else if (response.Room.State == (uint)RoomState.Gameing && response.Room.State != galacticKittens.RoomState)
             {
-                SceneManager.LoadScene("GalacticKittensGamePlay");
+                LoadingFadeEffect.Instance.LoadScene("GalacticKittensGamePlay");
+                // SceneManager.LoadScene("GalacticKittensGamePlay");
                 GalacticKittensAudioManager.Instance.SwitchToGameplayMusic();
             }
 
@@ -179,14 +181,14 @@ namespace Network.Handlers.Game
                 return;
             }
 
-            var defenseMatrix = spaceship.GetComponent<DefenseMatrix>(); //TODO 待测试，unity设置对象
+            var defenseMatrix = spaceship.GetComponentInChildren<DefenseMatrix>(); 
             if (response.State == 0)
             {
                 defenseMatrix.TurnOffShield();
             }
             else
             {
-                defenseMatrix.TurnOffShield();
+                defenseMatrix.TurnOnShield();
             }
         }
 
@@ -232,7 +234,7 @@ namespace Network.Handlers.Game
                     Debug.LogWarning($"未正确获得飞船：{property.PlayerId}");
                     continue;
                 }
-
+                spaceship.PlayerProperty = property;
                 spaceship.playerUI.UpdateHealth(property.Hp);
 
                 //激活powerUp
@@ -243,8 +245,8 @@ namespace Network.Handlers.Game
                 }
             }
         }
-        
-        
+
+
         /// <summary>
         /// 结束
         /// </summary>
@@ -257,9 +259,8 @@ namespace Network.Handlers.Game
             SyncManager.Instance.ResetData();
             MessageEventManager.Instance.OnEvent(MessageEvent.GalacticKittensGameFinish, response);
             DataManager.Instance.GalacticKittens.GameFinishResponse = response;
-            
+
             Debug.Log($"游戏结束：{response}");
         }
-        
     }
 }

@@ -1,3 +1,4 @@
+using Game.GalacticKittens;
 using Network;
 using TMPro;
 using UnityEngine;
@@ -46,7 +47,8 @@ namespace Lobby.UI.Login
                 {
                     PlayerId = response.PlayerId
                 });
-                SceneManager.LoadScene("Lobby");
+                LoadingFadeEffect.Instance.LoadScene("Lobby");
+                // SceneManager.LoadScene("Lobby");
             }
             else
             {

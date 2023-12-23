@@ -8,7 +8,7 @@ namespace Game.GalacticKittens.Player
     /// </summary>
     public class DefenseMatrix : MonoBehaviour
     {
-        [SerializeField] AudioClip m_shieldClip;
+        public AudioClip m_shieldClip;
         public bool isShieldActive { get; private set; } = false;
 
         private SpriteRenderer m_spriteRenderer;

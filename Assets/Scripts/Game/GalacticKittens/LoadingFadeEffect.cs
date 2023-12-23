@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using Common.Tools;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /*
-    Script to do the fade effect on loading scenes // TODO 引用效果
+    Script to do the fade effect on loading scenes 
 */
 
 namespace Game.GalacticKittens
@@ -109,6 +111,24 @@ namespace Game.GalacticKittens
         public void FadeAll()
         {
             StartCoroutine(FadeAllEffect());
+        }
+
+        /// <summary>
+        /// 渐变加载场景
+        /// </summary>
+        /// <param name="sceneName"></param>
+        public void LoadScene(String sceneName)
+        {
+            StartCoroutine(Loading(sceneName));
+        }
+
+        private IEnumerator Loading(String sceneName)
+        {
+            FadeIn();
+            yield return new WaitUntil(() => s_canLoad);
+            SceneManager.LoadScene(sceneName);
+            yield return new WaitForSeconds(1f);
+            FadeOut();
         }
 
     }

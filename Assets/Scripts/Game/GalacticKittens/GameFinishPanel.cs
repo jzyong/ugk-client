@@ -79,6 +79,7 @@ namespace Game.GalacticKittens
         private void BackLobby()
         {
             DestroyImmediate(GalacticKittensAudioManager.Instance);
+            LoadingFadeEffect.Instance.FadeAll();
             SceneManager.LoadScene("Scenes/Lobby");
         }
     }

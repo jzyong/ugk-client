@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7413071790144132008}
   - component: {fileID: 3035568784894293694}
   - component: {fileID: 7250494342853944460}
+  - component: {fileID: 7001344387008823651}
   m_Layer: 7
   m_Name: shield
   m_TagString: Player
@@ -148,6 +149,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7001344387008823651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467963061353800756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406628d85ee54f9fb7d45168a29e9124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_shieldClip: {fileID: 8300000, guid: f20db210d68a13c4cbe5b8194b58c79d, type: 3}
 --- !u!1 &3287878277684609727
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377dfadb30324d719f5928bc257ddc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defenseMatrix: {fileID: 0}
+  _defenseMatrix: {fileID: 7001344387008823651}
   playerUI: {fileID: 0}
   m_hitClip: {fileID: 0}
   m_hitEffectDuration: 0.2

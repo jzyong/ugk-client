@@ -35,14 +35,14 @@ namespace Game.GalacticKittens.Room.Enemy
                     spaceship.PlayHitEffect();
                 }
             }
-            
-            if (m_vfxExplosion!=null)
+
+            if (m_vfxExplosion != null)
             {
                 var explosion = Instantiate(m_vfxExplosion, transform.position, Quaternion.identity,
                     GalacticKittensRoomManager.Instance.transform);
                 explosion.GetComponent<ParticleSystem>().Play();
             }
-            
+
             SyncManager.Instance.RemoveSyncObject(GetComponent<SnapTransform>().Id);
             Destroy(gameObject);
         }
@@ -65,8 +65,11 @@ namespace Game.GalacticKittens.Room.Enemy
 
         public virtual void PlayerHitEffect()
         {
-            StopCoroutine(HitEffect());
-            StartCoroutine(HitEffect());
+            if (m_sprite != null)
+            {
+                StopCoroutine(HitEffect());
+                StartCoroutine(HitEffect());
+            }
         }
     }
 }

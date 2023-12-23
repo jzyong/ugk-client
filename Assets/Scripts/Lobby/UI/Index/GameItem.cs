@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Game.GalacticKittens;
 using Game.GalacticKittens.Manager;
 using Network;
 using TMPro;
@@ -43,6 +44,7 @@ namespace Lobby.UI.Index
             NetworkManager.Instance.Send(MID.GalacticKittensEnterRoomReq, request);
 
             //进入选择界面  应该收到返回消息再加载
+            // LoadingFadeEffect.Instance.LoadScene("GalacticKittensCharacterSelection");
             SceneManager.LoadScene("GalacticKittensCharacterSelection");
         }
     }

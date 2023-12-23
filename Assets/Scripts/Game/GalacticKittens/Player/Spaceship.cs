@@ -21,7 +21,7 @@ namespace Game.GalacticKittens.Player
         [HideInInspector] public PlayerUI playerUI;
 
         [Header("AudioClips")] [SerializeField]
-        AudioClip m_hitClip;
+         AudioClip m_hitClip;
 
         [SerializeField] float m_hitEffectDuration;
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -31,6 +31,8 @@ namespace Game.GalacticKittens.Player
         public CharacterDataSO _characterDataSo;
 
         const string k_hitEffect = "_Hit";
+
+        public GalacticKittensPlayerPropertyResponse.Types.PlayerProperty PlayerProperty { get; set; }
 
         public long Id { set; get; }
 
@@ -53,13 +55,14 @@ namespace Game.GalacticKittens.Player
                 FireReq();
             }
 
-            //
-            // //使用护盾 TODO 需要判断护盾是否充足 ，暂时屏蔽，需要设置引用
-            // if (!_defenseMatrix.isShieldActive && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.LeftShift)))
-            // {
-            //     UseShieldReq();
-            // }
-            //
+
+            //使用护盾
+            if (PlayerProperty?.PowerUpCount > 0 && !_defenseMatrix.isShieldActive &&
+                (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.LeftShift)))
+            {
+                UseShieldReq();
+            }
+
             // 退出游戏
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -117,7 +120,7 @@ namespace Game.GalacticKittens.Player
         {
             GalacticKittensUseShieldRequest request = new GalacticKittensUseShieldRequest();
             NetworkManager.Instance.Send(MID.GalacticKittensUseShieldReq, request);
-            // playerUI.UpdatePowerUp(); TODO 更新UI
+            GalacticKittensAudioManager.Instance.PlaySoundEffect(_defenseMatrix.m_shieldClip);
         }
 
         public void Despawn(GalacticKittensObjectDieResponse response)

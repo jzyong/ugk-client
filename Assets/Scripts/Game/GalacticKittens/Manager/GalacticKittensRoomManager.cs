@@ -374,7 +374,8 @@ namespace Game.GalacticKittens.Manager
             }
 
             sceneObjects.Clear();
-            SceneManager.LoadScene("GalacticKittensFinish");
+            LoadingFadeEffect.Instance.LoadScene("GalacticKittensFinish");
+            // SceneManager.LoadScene("GalacticKittensFinish");
         }
 
 
@@ -384,7 +385,8 @@ namespace Game.GalacticKittens.Manager
         public void QuitToLobby()
         {
             SyncManager.Instance.ResetData();
-            SceneManager.LoadScene("Lobby");
+            LoadingFadeEffect.Instance.LoadScene("Lobby");
+            // SceneManager.LoadScene("Lobby");
             Destroy(GalacticKittensAudioManager.Instance);
             Destroy(Instance);
         }
