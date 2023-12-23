@@ -42,7 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
      <Folder Include="Assets" />
-     <Folder Include="Library\BuildInstructions" />
      <Folder Include="Assets\Prefab" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Data" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Spaceships" />
@@ -90,13 +89,13 @@
      <Folder Include="Assets\Prefab\Game\GalacticKittens\Net" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Enemies" />
      <Reference Include="UnityEngine">
-     <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+     <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.CoreModule">
-     <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+     <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor">
-     <HintPath>G:\Program Files\Unity\2023.1.17f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+     <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
      </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

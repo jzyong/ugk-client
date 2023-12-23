@@ -12,11 +12,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{e9e554c9-b796-9c38-cbf7-8b01a6906d41}</ProjectGuid>
+    <ProjectGuid>{f75609b2-ac19-8b81-e9d8-96d175801a96}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Test</AssemblyName>
+    <AssemblyName>ugk-client-game</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -25,12 +25,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Temp\Bin\Debug\Test\</OutputPath>
-    <DefineConstants>UNITY_2022_3_14;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;UNITY_UGP_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_EDITOR_ONLY_COMPILATION</DefineConstants>
+    <OutputPath>Temp\Bin\Debug\ugk-client-game\</OutputPath>
+    <DefineConstants>UNITY_2022_3_14;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;UNITY_UGP_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -45,10 +45,47 @@
     <Analyzer Include="G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Tests\Network\NetworkManagerTestScript.cs" />
-     <Folder Include="Assets\Scripts\Tests\Network" />
-     <None Include="Assets\Scripts\Tests\Ugk.Tests.asmdef" />
-     <Folder Include="Assets\Scripts\Tests" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\GalacticKittens.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\TypescriptEffect.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Parallax.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Manager\GalacticKittensAudioManager.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\CharacterDataSO.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\Meteor.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\AutoDespawn.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossSmallBullet.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerUI.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerMovementInputLimitAdjuster.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\RotateNetworkObjectOnZaxis.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\LoadingFadeEffect.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\GameFinishPanel.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossSmallBulletCircular.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\GhostEnemy.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerShipScore.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\Spaceship.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\CharacterContainer.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\IObjectDestory.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\ShooterEnemy.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\SapceshipBullet.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\DefenseMatrix.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossCicularBullet.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Manager\CharacterSelectionManager.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\EnemyBullet.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerShipMovement.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\Boss.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Manager\GalacticKittensRoomManager.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossHomingMisile.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy\BaseEnemy.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Utility\HealthColor.cs" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Room\Enemy" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Room\Boss" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Utility" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Player" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Manager" />
+     <Folder Include="Assets\Scripts\Game" />
+     <None Include="Assets\Scripts\Game\ugk-client-game.asmdef" />
+     <Folder Include="Assets\Scripts\Game\GalacticKittens\Room" />
      <Reference Include="UnityEngine">
      <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -126,9 +163,6 @@
      </Reference>
      <Reference Include="UnityEngine.LocalizationModule">
      <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEngine.NVIDIAModule">
-     <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.NVIDIAModule.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.ParticleSystemModule">
      <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -342,9 +376,6 @@
      </Reference>
      <Reference Include="unityplastic">
      <HintPath>D:\Unity\ugk-client\Library\PackageCache\com.unity.collab-proxy@2.1.0\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-     </Reference>
-     <Reference Include="nunit.framework">
-     <HintPath>D:\Unity\ugk-client\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -727,14 +758,16 @@
      <Reference Include="UnityEngine.UI">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
-     <Reference Include="UnityEditor.TestRunner">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEngine.TestRunner">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
-     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="ugk-client-network.csproj">
+      <Project>{56861cf7-7802-8222-9ea8-3a04e20ac020}</Project>
+      <Name>ugk-client-network</Name>
+    </ProjectReference>
+    <ProjectReference Include="ugk-client-lobby.csproj">
+      <Project>{244f0798-fbcf-5170-248a-c8bf688abe94}</Project>
+      <Name>ugk-client-lobby</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

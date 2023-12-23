@@ -1,17 +1,17 @@
 {
-    "name": "Test",
+    "name": "ugk-client-test",
     "rootNamespace": "",
     "references": [
-        "GUID:ca981e4b33be40cda040657e8d9b6155"
+        "GUID:95011df713eae62459e4c9d12f8cbcdc"
     ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": true,
+    "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
