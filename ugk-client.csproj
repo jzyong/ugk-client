@@ -134,6 +134,7 @@
      <Compile Include="Assets\Scripts\Network\Serialize\NetworkReaderPooled.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\highlevel\KcpPeer.cs" />
      <Compile Include="Assets\Scripts\Common\Tools\SnapshotInterpolation\Snapshot.cs" />
+     <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\BossUI.cs" />
      <Compile Include="Assets\Scripts\Network\Kcp\kcp2k\kcp\Utils.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Player\PlayerShipMovement.cs" />
      <Compile Include="Assets\Scripts\Game\GalacticKittens\Room\Boss\Boss.cs" />

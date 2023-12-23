@@ -1,4 +1,5 @@
 using Game.GalacticKittens.Manager;
+using Game.GalacticKittens.Room.Boss;
 using Game.GalacticKittens.Room.Enemy;
 using Game.GalacticKittens.Utility;
 using Network;
@@ -52,7 +53,12 @@ namespace Game.GalacticKittens.Player
                 if (baseEnemy != null)
                 {
                     baseEnemy.PlayerHitEffect();
+                    if (baseEnemy is Boss)
+                    {
+                        GalacticKittensRoomManager.Instance.BossUI.UpdateHealth(1);
+                    }
                 }
+
             }
 
 

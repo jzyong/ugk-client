@@ -236,7 +236,7 @@ namespace Network.Handlers.Game
                 //激活powerUp
                 for (int i = 0; i < 2; i++)
                 {
-                    bool active = property.PowerUpCount > i ? true : false;
+                    bool active = property.PowerUpCount > i;
                     spaceship.playerUI.UpdatePowerUp(i, active);
                 }
             }

@@ -22,7 +22,7 @@ namespace Network.Handlers
         [MessageMap(MID.HeartRes)]
         private static void Heart(UgkMessage ugkMessage)
         {
-            // Debug.Log($" 收到心跳返回：{timeStamp}");
+             // Debug.Log($" 收到心跳返回：{ugkMessage.TimeStamp}");
             var response = new HeartResponse();
             response.MergeFrom(ugkMessage.Bytes);
             //计算rtt
@@ -33,7 +33,7 @@ namespace Network.Handlers
             {
                 double remoteTime = ugkMessage.GetTime();
                 NetworkTimeInterpolation.OnTimeSnapshot(new TimeSnapshot(remoteTime, NetworkTime.LocalTime));
-               // Debug.Log($"localServerTime={NetworkTime.ServerTime}-remoteServerTime={remoteTime}={NetworkTime.ServerTime-remoteTime}s rtt={newRtt} rttValue={NetworkTime.RTT}" );
+                Debug.Log($"localServerTime={NetworkTime.ServerTime}-remoteServerTime={remoteTime}={NetworkTime.ServerTime-remoteTime}s rtt={newRtt} rttValue={NetworkTime.RTT}" );
             }
             else
             {

@@ -192,6 +192,7 @@ namespace Network.Sync
             {
                 NetworkManager.Instance.Send(MID.SnapSyncReq, SnapSyncMessage);
                 SnapSyncMessage.Payload.Clear();
+                Debug.Log($"发送快照同步消息：{SnapSyncMessage}");
             }
 
             var predictionCount = PredictionSyncMessage.Payload.Count;

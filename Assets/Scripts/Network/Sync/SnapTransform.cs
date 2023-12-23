@@ -161,12 +161,17 @@ namespace Network.Sync
         void LateUpdate()
         {
             //客户端需要监测是否为自己，只推送拥有者
-            if (IsOnwer && initPosition && NetworkTime.ServerTime > nextSendTime &&
-                (!onlySyncOnChange || Changed(Construct())))
+            if (IsOnwer)
             {
-                OnSerialize();
-                nextSendTime += sendInterval;
+                Debug.Log($"服务器时间：{NetworkTime.ServerTime} 下次发送时间：{nextSendTime}");
+                if (initPosition && NetworkTime.ServerTime > nextSendTime &&
+                    (!onlySyncOnChange || Changed(Construct())))
+                {
+                    OnSerialize();
+                    nextSendTime += sendInterval;
+                }
             }
+           
         }
 
         protected void UpdateClient()

@@ -36,6 +36,7 @@ namespace Game.GalacticKittens.Manager
         [SerializeField] private AudioClip bossWarningClip;
 
         public PlayerUI[] playerUis;
+        public BossUI BossUI;
 
 
         /// <summary>
@@ -321,6 +322,7 @@ namespace Game.GalacticKittens.Manager
             snapTransform.InitTransform(spawnPosition, null);
             sceneObjects[spawnInfo.Id] = boss.gameObject;
             SyncManager.Instance.AddSnapTransform(snapTransform);
+            BossUI.SetHealth(spawnInfo.Hp);
         }
 
 
