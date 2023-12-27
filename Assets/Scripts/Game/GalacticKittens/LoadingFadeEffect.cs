@@ -127,7 +127,10 @@ namespace Game.GalacticKittens
             FadeIn();
             yield return new WaitUntil(() => s_canLoad);
             SceneManager.LoadScene(sceneName);
-            yield return new WaitForSeconds(1f);
+            // Because the scenes are not heavy we can just wait a second and continue with the fade.
+            // In case the scene is heavy instead we should use additive loading to wait for the
+            // scene to load before we continue
+            yield return new WaitForSeconds(0.01f);
             FadeOut();
         }
 

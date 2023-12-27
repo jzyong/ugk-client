@@ -163,7 +163,7 @@ namespace Network.Sync
             //客户端需要监测是否为自己，只推送拥有者
             if (IsOnwer)
             {
-                Debug.Log($"服务器时间：{NetworkTime.ServerTime} 下次发送时间：{nextSendTime}");
+                // Debug.Log($"服务器时间：{NetworkTime.ServerTime} 下次发送时间：{nextSendTime}");
                 if (initPosition && NetworkTime.ServerTime > nextSendTime &&
                     (!onlySyncOnChange || Changed(Construct())))
                 {
