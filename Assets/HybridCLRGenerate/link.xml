@@ -130,6 +130,7 @@
     <type fullname="UnityEngine.Vector4" preserve="all" />
     <type fullname="UnityEngine.WaitForEndOfFrame" preserve="all" />
     <type fullname="UnityEngine.WaitForSeconds" preserve="all" />
+    <type fullname="UnityEngine.WaitUntil" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.IMGUIModule">
     <type fullname="UnityEngine.GUI" preserve="all" />

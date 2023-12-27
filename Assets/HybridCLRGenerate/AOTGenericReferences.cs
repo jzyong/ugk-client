@@ -194,6 +194,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Func<System.Collections.Generic.KeyValuePair<long,object>,byte>
 	// System.Func<System.Collections.Generic.KeyValuePair<long,object>,long>
 	// System.Func<System.Collections.Generic.KeyValuePair<long,object>,object>
+	// System.Func<byte>
 	// System.Func<long,byte>
 	// System.Func<long,int>
 	// System.Func<object,UnityEngine.Color32>
