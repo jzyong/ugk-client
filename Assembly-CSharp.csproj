@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\Assembly-CSharp\</OutputPath>
-    <DefineConstants>UNITY_2022_3_14;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;UNITY_UGP_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2022_3_14;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;UNITY_UGP_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;STARTER_ASSETS_PACKAGES_CHECKED;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
@@ -45,20 +45,42 @@
     <Analyzer Include="G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
      <Compile Include="Assets\HybridCLRGenerate\AOTGenericReferences.cs" />
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
+     <Compile Include="Assets\Resources\Game\ClientDriven\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
      <Folder Include="Assets" />
+     <Folder Include="Assets\Resources\Game\ClientDriven" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Materials\URP_HDRP_ShaderGraph" />
      <Folder Include="Assets\Prefab" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Data" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders\URP_HDRP_ShaderGraph" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Spaceships" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Scripts" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Materials" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens\VFX" />
      <Folder Include="Assets\Prefab\Lobby\UI" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Materials\Built-in_RP" />
      <Folder Include="Assets\Prefab\Game" />
      <Folder Include="Assets\Prefab\Lobby\UI\Index" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Prefabs" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\VFX" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\Controls" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Prefabs" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Textures" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\Utilities" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\Lobby" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\Gameplay" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Skybox" />
      <Folder Include="Assets\HybridCLRGenerate" />
      <None Include="Assets\HybridCLRGenerate\link.xml" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens\EndGame" />
@@ -68,32 +90,59 @@
      <Folder Include="Assets\Resources\Game\GalacticKittens\Materials\VFX" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Fonts" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Parallax_Backgrounds" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Scenes\Playground" />
+     <None Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\CanvasInputs" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Animations" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Boss" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Models" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\UI" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Materials" />
      <Folder Include="Assets\Resources\Game\GalacticKittens" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\InputSystem" />
+     <None Include="Assets\Resources\Game\ClientDriven\StarterAssets\license.txt" />
      <Folder Include="Assets\Resources\Lobby" />
      <Folder Include="Assets\Prefab\Lobby" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs\EventSystem" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Audio" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Scenes" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\EndGame" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\Menu" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Sfx" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Models" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs\CanvasInputs" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Materials" />
      <Folder Include="Assets\Resources\Game" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Player" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Audio\SFX" />
      <Folder Include="Assets\Scenes" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Enemies" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\CharacterSelection" />
      <Folder Include="Assets\Resources" />
      <None Include="Assets\Resources\Game\GalacticKittens\Shaders\shaderHitSprite_shdr.shader" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\Boss" />
      <Folder Include="Assets\Scenes\Game\GalacticKittens" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders\Built-in_RP" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\VirtualInputs" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\RenderPipelineProfiles" />
+     <None Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders\Built-in_RP\ArmatureShader.shader" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment" />
      <Folder Include="Assets\Scenes\Game" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Audio\Music" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Textures" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Shaders" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Materials\Built-in_RP" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\PlayerShip" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs\VirtualInputs" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens\Net" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Enemies" />
      <Reference Include="UnityEngine">
      <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
@@ -734,26 +783,95 @@
      <Reference Include="System.Xml.XPath.XDocument">
      <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
      </Reference>
+     <Reference Include="HybridCLR.Runtime">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\HybridCLR.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Runtime">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="com.unity.cinemachine.editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="HybridCLR.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\HybridCLR.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Rider.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Flow">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Mathematics.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="ParrelSync">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\ParrelSync.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+     </Reference>
+     <Reference Include="PPv2URPConverters">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VSCode.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Sysroot.Linux_x86_64">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
      </Reference>
      <Reference Include="Unity.EditorCoroutines.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="HybridCLR.Runtime">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\HybridCLR.Runtime.dll</HintPath>
+     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.PlasticSCM.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="HybridCLR.Editor">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\HybridCLR.Editor.dll</HintPath>
+     <Reference Include="Unity.Burst">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Shared.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ShaderGraph.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
@@ -764,41 +882,29 @@
      <Reference Include="Unity.VisualScripting.Core">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
      </Reference>
-     <Reference Include="UnityEngine.UI">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.VisualScripting.Core.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Rider.Editor">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Sprite.Editor">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualScripting.Flow">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+     <Reference Include="UnityEngine.UI">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Flow.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Timeline">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
      </Reference>
-     <Reference Include="ParrelSync">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\ParrelSync.dll</HintPath>
+     <Reference Include="Unity.InputSystem">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
+     <Reference Include="Unity.InputSystem.ForUI">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.SysrootPackage.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
@@ -809,20 +915,23 @@
      <Reference Include="Unity.VisualScripting.State.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.TextMeshPro">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+     <Reference Include="Unity.Mathematics">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Searcher.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.State">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VSCode.Editor">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+     <Reference Include="Cinemachine">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

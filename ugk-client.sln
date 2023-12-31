@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ugk-client", "ugk-client.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{0e1af63e-ba5d-8695-205f-f66d0e9f6cbf}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{e32bf43c-c71b-cb89-c73e-4658ab174c73}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ugk-client-test", "ugk-client-test.csproj", "{127aff82-2810-d32a-3479-34bbf06a62e5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{cf4f48d1-695b-e08b-95a0-57275838ab1d}"
@@ -18,6 +20,8 @@ Global
 		{bcd763c4-6d9e-f629-d961-df993e981338}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0e1af63e-ba5d-8695-205f-f66d0e9f6cbf}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0e1af63e-ba5d-8695-205f-f66d0e9f6cbf}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{e32bf43c-c71b-cb89-c73e-4658ab174c73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{e32bf43c-c71b-cb89-c73e-4658ab174c73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{127aff82-2810-d32a-3479-34bbf06a62e5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{127aff82-2810-d32a-3479-34bbf06a62e5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{cf4f48d1-695b-e08b-95a0-57275838ab1d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
