@@ -64,13 +64,15 @@
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Scripts" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Materials" />
-     <Folder Include="Assets\Prefab\Game\GalacticKittens\VFX" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Prefabs\VFX" />
      <Folder Include="Assets\Prefab\Lobby\UI" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Materials\Built-in_RP" />
      <Folder Include="Assets\Prefab\Game" />
-     <Folder Include="Assets\Prefab\Lobby\UI\Index" />
+     <Folder Include="Assets\Resources\Lobby\UI\Index" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\Prefabs\Environment" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Prefabs" />
+     <Folder Include="Assets\Scenes\Game\ClientDriven" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\VFX" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\Controls" />
@@ -80,10 +82,11 @@
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\Utilities" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\Lobby" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\Gameplay" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\Materials" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Skybox" />
      <Folder Include="Assets\HybridCLRGenerate" />
      <None Include="Assets\HybridCLRGenerate\link.xml" />
-     <Folder Include="Assets\Prefab\Game\GalacticKittens\EndGame" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Prefabs\EndGame" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\RoadmapLobbyService" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\Boss" />
      <Folder Include="Assets\Prefab\Game\GalacticKittens" />
@@ -94,10 +97,12 @@
      <None Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts\CanvasInputs" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Animations" />
-     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Boss" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Prefabs\Net\Boss" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Models" />
+     <Folder Include="Assets\Resources\Lobby\UI" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\UI" />
+     <Folder Include="Assets\URP" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Materials" />
      <Folder Include="Assets\Resources\Game\GalacticKittens" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\InputSystem" />
@@ -106,17 +111,22 @@
      <Folder Include="Assets\Prefab\Lobby" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs\EventSystem" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\Shaders" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Prefabs" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Audio" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Scenes" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites\UI\EndGame" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI\Menu" />
+     <Folder Include="Assets\Scenes\Game\ClientDriven\ClientDrivenPlay" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Sfx" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Models" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\UI" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs\CanvasInputs" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\ThirdPersonController\Character\Materials" />
      <Folder Include="Assets\Resources\Game" />
-     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Player" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\Prefabs" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\InputSystem" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Prefabs\Net\Player" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Audio\SFX" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Scripts" />
@@ -131,6 +141,7 @@
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\RenderPipelineProfiles" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\Animations" />
      <None Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders\Built-in_RP\ArmatureShader.shader" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment" />
      <Folder Include="Assets\Scenes\Game" />
@@ -138,12 +149,13 @@
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Textures" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Shaders" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Art\Materials\Built-in_RP" />
+     <Folder Include="Assets\Resources\Game\ClientDriven\Meshes" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Animations\PlayerShip" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Mobile\Prefabs\VirtualInputs" />
      <Folder Include="Assets\Resources\Game\GalacticKittens\Sprites" />
-     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Prefabs\Net" />
      <Folder Include="Assets\Resources\Game\ClientDriven\StarterAssets\Environment\Shaders" />
-     <Folder Include="Assets\Prefab\Game\GalacticKittens\Net\Enemies" />
+     <Folder Include="Assets\Resources\Game\GalacticKittens\Prefabs\Net\Enemies" />
      <Reference Include="UnityEngine">
      <HintPath>G:\Program Files\Unity\2022.3.14f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -825,11 +837,11 @@
      <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+     <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
      </Reference>
      <Reference Include="PPv2URPConverters">
      <HintPath>D:\Unity\ugk-client\Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
